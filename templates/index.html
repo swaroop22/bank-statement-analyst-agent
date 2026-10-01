@@ -1274,12 +1274,13 @@
           <table>
             <thead>
               <tr>
-                <th style="width: 110px;">Date</th>
+                <th style="width: 105px;">Date</th>
                 <th>Clean Payee / Bank Audit Reference</th>
-                <th style="width: 200px;">Category</th>
-                <th style="width: 160px;">Account</th>
-                <th style="text-align: right; width: 130px;">Amount</th>
-                <th style="text-align: right; width: 190px;">Actions</th>
+                <th style="width: 190px;">Category</th>
+                <th style="width: 150px;">Account</th>
+                <th style="text-align: right; width: 125px; color: var(--text-main);">Debit (Outflow)</th>
+                <th style="text-align: right; width: 125px; color: var(--emerald);">Credit (Inflow)</th>
+                <th style="text-align: right; width: 180px;">Actions</th>
               </tr>
             </thead>
             <tbody id="txTableBody">
@@ -2172,15 +2173,13 @@
       tbody.innerHTML = '';
 
       if (!txs || txs.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 22px;">No matching transactions found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 22px;">No matching transactions found.</td></tr>';
         return;
       }
 
       txs.forEach(t => {
         const tr = document.createElement('tr');
         const isDebit = (t.type === 'DEBIT');
-        const sign = isDebit ? '−' : '+';
-        const color = isDebit ? 'var(--text-main)' : 'var(--emerald)';
         const isNeedsReview = (t.category === "Miscellaneous / Other" || t.category === "Uncategorized / Needs Review") && isDebit && !t.is_internal_transfer && !t.is_excluded;
 
         if (isNeedsReview) tr.className = 'row-review-flag';
@@ -2196,6 +2195,14 @@
           catOptions += `<option value="${c}" ${c === t.category ? 'selected' : ''}>${c}</option>`;
         });
 
+        const debitCell = isDebit 
+          ? `<span style="font-family: var(--font-mono); font-weight: 700; color: var(--text-main);">−${formatAmount(t.amount)}</span>` 
+          : `<span style="color: var(--text-light); font-size: 11px;">—</span>`;
+
+        const creditCell = !isDebit 
+          ? `<span style="font-family: var(--font-mono); font-weight: 700; color: var(--emerald);">+${formatAmount(t.amount)}</span>` 
+          : `<span style="color: var(--text-light); font-size: 11px;">—</span>`;
+
         tr.innerHTML = `
           <td style="font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted);">${t.date}</td>
           <td>
@@ -2209,8 +2216,11 @@
             </select>
           </td>
           <td style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">${t.account_source}</td>
-          <td style="text-align: right; font-family: var(--font-mono); font-weight: 700; color: ${color};">
-            ${sign}${formatAmount(t.amount)}
+          <td style="text-align: right;">
+            ${debitCell}
+          </td>
+          <td style="text-align: right;">
+            ${creditCell}
           </td>
           <td style="text-align: right; white-space: nowrap;">
             <button 
