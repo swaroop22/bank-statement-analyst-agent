@@ -664,64 +664,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-
-    /* Spend Over Time Chart */
-    .chart-container {
-      height: 220px;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: 14px 4px 6px;
-      border-bottom: 1px solid var(--border-light);
-      position: relative;
-    }
-
-    .chart-bar-group {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-      justify-content: flex-end;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .chart-bar-group:hover .chart-bar-fill {
-      opacity: 0.85;
-      transform: scaleY(1.02);
-    }
-
-    .chart-bar-track {
-      width: 100%;
-      max-width: 32px;
-      height: 170px;
-      display: flex;
-      align-items: flex-end;
-      background: var(--bg-subtle);
-      border-radius: 4px 4px 0 0;
-      overflow: hidden;
-    }
-
-    .chart-bar-fill {
-      width: 100%;
-      background: var(--primary);
-      border-radius: 4px 4px 0 0;
-      transition: height 0.4s ease, transform 0.15s ease;
-    }
-
-    .chart-bar-label {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-top: 6px;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    /* Ranked Spending Drivers */
-    .driver-list {
+    }.driver-list {
       list-style: none;
       margin-bottom: 14px;
     }
@@ -761,57 +704,7 @@
       font-size: 11px;
       color: var(--text-muted);
       margin-left: 6px;
-    }
-
-    /* Anomaly / Spike Card with Explicit Rule */
-    .alert-card {
-      padding: 10px 12px;
-      border-radius: var(--radius-sm);
-      border-left: 3.5px solid var(--amber);
-      background: #FFFDF7;
-      border-top: 1px solid var(--border-light);
-      border-right: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
-      margin-bottom: 8px;
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .alert-card.clickable {
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .alert-card.clickable:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-sm);
-      border-color: var(--amber);
-      background: #FFFDF0;
-    }
-
-    .spike-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    .spike-badge.transfer {
-      background: #DBEAFE;
-      color: #1E40AF;
-      border: 1px solid #BFDBFE;
-    }
-
-    .spike-badge.outflow {
-      background: #FEE2E2;
-      color: #991B1B;
-      border: 1px solid #FECACA;
-    }
-
-    /* DATA CONFIDENCE & INTEGRITY TRUST BAR */
+    }/* DATA CONFIDENCE & INTEGRITY TRUST BAR */
     .trust-integrity-bar {
       display: flex;
       justify-content: space-between;
@@ -1747,50 +1640,6 @@
       <div class="calc-note-box">
         <strong>Why are Fixed Bills currently ₹0?</strong><br>
         In Indian bank statements, recurring commitments (such as rent, maintenance, term insurance, or loan EMIs) are frequently paid via manual cheques, NEFT transfers, or ad-hoc UPI rather than formal automated NACH/ECS mandate flags. As a result, ₹42L+ in major transfers currently sits in <em>Miscellaneous / Other</em> and <em>Uncategorized / Needs Review</em>. Use the Review Queue below to re-classify those transfers.
-      </div>
-    </section>
-
-    <!-- LEVEL 2: MIDDLE VISUALIZATION & DECISION ROW -->
-    <section class="middle-grid">
-      <!-- Left: Spend Over Time Monthly Bar Chart -->
-      <div class="white-card">
-        <div class="section-head">
-          <div class="section-title">
-            <span>Spend Over Time</span>
-            <span style="font-size: 11px; font-weight: 500; color: var(--text-muted);">(Monthly Outflow vs Inflow • Units: ₹ INR)</span>
-          </div>
-          <div style="font-size: 11.5px; color: var(--text-muted);">
-            Click any month to inspect • <em>Values include unreviewed outflows</em>
-          </div>
-        </div>
-
-        <div id="monthlyChartContainer" class="chart-container">
-          <!-- Dynamically populated monthly trend bars -->
-        </div>
-      </div>
-
-      <!-- Right: Compact Ranked Drivers & Trigger-Verified Spike Alerts -->
-      <div class="white-card">
-        <div class="section-head">
-          <div class="section-title">What Changed & Spike Alerts</div>
-          <span style="font-size: 11px; color: var(--text-muted);">Decision audit</span>
-        </div>
-
-        <!-- Top Drivers Ranked List -->
-        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">
-          Top Spending Drivers
-        </div>
-        <ul id="topDriversRankedList" class="driver-list">
-          <!-- Dynamically populated ranked driver rows -->
-        </ul>
-
-        <!-- Spike Alerts with Explicit Rules -->
-        <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">
-          Verified Spike Alerts
-        </div>
-        <div id="spikeAlertsContainer">
-          <!-- Dynamically populated spike alerts -->
-        </div>
       </div>
     </section>
 
@@ -3204,12 +3053,6 @@
       document.getElementById('calcNetCashResultVal').innerText = `${cb.net_cash_flow >= 0 ? '+' : '−'}${formatAmount(Math.abs(cb.net_cash_flow))}`;
       document.getElementById('calcPeriodContextText').innerText = cb.period_context;
 
-      // Render Middle Level: Monthly Trend Chart
-      renderMonthlyChart(b.monthly_trend || []);
-
-      // Render Top Drivers & Spikes
-      renderDriversAndSpikes(r);
-
       // Render Categories Filter in Ledger
       const catSelect = document.getElementById('txCategoryFilter');
       catSelect.innerHTML = '<option value="ALL">All Categories</option>';
@@ -3231,99 +3074,6 @@
 
       // Render Ledger Table
       filterTransactions(!preservePage);
-    }
-
-    // Monthly Spend Chart
-    function renderMonthlyChart(trend) {
-      const container = document.getElementById('monthlyChartContainer');
-      container.innerHTML = '';
-
-      if (!trend || trend.length === 0) {
-        container.innerHTML = '<div style="color: var(--text-muted); font-size: 12px; margin: auto;">No monthly spend trend data available.</div>';
-        return;
-      }
-
-      const maxOutflow = Math.max(...trend.map(t => t.outflow), 1000);
-
-      trend.forEach(item => {
-        const grp = document.createElement('div');
-        grp.className = 'chart-bar-group';
-        grp.title = `${item.label}\nOutflow: ${formatAmount(item.outflow)}\nInflow: ${formatAmount(item.inflow)}\nNet: ${formatAmount(item.net)}`;
-        grp.onclick = () => {
-          document.getElementById('periodSelector').value = item.key;
-          onPeriodFilterChange();
-        };
-
-        const pct = Math.min((item.outflow / maxOutflow) * 100, 100);
-
-        grp.innerHTML = `
-          <div class="chart-bar-track">
-            <div class="chart-bar-fill" style="height: ${Math.max(pct, 5)}%;"></div>
-          </div>
-          <div class="chart-bar-label">${item.label.split(' ')[0]} '${item.label.split(' ')[1].slice(-2)}</div>
-        `;
-        container.appendChild(grp);
-      });
-    }
-
-    // Top Drivers Ranked List & Spike Alerts
-    function renderDriversAndSpikes(r) {
-      // Drivers
-      const driverList = document.getElementById('topDriversRankedList');
-      driverList.innerHTML = '';
-
-      const sortedCats = [...r.category_breakdowns].filter(c => c.total_spent > 0).sort((a,b) => b.total_spent - a.total_spent);
-      const top3 = sortedCats.slice(0, 3);
-
-      top3.forEach((cat, idx) => {
-        const li = document.createElement('li');
-        li.className = 'driver-item';
-        li.innerHTML = `
-          <span class="driver-rank">#${idx + 1}</span>
-          <span class="driver-name">${cat.category}</span>
-          <span class="driver-amount">${formatAmount(cat.total_spent)}</span>
-          <span class="driver-pct">(${cat.percentage_of_spend.toFixed(1)}%)</span>
-        `;
-        driverList.appendChild(li);
-      });
-
-      // Spike Alerts with Explicit Rule description & Clickable Transaction Inspection
-      const spikeContainer = document.getElementById('spikeAlertsContainer');
-      spikeContainer.innerHTML = '';
-
-      if (r.anomalies_and_spikes && r.anomalies_and_spikes.length > 0) {
-        r.anomalies_and_spikes.slice(0, 4).forEach(alertMsg => {
-          const div = document.createElement('div');
-          div.className = 'alert-card clickable';
-          
-          const cleanMsg = alertMsg.replace(/\*\*/g, '');
-          const isTransfer = cleanMsg.includes('[Possible Internal Transfer]');
-          const badgeClass = isTransfer ? 'spike-badge transfer' : 'spike-badge outflow';
-          const badgeLabel = isTransfer ? '↔ Possible Internal Transfer' : '⚠️ Major Outflow Spike';
-          
-          // Try to extract amount & date to jump to transaction
-          const amtMatch = cleanMsg.match(/[₹$]([0-9,]+\.\d{2})/);
-          const dateMatch = cleanMsg.match(/on (\d{4}-\d{2}-\d{2})/);
-          const targetAmt = amtMatch ? parseFloat(amtMatch[1].replace(/,/g, '')) : null;
-          const targetDate = dateMatch ? dateMatch[1] : null;
-
-          div.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-              <span class="${badgeClass}">${badgeLabel}</span>
-              <span style="font-size: 11px; font-weight: 600; color: var(--primary);">Inspect in Ledger →</span>
-            </div>
-            <div>${cleanMsg}</div>
-          `;
-          
-          div.onclick = () => {
-            jumpToAnomalyTransaction(targetDate, targetAmt);
-          };
-
-          spikeContainer.appendChild(div);
-        });
-      } else {
-        spikeContainer.innerHTML = '<div style="font-size: 12px; color: var(--text-muted); padding: 8px;">No irregular expenditure spikes detected.</div>';
-      }
     }
 
     // Category Budgets Grid (Number Input + Slider)
