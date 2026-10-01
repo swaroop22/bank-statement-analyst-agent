@@ -771,6 +771,81 @@
       text-decoration: line-through;
     }
 
+    /* Pagination Bar */
+    .pagination-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+      font-size: 12px;
+    }
+
+    .pagination-info {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .pagination-buttons {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .page-btn {
+      min-width: 28px;
+      height: 28px;
+      padding: 0 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-body);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .page-btn:hover:not(:disabled):not(.active) {
+      background: var(--bg-subtle);
+      border-color: var(--border-hover);
+      color: var(--text-main);
+    }
+
+    .page-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      background: var(--bg-subtle);
+    }
+
+    .page-ellipsis {
+      padding: 0 4px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
     /* Category Budget Cards with Number Input + Slider */
     .cat-budgets-grid {
       display: grid;
@@ -1211,6 +1286,27 @@
               <!-- Dynamically populated table rows -->
             </tbody>
           </table>
+
+          <!-- Pagination Bar -->
+          <div class="pagination-bar">
+            <div class="pagination-info" id="paginationInfo">
+              Showing 0 transactions
+            </div>
+            <div class="pagination-controls">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 11.5px; color: var(--text-muted);">Rows per page:</span>
+                <select id="pageSizeSelect" class="input-text" style="padding: 2px 6px; font-size: 11.5px; width: 65px;" onchange="onPageSizeChange(this.value)">
+                  <option value="15">15</option>
+                  <option value="25" selected>25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+              <div class="pagination-buttons" id="paginationButtons">
+                <!-- Dynamically generated page buttons -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1532,7 +1628,7 @@
     }
 
     // Handle Data Received from Server
-    function handleDataLoaded(res) {
+    function handleDataLoaded(res, preservePage = false) {
       currentReport = res.report;
       currentBudget = res.budget;
       allTransactions = res.transactions || [];
@@ -1543,7 +1639,7 @@
       populatePeriodSelector();
 
       // Render Dashboard
-      renderDashboard();
+      renderDashboard(preservePage);
     }
 
     // Populate Period Selector
@@ -1595,7 +1691,7 @@
     }
 
     // RENDER MAIN DASHBOARD
-    function renderDashboard() {
+    function renderDashboard(preservePage = false) {
       if (!currentReport || !currentBudget) return;
       const b = currentBudget;
       const r = currentReport;
@@ -1664,7 +1760,7 @@
       renderRecurringSubscriptions(r.recurring_costs || [], b.canceled_subscriptions || []);
 
       // Render Ledger Table
-      filterTransactions();
+      filterTransactions(!preservePage);
     }
 
     // Monthly Spend Chart
@@ -1880,26 +1976,33 @@
       });
     }
 
+    // Pagination State
+    let currentPage = 1;
+    let pageSize = 25;
+    let filteredTransactionsList = [];
+
     // Filter & Render Transactions Table
     function openReviewQueueFilter() {
       switchTab('ledger');
       document.getElementById('onlyReviewCheck').checked = true;
-      filterTransactions();
+      filterTransactions(true);
     }
 
     function filterOnlyReviewQueue() {
       document.getElementById('onlyReviewCheck').checked = true;
-      filterTransactions();
+      filterTransactions(true);
     }
 
     function showAllTransactions() {
       document.getElementById('onlyReviewCheck').checked = false;
       document.getElementById('txSearchInput').value = '';
       document.getElementById('txCategoryFilter').value = 'ALL';
-      filterTransactions();
+      filterTransactions(true);
     }
 
-    function filterTransactions() {
+    function filterTransactions(resetPage = true) {
+      if (resetPage) currentPage = 1;
+
       const query = (document.getElementById('txSearchInput').value || '').toLowerCase().trim();
       const selectedCat = document.getElementById('txCategoryFilter').value;
       const onlyReview = document.getElementById('onlyReviewCheck').checked;
@@ -1935,7 +2038,133 @@
         list.sort((a, b) => b.amount - a.amount);
       }
 
-      renderTableRows(list);
+      filteredTransactionsList = list;
+      renderTablePage();
+    }
+
+    function onPageSizeChange(newSize) {
+      pageSize = parseInt(newSize, 10) || 25;
+      currentPage = 1;
+      renderTablePage();
+    }
+
+    function goToPage(pageNum) {
+      const totalPages = Math.ceil(filteredTransactionsList.length / pageSize) || 1;
+      if (pageNum < 1) pageNum = 1;
+      if (pageNum > totalPages) pageNum = totalPages;
+      currentPage = pageNum;
+      renderTablePage();
+    }
+
+    function renderTablePage() {
+      const totalItems = filteredTransactionsList.length;
+      const totalPages = Math.ceil(totalItems / pageSize) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const startIndex = (currentPage - 1) * pageSize;
+      const endIndex = Math.min(startIndex + pageSize, totalItems);
+      const pageItems = filteredTransactionsList.slice(startIndex, endIndex);
+
+      renderTableRows(pageItems);
+      renderPaginationControls(totalItems, totalPages, startIndex, endIndex);
+    }
+
+    function renderPaginationControls(totalItems, totalPages, startIndex, endIndex) {
+      const infoEl = document.getElementById('paginationInfo');
+      if (!infoEl) return;
+
+      if (totalItems === 0) {
+        infoEl.innerText = 'Showing 0 transactions';
+      } else {
+        infoEl.innerText = `Showing ${startIndex + 1}–${endIndex} of ${totalItems} transactions`;
+      }
+
+      const buttonsContainer = document.getElementById('paginationButtons');
+      if (!buttonsContainer) return;
+      buttonsContainer.innerHTML = '';
+
+      if (totalPages <= 1) {
+        return;
+      }
+
+      // First page button «
+      const firstBtn = document.createElement('button');
+      firstBtn.className = 'page-btn';
+      firstBtn.innerHTML = '«';
+      firstBtn.title = 'First Page';
+      firstBtn.disabled = (currentPage === 1);
+      firstBtn.onclick = () => goToPage(1);
+      buttonsContainer.appendChild(firstBtn);
+
+      // Prev button ‹
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'page-btn';
+      prevBtn.innerHTML = '‹';
+      prevBtn.title = 'Previous Page';
+      prevBtn.disabled = (currentPage === 1);
+      prevBtn.onclick = () => goToPage(currentPage - 1);
+      buttonsContainer.appendChild(prevBtn);
+
+      // Page numbers (sliding window of max 5 pages)
+      let startP = Math.max(1, currentPage - 2);
+      let endP = Math.min(totalPages, startP + 4);
+      if (endP - startP < 4) {
+        startP = Math.max(1, endP - 4);
+      }
+
+      if (startP > 1) {
+        const p1 = document.createElement('button');
+        p1.className = `page-btn ${currentPage === 1 ? 'active' : ''}`;
+        p1.innerText = '1';
+        p1.onclick = () => goToPage(1);
+        buttonsContainer.appendChild(p1);
+        if (startP > 2) {
+          const ell = document.createElement('span');
+          ell.className = 'page-ellipsis';
+          ell.innerText = '...';
+          buttonsContainer.appendChild(ell);
+        }
+      }
+
+      for (let p = startP; p <= endP; p++) {
+        const btn = document.createElement('button');
+        btn.className = `page-btn ${p === currentPage ? 'active' : ''}`;
+        btn.innerText = p;
+        btn.onclick = () => goToPage(p);
+        buttonsContainer.appendChild(btn);
+      }
+
+      if (endP < totalPages) {
+        if (endP < totalPages - 1) {
+          const ell = document.createElement('span');
+          ell.className = 'page-ellipsis';
+          ell.innerText = '...';
+          buttonsContainer.appendChild(ell);
+        }
+        const pLast = document.createElement('button');
+        pLast.className = `page-btn ${currentPage === totalPages ? 'active' : ''}`;
+        pLast.innerText = totalPages;
+        pLast.onclick = () => goToPage(totalPages);
+        buttonsContainer.appendChild(pLast);
+      }
+
+      // Next button ›
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'page-btn';
+      nextBtn.innerHTML = '›';
+      nextBtn.title = 'Next Page';
+      nextBtn.disabled = (currentPage === totalPages);
+      nextBtn.onclick = () => goToPage(currentPage + 1);
+      buttonsContainer.appendChild(nextBtn);
+
+      // Last page button »
+      const lastBtn = document.createElement('button');
+      lastBtn.className = 'page-btn';
+      lastBtn.innerHTML = '»';
+      lastBtn.title = 'Last Page';
+      lastBtn.disabled = (currentPage === totalPages);
+      lastBtn.onclick = () => goToPage(totalPages);
+      buttonsContainer.appendChild(lastBtn);
     }
 
     function renderTableRows(txs) {
@@ -1947,10 +2176,7 @@
         return;
       }
 
-      // Show top 250 rows for snappy performance
-      const slice = txs.slice(0, 250);
-
-      slice.forEach(t => {
+      txs.forEach(t => {
         const tr = document.createElement('tr');
         const isDebit = (t.type === 'DEBIT');
         const sign = isDebit ? '−' : '+';
@@ -2014,7 +2240,7 @@
       }
     }
 
-    // Transaction Inline Actions
+    // Transaction Inline Actions (preserves current pagination page!)
     async function updateTxCategory(txId, newCategory) {
       try {
         const resp = await fetch('/api/transaction/update', {
@@ -2024,7 +2250,7 @@
         });
         const res = await resp.json();
         if (res.success) {
-          handleDataLoaded(res);
+          handleDataLoaded(res, true);
         }
       } catch (err) {
         console.error('Failed to update category', err);
@@ -2040,7 +2266,7 @@
         });
         const res = await resp.json();
         if (res.success) {
-          handleDataLoaded(res);
+          handleDataLoaded(res, true);
         }
       } catch (err) {
         console.error('Failed to toggle transfer', err);
@@ -2056,7 +2282,7 @@
         });
         const res = await resp.json();
         if (res.success) {
-          handleDataLoaded(res);
+          handleDataLoaded(res, true);
         }
       } catch (err) {
         console.error('Failed to toggle exclude', err);
