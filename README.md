@@ -16,10 +16,9 @@ An autonomous Personal Finance & Financial Data Extraction Agent designed to acc
    - **De-duplication:** Hashes date, amount, and sanitized payee to eliminate overlapping statement duplicate transactions.
    - **Refund Offsetting:** Detects merchant returns and offsets them directly against their originating expense category instead of skewing income figures.
 
-3. **Rocket Money Onboarding & Smart Budgeting:**
-   - **Multi-Step Onboarding Flow:** Modeled directly after Rocket Money's onboarding experience (`onboarding.rocketmoney.com/budgeting`). Guides users through financial goals, pay cadence, take-home income baseline, and statement connection.
+3. **Smart Budgeting & Safe-to-Spend Allowance:**
    - **Interactive Category Budget Sliders:** Category spend trackers for Groceries, Dining, Housing, Utilities, Shopping, and Transport with real-time sliders and spend-alert meters (Green < 75%, Amber 75-99%, Coral Red ≥ 100%).
-   - **"Safe to Spend" / "Left to Spend" Allowance Gauge:** Calculates remaining allowance using Rocket Money's formula (`Income - Fixed Bills - Variable Outflows = Safe to Spend`) with daily safe burn pace.
+   - **"Safe to Spend" / "Left to Spend" Allowance Gauge:** Calculates remaining allowance using the formula (`Income - Fixed Bills - Variable Outflows = Safe to Spend`) with daily safe burn pace.
    - **Subscription Cancel Concierge:** 1-click concierge cancellation simulation that computes projected annual savings, tracks active cancellations, and increments the savings counter.
 
 4. **Strict 9-Category Schema + Inflows:**

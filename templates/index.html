@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rocket Money • Budget</title>
-  <meta name="description" content="Rocket Money custom budgeting and safe-to-spend allowance tracker. Monitor spending by category, adjust budget limits, track recurring bills, and cancel unwanted subscriptions.">
+  <title>Budget • Personal Finance & Spending Analyst</title>
+  <meta name="description" content="Custom budgeting and safe-to-spend allowance tracker. Monitor spending by category, adjust budget limits, track recurring bills, and cancel unwanted subscriptions.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
       --text-muted: #64748B;
       --text-light: #94A3B8;
 
-      /* Rocket Money Brand Colors */
+      /* Primary Brand Colors */
       --primary: #4F46E5;
       --primary-hover: #4338CA;
       --primary-light: #EEF2FF;
@@ -109,7 +109,7 @@
       text-decoration: none;
     }
 
-    .rocket-logo-icon {
+    .brand-logo-icon {
       width: 42px;
       height: 42px;
       border-radius: var(--radius-md);
@@ -991,10 +991,10 @@
     <!-- Top Navigation Bar - Dedicated Exclusively to Budget -->
     <nav class="top-nav">
       <div class="brand-wrap">
-        <div class="rocket-logo-icon">🚀</div>
+        <div class="brand-logo-icon">📊</div>
         <div>
           <div class="brand-title">
-            Rocket Money
+            Budget Analyst
             <span class="brand-pill">Budget</span>
           </div>
           <div class="brand-sub">Safe-to-Spend Allowance & Custom Category Trackers</div>
@@ -1098,7 +1098,7 @@
       <div class="left-to-spend-hero">
         <div>
           <div class="lts-label">
-            <span>🛡️</span> Rocket Money Safe-to-Spend Allowance
+            <span>🛡️</span> Safe-to-Spend Allowance
           </div>
           <div class="lts-amount" id="ltsAmountVal">₹0.00</div>
           <div class="lts-daily" id="ltsDailyVal">
@@ -1108,7 +1108,7 @@
             <span>🟢</span> On Track • Spending below monthly burn limit
           </div>
 
-          <!-- Rocket Money Equation Breakdown -->
+          <!-- Safe-to-Spend Allowance Equation Breakdown -->
           <div class="equation-bar">
             <div class="eq-item">
               <div class="eq-item-lbl">Total Inflow (Income)</div>
@@ -1181,7 +1181,7 @@
         </div>
       </div>
 
-      <!-- 3. Category Spend Trackers (Rocket Money Signature Grid with Sliders) -->
+      <!-- 3. Category Spend Trackers (Signature Grid with Budget Sliders) -->
       <div class="white-card">
         <div class="section-title-wrap">
           <div class="section-title">
@@ -1313,11 +1313,11 @@
   <div id="conciergeModal" class="modal-overlay">
     <div class="modal-card">
       <div class="modal-title">
-        <span>🚀</span> Rocket Money Cancel Concierge
+        <span>⚡</span> Subscription Cancel Concierge
       </div>
       <div class="modal-body">
         <p style="margin-bottom: 10px;">
-          Would you like the Rocket Money Concierge to cancel your subscription to <strong id="conciergeMerchantName" style="color: var(--text-main);">Merchant</strong>?
+          Would you like the Subscription Concierge to cancel your subscription to <strong id="conciergeMerchantName" style="color: var(--text-main);">Merchant</strong>?
         </p>
         <div style="background: var(--emerald-light); border: 1px solid var(--emerald-border); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px;">
           <div style="font-size: 11px; font-weight: 700; color: var(--emerald-dark); text-transform: uppercase;">Estimated Annual Savings</div>
@@ -1553,7 +1553,7 @@
     // Analysis Success Handler
     function handleAnalysisSuccess(res) {
       currentReport = res.report;
-      currentBudget = res.rocket_budget;
+      currentBudget = res.budget || res.budget_summary;
       allTransactions = res.transactions || [];
 
       // Currency
@@ -1583,8 +1583,8 @@
           body: JSON.stringify(payload)
         });
         const res = await resp.json();
-        if (res.rocket_budget) {
-          currentBudget = res.rocket_budget;
+        if (res.budget || res.budget_summary) {
+          currentBudget = res.budget || res.budget_summary;
           renderDashboard(currentReport, currentBudget, allTransactions);
         }
       } catch (err) {
@@ -1756,7 +1756,7 @@
         r.optimization_opportunities.forEach(opt => {
           const div = document.createElement('div');
           div.className = 'insight-card opt';
-          div.innerHTML = `<strong>💡 Rocket Money Optimization:</strong> ${opt}`;
+          div.innerHTML = `<strong>💡 Smart Budget Optimization:</strong> ${opt}`;
           insightsContainer.appendChild(div);
         });
       }
@@ -1859,8 +1859,8 @@
         const res = await resp.json();
         if (res.success) {
           hideConciergeModal();
-          if (res.rocket_budget) {
-            currentBudget = res.rocket_budget;
+          if (res.budget || res.budget_summary) {
+            currentBudget = res.budget || res.budget_summary;
             renderDashboard(currentReport, currentBudget, allTransactions);
           }
           showAlert(`✓ Concierge Cancellation Initiated for ${merchant}! Saved ${formatAmount(monthlyAmount * 12)}/year.`, 'success');

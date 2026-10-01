@@ -20,7 +20,7 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 pipeline = SpendingAnalysisPipeline()
 
-# Rocket Money Budget & Concierge State
+# Budget & Concierge State
 USER_SETTINGS = {
     "income_target": None,
     "pay_cadence": "Monthly",
@@ -38,9 +38,9 @@ LATEST_REPORT = {
 }
 
 
-def generate_rocket_budget(report_dict, user_settings=None):
+def generate_budget(report_dict, user_settings=None):
     """
-    Computes Rocket Money style safe-to-spend allowance, category budget targets,
+    Computes safe-to-spend allowance, category budget targets,
     pacing status, and recommended category spending caps.
     """
     settings = user_settings or USER_SETTINGS
@@ -66,7 +66,7 @@ def generate_rocket_budget(report_dict, user_settings=None):
         if c_name in custom_budgets and custom_budgets[c_name] is not None:
             limit = float(custom_budgets[c_name])
         else:
-            # Intelligent Rocket Money recommendation
+            # Category budget recommendation
             if currency == "INR":
                 if c_spent > 0:
                     limit = float(max(round(c_spent * 1.15, -2), round(c_spent + 200, -2)))
@@ -100,7 +100,7 @@ def generate_rocket_budget(report_dict, user_settings=None):
             "top_merchants": cat.get("top_merchants", [])
         })
 
-    # Rocket Money Safe-to-Spend Allowance:
+    # Safe-to-Spend Allowance:
     # Safe to Spend = Monthly Inflow - Fixed Recurring Bills - Variable Outflow to date
     if income > 0:
         safe_to_spend = max(0.0, income - recurring_monthly - total_variable_spent)
@@ -132,6 +132,8 @@ def generate_rocket_budget(report_dict, user_settings=None):
     }
 
 
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -161,14 +163,14 @@ def analyze_drive():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS)
 
         return jsonify({
             "success": True,
             "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
             "markdown": md_text,
-            "rocket_budget": rocket_budget
+            "budget": budget_data
         })
     except Exception as e:
         err_msg = str(e)
@@ -202,14 +204,14 @@ def analyze_files():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS)
 
         return jsonify({
             "success": True,
             "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
             "markdown": md_text,
-            "rocket_budget": rocket_budget
+            "budget": budget_data
         })
     except Exception as e:
         err_msg = str(e)
@@ -247,14 +249,14 @@ def analyze_downloaded():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS)
 
         return jsonify({
             "success": True,
             "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
             "markdown": md_text,
-            "rocket_budget": rocket_budget
+            "budget": budget_data
         })
     except Exception as e:
         err_msg = str(e)
@@ -286,14 +288,14 @@ def sample_demo():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS)
 
         return jsonify({
             "success": True,
             "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
             "markdown": md_text,
-            "rocket_budget": rocket_budget
+            "budget": budget_data
         })
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
@@ -301,7 +303,7 @@ def sample_demo():
 
 @app.route('/api/budget-settings', methods=['GET', 'POST'])
 def budget_settings():
-    """Retrieve or update Rocket Money budget targets and pay schedule."""
+    """Retrieve or update budget targets and pay schedule."""
     if request.method == 'POST':
         data = request.get_json() or {}
         if 'income_target' in data:
@@ -323,10 +325,10 @@ def budget_settings():
                 except (ValueError, TypeError):
                     pass
 
-    # If we have an active report, return updated rocket budget
+    # If we have an active report, return updated budget
     current_budget = None
     if LATEST_REPORT["report"]:
-        current_budget = generate_rocket_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
+        current_budget = generate_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
 
     return jsonify({
         "success": True,
@@ -337,13 +339,13 @@ def budget_settings():
             "category_budgets": USER_SETTINGS['category_budgets'],
             "total_annual_saved": USER_SETTINGS['total_annual_saved']
         },
-        "rocket_budget": current_budget
+        "budget": current_budget
     })
 
 
 @app.route('/api/concierge-cancel', methods=['POST'])
 def concierge_cancel():
-    """Cancel subscription via Rocket Money concierge simulation."""
+    """Cancel subscription via concierge simulation."""
     data = request.get_json() or {}
     merchant = data.get('merchant', '').strip()
     monthly_amount = float(data.get('monthly_amount', 0.0))
@@ -366,7 +368,7 @@ def concierge_cancel():
 
     current_budget = None
     if LATEST_REPORT["report"]:
-        current_budget = generate_rocket_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
+        current_budget = generate_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
 
     return jsonify({
         "success": True,
@@ -374,7 +376,7 @@ def concierge_cancel():
         "annual_savings": annual_savings,
         "total_annual_saved": USER_SETTINGS["total_annual_saved"],
         "canceled_subscriptions": list(USER_SETTINGS["canceled_subscriptions"].values()),
-        "rocket_budget": current_budget
+        "budget": current_budget
     })
 
 
@@ -392,13 +394,13 @@ def concierge_restore():
 
     current_budget = None
     if LATEST_REPORT["report"]:
-        current_budget = generate_rocket_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
+        current_budget = generate_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
 
     return jsonify({
         "success": True,
         "total_annual_saved": USER_SETTINGS["total_annual_saved"],
         "canceled_subscriptions": list(USER_SETTINGS["canceled_subscriptions"].values()),
-        "rocket_budget": current_budget
+        "budget": current_budget
     })
 
 
