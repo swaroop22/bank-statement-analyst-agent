@@ -1,0 +1,60 @@
+{
+  "active_profile_id": "dad",
+  "profiles": [
+    {
+      "avatar": "\ud83d\udc69",
+      "confirmed_spending": 703522.21,
+      "currency_symbol": "\u20b9",
+      "drive_folder_url": "https://drive.google.com/drive/folders/1RncmKINKSQozomIa_yy6jl4anWqMccVP?usp=drive_link",
+      "id": "mom",
+      "is_active": false,
+      "name": "Mom",
+      "needs_review_amount": 4232487.36,
+      "needs_review_count": 51,
+      "net_cash_flow": 337164.43,
+      "pdf_password": "46756010166",
+      "relation": "Mom (India)",
+      "subtitle": "State Bank of India (12 Statements) \u2022 Dec 2022 \u2013 Jan 2024",
+      "total_inflow": 5273174.0,
+      "total_outflow": 4936009.57,
+      "transaction_count": 210
+    },
+    {
+      "avatar": "\ud83d\udc68",
+      "confirmed_spending": 982212.0,
+      "currency_symbol": "\u20b9",
+      "drive_folder_url": "",
+      "id": "dad",
+      "is_active": true,
+      "name": "Dad",
+      "needs_review_amount": 12098055.84,
+      "needs_review_count": 195,
+      "net_cash_flow": -6359168.84,
+      "pdf_password": "",
+      "relation": "Dad (India)",
+      "subtitle": "Kismatpur Construction & Senior Accounts \u2022 Aug 2023 \u2013 Jul 2024 (99 Payees)",
+      "total_inflow": 6721099.0,
+      "total_outflow": 13080267.84,
+      "transaction_count": 275
+    },
+    {
+      "avatar": "\ud83d\udc69\u200d\ud83d\udcbc",
+      "confirmed_spending": 653376.0,
+      "currency_symbol": "\u20b9",
+      "drive_folder_url": "",
+      "id": "wife",
+      "is_active": false,
+      "name": "Wife",
+      "needs_review_amount": 1212400.0,
+      "needs_review_count": 30,
+      "net_cash_flow": 759424.0,
+      "pdf_password": "",
+      "relation": "Wife (India)",
+      "subtitle": "ICICI Salary & Operational Accounts \u2022 2023",
+      "total_inflow": 2625200.0,
+      "total_outflow": 1865776.0,
+      "transaction_count": 203
+    }
+  ],
+  "success": true
+}

@@ -41,6 +41,48 @@ An autonomous Personal Finance & Financial Data Extraction Agent designed to acc
 
 ---
 
+
+---
+
+## 🌐 Live GitHub Pages Demo
+
+The interactive dashboard is pre-configured and hosted directly on **GitHub Pages**:
+
+👉 **[https://swaroop22.github.io/bank-statement-analyst-agent/](https://swaroop22.github.io/bank-statement-analyst-agent/)**
+
+- **👨 Dad's Mapped Vendor Payments Screen:** `https://swaroop22.github.io/bank-statement-analyst-agent/?profile=dad`
+  - 99 verified payees & contractors mapped from Google Sheet
+  - 12-month payment timeline matrix (Aug 2023 – Jul 2024)
+  - Interactive filters by month, trade category, and live search
+  - Expandable payment drawers and monthly cards grid
+  - 1-click CSV matrix spreadsheet download
+- **👩 Mom's Financial Decision Dashboard:** `https://swaroop22.github.io/bank-statement-analyst-agent/?profile=mom`
+  - Trust-first transaction review queue (51 pending review, confirmed spend vs unconfirmed)
+  - Category budget gauges with real-time sliders
+  - Historical multi-month statement analysis (Dec 2022 – Jan 2024)
+- **💼 Wife's Financial Portfolio:** `https://swaroop22.github.io/bank-statement-analyst-agent/?profile=wife`
+
+---
+
+## ☁️ Cloud & GitHub Hosting Setup
+
+### Option 1: GitHub Pages (Free Static Hosting on GitHub)
+1. Go to your repository on GitHub: **Settings** > **Pages**.
+2. Under **Build and deployment** > **Source**:
+   - Select **GitHub Actions** (the included `.github/workflows/deploy-pages.yml` will deploy automatically on push).
+   - *OR* select **Deploy from a branch** > branch: `main`, folder: `/docs` > **Save**.
+3. Your site will be live at `https://<username>.github.io/<repo-name>/`.
+
+### Option 2: Live Python Backend (Render / Docker / Cloud VPS)
+To run the full dynamic server with live Google Drive downloads and statement uploads:
+- **Docker:**
+  ```bash
+  docker build -t bank-statement-analyst .
+  docker run -p 5055:5055 bank-statement-analyst
+  ```
+- **Render.com:**
+  Connect the repo on Render using the included `render.yaml` for 1-click zero-configuration deployment.
+
 ## 🚀 Quickstart
 
 ### 1. Environment Setup
