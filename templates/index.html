@@ -81,6 +81,109 @@
       margin: 0 auto;
     }
 
+    /* DAD VENDOR MAPPING TAB STYLES */
+    .dad-vendor-header {
+      background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+      border: 1px solid #DBEAFE;
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .dad-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .dad-kpi-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .dad-kpi-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .dad-kpi-val {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      line-height: 1.2;
+    }
+
+    .dad-kpi-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .dad-progress-bar-wrap {
+      width: 100%;
+      height: 6px;
+      background: var(--bg-subtle-2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .dad-progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .dad-drawer-row {
+      display: none;
+      background: #F8FAFC;
+    }
+
+    .dad-drawer-content {
+      padding: 14px 20px;
+      border-left: 3px solid var(--primary);
+      margin: 8px 12px;
+      background: #FFFFFF;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .dad-grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .dad-month-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-xs);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .dad-month-card:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--border-hover);
+    }
+
     /* FAMILY PORTFOLIO SWITCHER BAR */
     .family-bar {
       background: var(--bg-white);
@@ -1653,10 +1756,27 @@
         <button class="tab-btn" id="tabBtnAudit" onclick="switchTab('audit')">
           Statements & Integrity Audit
         </button>
+        <button class="tab-btn" id="tabBtnDadVendors" style="display: none;" onclick="switchTab('dadvendors')">
+          🏗️ Mapped Vendor Payments
+          <span class="tab-count-badge emerald" id="badgeTabDadVendors">99 payees</span>
+        </button>
       </nav>
 
       <!-- TAB 1: TRANSACTION LEDGER & REVIEW QUEUE -->
       <div id="tabContentLedger" class="tab-content active">
+        <!-- Dad Mapped Vendor Payments Callout Notice -->
+        <div id="dadLedgerNotice" style="display: none; background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 14px; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 22px;">🏗️</span>
+            <div>
+              <div style="font-weight: 800; color: #3730A3; font-size: 13.5px;">Google Sheet Vendor Mapping Active</div>
+              <div style="color: #4338CA; font-size: 12px; margin-top: 1px;">99 verified contractors & payees mapped with ₹1,30,80,267.84 tracked across Aug 2023 – Jul 2024.</div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="switchTab('dadvendors')" style="white-space: nowrap;">
+            Open Mapped Vendor UI →
+          </button>
+        </div>
         <!-- Single Unambiguous View Switch & Secondary Filters -->
         <div class="filter-bar" style="justify-content: space-between; align-items: center;">
           <!-- Primary Impact Switch -->
@@ -1798,6 +1918,115 @@
           </a>
         </div>
       </div>
+
+      <!-- TAB 5: DAD MAPPED VENDOR PAYMENTS (GOOGLE SHEET) -->
+      <div id="tabContentDadVendors" class="tab-content">
+        <!-- Hero Header -->
+        <div class="dad-vendor-header">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span style="font-size: 20px;">🏗️</span>
+              <h2 style="font-size: 17px; font-weight: 800; color: var(--text-main); margin: 0;">
+                Dad's Construction & Vendor Analysis (Kismatpur Project)
+              </h2>
+              <span class="chip" style="background: #E0E7FF; color: #3730A3; border-color: #C7D2FE; font-weight: 700;">Google Sheet Mapped</span>
+            </div>
+            <div style="font-size: 12px; color: var(--text-muted);">
+              99 Verified Payees & Contractors • Aug 2023 – Jul 2024 • Mapped from Bank Statement UPI References
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <a href="/api/dad/download-vendor-csv" class="btn btn-primary btn-sm" download>
+              📥 Download CSV Spreadsheet
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1q3HVk2sex4APnn6DFAXYT8dREanh9xtX3IOA2MunV0A/edit?usp=sharing" target="_blank" class="btn btn-secondary btn-sm">
+              🔗 Open Google Sheet
+            </a>
+          </div>
+        </div>
+
+        <!-- 4 Top KPI Stat Cards -->
+        <div class="dad-kpi-grid">
+          <div class="dad-kpi-card">
+            <div class="dad-kpi-lbl">Total Outflow Sent</div>
+            <div class="dad-kpi-val" id="dadKpiTotalOutflow">₹1,30,80,267.84</div>
+            <div class="dad-kpi-sub" id="dadKpiPeriodSub">12 Monthly Cycles (Aug 2023 – Jul 2024)</div>
+          </div>
+          <div class="dad-kpi-card">
+            <div class="dad-kpi-lbl">Mapped Payees & Entities</div>
+            <div class="dad-kpi-val" id="dadKpiPayeeCount">99 Payees</div>
+            <div class="dad-kpi-sub">100% of raw statement UPI descriptions mapped</div>
+          </div>
+          <div class="dad-kpi-card">
+            <div class="dad-kpi-lbl">Top Material Beneficiary</div>
+            <div class="dad-kpi-val" style="font-size: 16px; color: var(--primary);" id="dadKpiTopVendor">Nagarjuna Steel</div>
+            <div class="dad-kpi-sub">₹33,75,470.00 (26.3% of total spend)</div>
+          </div>
+          <div class="dad-kpi-card">
+            <div class="dad-kpi-lbl">Site Operations & Staff</div>
+            <div class="dad-kpi-val" style="font-size: 16px; color: var(--emerald-dark);" id="dadKpiDriverTotal">₹10,26,245.00</div>
+            <div class="dad-kpi-sub">Rajashekar (Dad's Driver) across 10 months</div>
+          </div>
+        </div>
+
+        <!-- Filter & Control Toolbar -->
+        <div class="filter-bar" style="justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <!-- Left: Month & Category Dropdowns -->
+          <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <select id="dadVendorMonthSelect" class="input-text" style="width: 250px;" onchange="renderDadVendorUI()">
+              <option value="ALL">All Months (Aug 2023 – Jul 2024)</option>
+            </select>
+
+            <select id="dadVendorCategorySelect" class="input-text" style="width: 230px;" onchange="renderDadVendorUI()">
+              <option value="ALL">All Trade Categories</option>
+            </select>
+
+            <input 
+              type="text" 
+              id="dadVendorSearchInput" 
+              class="input-text" 
+              style="width: 220px;" 
+              placeholder="Search person or trade..." 
+              oninput="renderDadVendorUI()" 
+            />
+          </div>
+
+          <!-- Right: View Mode Toggle -->
+          <div class="view-switch-segmented">
+            <button id="dadViewBtnSummary" class="view-switch-pill active" onclick="switchDadViewMode('summary')">
+              📊 Payees Summary
+            </button>
+            <button id="dadViewBtnGrid" class="view-switch-pill" onclick="switchDadViewMode('grid')">
+              📅 Monthly Cards
+            </button>
+          </div>
+        </div>
+
+        <!-- VIEW 1: PAYEES SUMMARY TABLE -->
+        <div id="dadViewSummaryContainer" class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 60px;">#</th>
+                <th>Person / Vendor / Beneficiary</th>
+                <th style="width: 200px;">Trade / Category</th>
+                <th style="width: 140px;">Active Period</th>
+                <th style="text-align: right; width: 160px; color: var(--text-main);">Amount Sent (₹)</th>
+                <th style="width: 140px;">% Share</th>
+                <th style="text-align: right; width: 120px;">Breakdown</th>
+              </tr>
+            </thead>
+            <tbody id="dadVendorTableBody">
+              <!-- Dynamically populated vendor rows -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- VIEW 2: MONTHLY CARDS GRID -->
+        <div id="dadViewGridContainer" class="dad-grid-cards" style="display: none;">
+          <!-- Dynamically populated monthly cards -->
+        </div>
+      </div>
     </section>
   </div>
 
@@ -1907,7 +2136,10 @@
       familyProfilesList.forEach(p => {
         const badge = document.getElementById(`familyBadge_${p.id}`);
         if (badge) {
-          if (p.needs_review_count > 0) {
+          if (p.id === 'dad') {
+            badge.className = 'family-review-chip emerald';
+            badge.innerText = `99 Payees Mapped`;
+          } else if (p.needs_review_count > 0) {
             badge.className = 'family-review-chip amber';
             badge.innerText = `${p.needs_review_count} to review`;
           } else {
@@ -1934,10 +2166,30 @@
         const p = familyProfilesList.find(x => x.id === activeProfileId);
         btnName.innerText = p ? p.name : 'Active Profile';
       }
+
+      // Show/Hide Dad Mapped Vendors Tab & Notice
+      const dadTabBtn = document.getElementById('tabBtnDadVendors');
+      const dadNotice = document.getElementById('dadLedgerNotice');
+      if (activeProfileId === 'dad') {
+        if (dadTabBtn) dadTabBtn.style.display = 'inline-flex';
+        if (dadNotice) dadNotice.style.display = 'flex';
+      } else {
+        if (dadTabBtn) dadTabBtn.style.display = 'none';
+        if (dadNotice) dadNotice.style.display = 'none';
+        const dadContent = document.getElementById('tabContentDadVendors');
+        if (dadContent && dadContent.classList.contains('active')) {
+          switchTab('ledger');
+        }
+      }
     }
 
     async function switchProfile(targetPid) {
-      if (targetPid === activeProfileId && currentReport) return;
+      if (targetPid === activeProfileId && currentReport) {
+        if (targetPid === 'dad') {
+          switchTab('dadvendors');
+        }
+        return;
+      }
       hideAlert();
       showFeedbackToast(`⏳ Loading ${targetPid.charAt(0).toUpperCase() + targetPid.slice(1)}'s portfolio...`);
 
@@ -1964,6 +2216,9 @@
 
           handleDataLoaded(res);
           initFamilyProfiles();
+          if (targetPid === 'dad') {
+            switchTab('dadvendors');
+          }
           showFeedbackToast(`✓ Switched to ${p.name}'s Financial Dashboard.`);
         } else {
           showAlert(res.error || 'Failed to switch profile.');
@@ -2065,6 +2320,334 @@
       } else if (tabName === 'audit') {
         document.getElementById('tabBtnAudit').classList.add('active');
         document.getElementById('tabContentAudit').classList.add('active');
+      } else if (tabName === 'dadvendors') {
+        const btn = document.getElementById('tabBtnDadVendors');
+        const content = document.getElementById('tabContentDadVendors');
+        if (btn) btn.classList.add('active');
+        if (content) content.classList.add('active');
+        loadDadVendorSummary();
+      }
+    }
+
+    /* ==========================================================================
+       DAD MAPPED VENDOR PAYMENTS (GOOGLE SHEET INTEGRATION)
+       ========================================================================== */
+    let dadVendorData = null;
+    let currentDadViewMode = 'summary'; // 'summary' or 'grid'
+    let openDadDrawers = new Set();
+
+    async function loadDadVendorSummary() {
+      if (dadVendorData) {
+        renderDadVendorUI();
+        return;
+      }
+      try {
+        const resp = await fetch('/api/dad/vendor-summary');
+        const res = await resp.json();
+        if (res.success) {
+          dadVendorData = res;
+          populateDadFilters();
+          renderDadVendorUI();
+        } else {
+          console.error('Failed to load Dad vendor data:', res.error);
+        }
+      } catch (err) {
+        console.error('Error fetching Dad vendor summary:', err);
+      }
+    }
+
+    function populateDadFilters() {
+      if (!dadVendorData) return;
+      const monthSelect = document.getElementById('dadVendorMonthSelect');
+      if (monthSelect) {
+        let html = `<option value="ALL">All Months (Aug 2023 – Jul 2024) [${formatAmount(dadVendorData.grand_total)}]</option>`;
+        dadVendorData.months.forEach(m => {
+          const tot = dadVendorData.monthly_totals[m] || 0;
+          html += `<option value="${m}">${m} (${formatAmount(tot)})</option>`;
+        });
+        monthSelect.innerHTML = html;
+      }
+
+      const catSelect = document.getElementById('dadVendorCategorySelect');
+      if (catSelect) {
+        let html = `<option value="ALL">All Trade Categories (${dadVendorData.categories.length})</option>`;
+        dadVendorData.categories.forEach(c => {
+          html += `<option value="${c.category}">${c.category} (${formatAmount(c.total)})</option>`;
+        });
+        catSelect.innerHTML = html;
+      }
+    }
+
+    function switchDadViewMode(mode) {
+      currentDadViewMode = mode;
+      const btnSummary = document.getElementById('dadViewBtnSummary');
+      const btnGrid = document.getElementById('dadViewBtnGrid');
+      const summaryCont = document.getElementById('dadViewSummaryContainer');
+      const gridCont = document.getElementById('dadViewGridContainer');
+
+      if (mode === 'summary') {
+        if (btnSummary) btnSummary.classList.add('active');
+        if (btnGrid) btnGrid.classList.remove('active');
+        if (summaryCont) summaryCont.style.display = 'block';
+        if (gridCont) gridCont.style.display = 'none';
+      } else {
+        if (btnSummary) btnSummary.classList.remove('active');
+        if (btnGrid) btnGrid.classList.add('active');
+        if (summaryCont) summaryCont.style.display = 'none';
+        if (gridCont) gridCont.style.display = 'grid';
+      }
+      renderDadVendorUI();
+    }
+
+    function toggleDadDrawer(rank) {
+      const row = document.getElementById(`dadDrawerRow_${rank}`);
+      const btn = document.getElementById(`dadDrawerBtn_${rank}`);
+      if (!row) return;
+
+      if (row.style.display === 'table-row') {
+        row.style.display = 'none';
+        if (btn) btn.innerHTML = '▼ Details';
+        openDadDrawers.delete(rank);
+      } else {
+        row.style.display = 'table-row';
+        if (btn) btn.innerHTML = '▲ Close';
+        openDadDrawers.add(rank);
+      }
+    }
+
+    function selectDadMonthFromGrid(month) {
+      const monthSelect = document.getElementById('dadVendorMonthSelect');
+      if (monthSelect) {
+        monthSelect.value = month;
+      }
+      switchDadViewMode('summary');
+    }
+
+    function renderDadVendorUI() {
+      if (!dadVendorData) return;
+
+      const selMonth = document.getElementById('dadVendorMonthSelect')?.value || 'ALL';
+      const selCategory = document.getElementById('dadVendorCategorySelect')?.value || 'ALL';
+      const searchQuery = (document.getElementById('dadVendorSearchInput')?.value || '').toLowerCase().trim();
+
+      // 1. Calculate active total outflow and period
+      let activeTotal = dadVendorData.grand_total;
+      let activePeriodLabel = '12 Monthly Cycles (Aug 2023 – Jul 2024)';
+      if (selMonth !== 'ALL') {
+        activeTotal = dadVendorData.monthly_totals[selMonth] || 0;
+        activePeriodLabel = `Cycle: ${selMonth}`;
+      }
+
+      const kpiOutflow = document.getElementById('dadKpiTotalOutflow');
+      if (kpiOutflow) kpiOutflow.innerText = formatAmount(activeTotal);
+      const kpiSub = document.getElementById('dadKpiPeriodSub');
+      if (kpiSub) kpiSub.innerText = activePeriodLabel;
+
+      // 2. Filter vendors
+      let list = dadVendorData.vendors.map(v => {
+        let amount = v.total;
+        if (selMonth !== 'ALL') {
+          amount = v.monthly[selMonth] || 0;
+        }
+        const pct = activeTotal > 0 ? (amount / activeTotal) * 100 : 0;
+        return {
+          ...v,
+          currentAmount: amount,
+          currentPct: pct
+        };
+      });
+
+      // Filter out 0 amount if specific month selected
+      if (selMonth !== 'ALL') {
+        list = list.filter(v => v.currentAmount > 0);
+      }
+
+      // Filter by category
+      if (selCategory !== 'ALL') {
+        list = list.filter(v => v.category === selCategory);
+      }
+
+      // Filter by search query
+      if (searchQuery) {
+        list = list.filter(v => 
+          v.name.toLowerCase().includes(searchQuery) || 
+          (v.category && v.category.toLowerCase().includes(searchQuery))
+        );
+      }
+
+      // Sort by currentAmount descending
+      list.sort((a, b) => b.currentAmount - a.currentAmount);
+
+      // Update Payee Count KPI
+      const kpiPayees = document.getElementById('dadKpiPayeeCount');
+      if (kpiPayees) {
+        kpiPayees.innerText = `${list.length} Payees`;
+      }
+
+      // 3. Render View 1: Summary Table
+      const tbody = document.getElementById('dadVendorTableBody');
+      if (tbody) {
+        if (list.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 32px; color: var(--text-muted);">No vendor transactions found matching the selected filters.</td></tr>`;
+        } else {
+          tbody.innerHTML = list.map((v, idx) => {
+            const isDrawerOpen = openDadDrawers.has(v.rank);
+            const drawerDisplay = isDrawerOpen ? 'table-row' : 'none';
+            const drawerBtnText = isDrawerOpen ? '▲ Close' : '▼ Details';
+            
+            // Active months badge
+            const activeLabel = selMonth === 'ALL' 
+              ? `${v.active_months_count} of 12 mos` 
+              : `Active in ${selMonth}`;
+
+            // Get monthly breakdown entries
+            const monthlyEntries = Object.entries(v.monthly || {})
+              .filter(([m, amt]) => amt > 0)
+              .sort((a, b) => {
+                const mIdxA = dadVendorData.months.indexOf(a[0]);
+                const mIdxB = dadVendorData.months.indexOf(b[0]);
+                return mIdxA - mIdxB;
+              });
+
+            // Search monthly_items for raw descriptions matching this vendor
+            const rawNotes = new Set();
+            Object.values(dadVendorData.monthly_items || {}).forEach(items => {
+              items.forEach(it => {
+                if (it.vendor === v.name && it.raw && it.raw !== v.name) {
+                  rawNotes.add(it.raw);
+                }
+              });
+            });
+            const rawNotesArr = Array.from(rawNotes);
+
+            return `
+              <tr style="border-bottom: 1px solid var(--border-light); transition: background 0.15s ease;">
+                <td style="font-weight: 700; color: var(--text-muted); font-size: 12px; font-family: var(--font-mono);">${idx + 1}</td>
+                <td>
+                  <div style="font-weight: 700; color: var(--text-main); font-size: 13.5px;">${v.name}</div>
+                  ${rawNotesArr.length > 0 ? `<div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Alias/UPI: ${rawNotesArr.slice(0, 2).join(', ')}${rawNotesArr.length > 2 ? '...' : ''}</div>` : ''}
+                </td>
+                <td>
+                  <span class="chip" style="font-size: 11px; padding: 2px 8px; background: #F1F5F9; color: #334155; border: 1px solid #CBD5E1;">
+                    ${v.category}
+                  </span>
+                </td>
+                <td>
+                  <span style="font-size: 12px; color: var(--text-muted); font-weight: 500;">
+                    ${activeLabel}
+                  </span>
+                </td>
+                <td style="text-align: right; font-weight: 800; font-family: var(--font-mono); color: var(--text-main); font-size: 13.5px;">
+                  ${formatAmount(v.currentAmount)}
+                </td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="dad-progress-bar-wrap" style="flex: 1;">
+                      <div class="dad-progress-bar-fill" style="width: ${Math.min(v.currentPct, 100)}%;"></div>
+                    </div>
+                    <span style="font-size: 11px; font-weight: 700; color: var(--text-muted); width: 40px; text-align: right; font-family: var(--font-mono);">
+                      ${v.currentPct.toFixed(1)}%
+                    </span>
+                  </div>
+                </td>
+                <td style="text-align: right;">
+                  <button id="dadDrawerBtn_${v.rank}" class="btn btn-secondary btn-sm" style="padding: 3px 8px; font-size: 11px;" onclick="toggleDadDrawer(${v.rank})">
+                    ${drawerBtnText}
+                  </button>
+                </td>
+              </tr>
+              <!-- Drawer Details Row -->
+              <tr id="dadDrawerRow_${v.rank}" class="dad-drawer-row" style="display: ${drawerDisplay};">
+                <td colspan="7" style="padding: 0; background: #F8FAFC;">
+                  <div class="dad-drawer-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                      <div style="font-weight: 700; font-size: 12px; color: var(--text-main);">
+                        Payment Timeline for <span style="color: var(--primary);">${v.name}</span> (${v.category})
+                      </div>
+                      <div style="font-size: 11px; color: var(--text-muted);">
+                        Total Disbursed: <strong>${formatAmount(v.total)}</strong> across ${v.active_months_count} months
+                      </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin-top: 8px;">
+                      ${monthlyEntries.map(([m, amt]) => `
+                        <div style="background: #FFFFFF; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;">
+                          <div>
+                            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">${m}</div>
+                            <div style="font-size: 12px; font-weight: 800; font-family: var(--font-mono); color: var(--text-main);">${formatAmount(amt)}</div>
+                          </div>
+                          <span class="chip" style="font-size: 10px; padding: 1px 6px; background: #EEF2FF; color: #4338CA;">
+                            ${((amt / v.total) * 100).toFixed(0)}%
+                          </span>
+                        </div>
+                      `).join('')}
+                    </div>
+                    ${rawNotesArr.length > 0 ? `
+                      <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border-light); font-size: 11px; color: var(--text-muted);">
+                        <strong>Statement Line Items / Raw UPI References:</strong> ${rawNotesArr.join(' • ')}
+                      </div>
+                    ` : ''}
+                  </div>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      }
+
+      // 4. Render View 2: Monthly Cards Grid
+      const gridCont = document.getElementById('dadViewGridContainer');
+      if (gridCont && currentDadViewMode === 'grid') {
+        gridCont.innerHTML = dadVendorData.months.map(m => {
+          const mTotal = dadVendorData.monthly_totals[m] || 0;
+          const mItems = dadVendorData.monthly_items[m] || [];
+          const mPayeeMap = {};
+          mItems.forEach(it => {
+            mPayeeMap[it.vendor] = (mPayeeMap[it.vendor] || 0) + it.amount;
+          });
+          const topPayees = Object.entries(mPayeeMap)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 4);
+
+          return `
+            <div class="dad-month-card">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                <div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Billing Cycle</div>
+                  <div style="font-size: 16px; font-weight: 800; color: var(--text-main);">${m}</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Total Sent</div>
+                  <div style="font-size: 16px; font-weight: 800; font-family: var(--font-mono); color: var(--primary);">${formatAmount(mTotal)}</div>
+                </div>
+              </div>
+
+              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px;">
+                Top Payees (${Object.keys(mPayeeMap).length} total):
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
+                ${topPayees.map(([name, amt]) => {
+                  const pct = mTotal > 0 ? (amt / mTotal) * 100 : 0;
+                  return `
+                    <div>
+                      <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 2px;">
+                        <span style="font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 170px;">${name}</span>
+                        <span style="font-weight: 700; font-family: var(--font-mono); color: var(--text-main);">${formatAmount(amt)}</span>
+                      </div>
+                      <div class="dad-progress-bar-wrap" style="height: 4px;">
+                        <div class="dad-progress-bar-fill" style="width: ${pct}%;"></div>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <button class="btn btn-secondary btn-sm" style="width: 100%; justify-content: center; font-size: 11px;" onclick="selectDadMonthFromGrid('${m}')">
+                🔍 Inspect ${m} in Table
+              </button>
+            </div>
+          `;
+        }).join('');
       }
     }
 
@@ -3075,8 +3658,14 @@
       // Ensure pageSize matches select element
       const pSelect = document.getElementById('pageSizeSelect');
       if (pSelect) pSelect.value = String(pageSize);
-      initFamilyProfiles();
-      reAnalyzeStatements();
+      initFamilyProfiles().then(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('profile') === 'dad' || window.location.hash === '#dad' || activeProfileId === 'dad') {
+          switchProfile('dad');
+        } else {
+          reAnalyzeStatements();
+        }
+      });
     });
   </script>
 

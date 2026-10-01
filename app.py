@@ -53,7 +53,7 @@ PROFILES = {
         "name": "Dad",
         "avatar": "👨",
         "relation": "Dad (India)",
-        "subtitle": "HDFC & Senior Citizen Accounts • 2023",
+        "subtitle": "Kismatpur Construction & Senior Accounts • Aug 2023 – Jul 2024 (99 Payees)",
         "currency": "INR",
         "currency_symbol": "₹",
         "drive_folder_url": "",
@@ -496,6 +496,93 @@ def update_profile_credentials():
             "pdf_password": PROFILES[pid]['pdf_password']
         }
     })
+
+
+@app.route('/api/dad/vendor-summary', methods=['GET'])
+def get_dad_vendor_summary():
+    """Return mapped monthly vendor payment data for Dad's account."""
+    json_path = os.path.join(os.path.dirname(__file__), 'dad_mapped_transactions.json')
+    if not os.path.exists(json_path):
+        return jsonify({"success": False, "error": "Mapped vendor file not found"}), 404
+
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    person_totals = data.get('person_totals', {})
+    person_monthly = data.get('person_monthly', {})
+    months = data.get('months', [])
+    monthly_items = data.get('monthly_items', {})
+
+    def get_trade_category(vendor):
+        v = vendor.lower()
+        if 'steel' in v or 'metal' in v: return 'Steel & Structural Metals'
+        if 'granite' in v or 'tile' in v: return 'Granite, Marble & Tiles'
+        if 'civil' in v or 'construction' in v: return 'Civil Construction Contractors'
+        if 'labour' in v or 'mastri' in v or 'atm cash' in v: return 'Site Labour & Supervision'
+        if 'driver' in v or 'transport' in v or 'travel' in v or 'motors' in v: return 'Vehicle, Transport & Fuel'
+        if 'loan' in v or 'emi' in v: return 'Loan EMI & Financials'
+        if 'plot' in v: return 'Land & Property Acquisition'
+        if 'brick' in v: return 'Bricks & Masonry'
+        if 'hardware' in v or 'traders' in v or 'sink' in v: return 'Hardware, Tools & Fixtures'
+        if 'sand' in v or 'dust' in v: return 'Sand & Fine Aggregates'
+        if 'cement' in v or 'concrete' in v: return 'Cement & Ready Mix'
+        if 'door' in v or 'window' in v: return 'Doors & UPVC Windows'
+        if 'plumb' in v or 'carpent' in v: return 'Plumbing & Carpentry'
+        if 'electr' in v or 'wire' in v: return 'Electrical & Wiring'
+        if 'paint' in v: return 'Painting & Finishing'
+        if 'chidvila' in v or 'flat' in v or 'apartment' in v: return 'Property & Advance Accounts'
+        if 'planner' in v or 'lawyer' in v: return 'Architect, Planning & Legal'
+        if 'water' in v: return 'Water Supply'
+        if 'insurance' in v: return 'Insurance'
+        return 'General & Contingency'
+
+    sorted_p = sorted(person_totals.items(), key=lambda x: x[1], reverse=True)
+    grand_total = sum(person_totals.values())
+
+    vendors_list = []
+    category_totals = defaultdict(float)
+
+    for rank, (p, tot) in enumerate(sorted_p, 1):
+        cat = get_trade_category(p)
+        category_totals[cat] += tot
+        m_counts = len([m for m in months if person_monthly.get(p, {}).get(m, 0) > 0])
+        pct = round((tot / grand_total * 100), 2) if grand_total > 0 else 0
+        vendors_list.append({
+            "rank": rank,
+            "name": p,
+            "category": cat,
+            "total": tot,
+            "percentage": pct,
+            "active_months_count": m_counts,
+            "monthly": person_monthly.get(p, {})
+        })
+
+    monthly_totals = {}
+    for m in months:
+        monthly_totals[m] = sum(person_monthly[p].get(m, 0.0) for p in person_monthly)
+
+    categories_list = sorted([{"category": c, "total": t, "percentage": round((t / grand_total * 100), 2)}
+                              for c, t in category_totals.items()], key=lambda x: x["total"], reverse=True)
+
+    return jsonify({
+        "success": True,
+        "months": months,
+        "monthly_totals": monthly_totals,
+        "grand_total": grand_total,
+        "total_vendors": len(vendors_list),
+        "vendors": vendors_list,
+        "categories": categories_list,
+        "monthly_items": monthly_items
+    })
+
+
+@app.route('/api/dad/download-vendor-csv', methods=['GET'])
+def download_dad_vendor_csv():
+    """Download CSV file of Dad's monthly mapped vendor payments."""
+    csv_path = os.path.join(os.path.dirname(__file__), 'dad_monthly_vendor_payments.csv')
+    if not os.path.exists(csv_path):
+        return "File not found", 404
+    return send_file(csv_path, as_attachment=True, download_name='dad_monthly_vendor_payments.csv', mimetype='text/csv')
 
 
 @app.route('/api/analyze-drive', methods=['POST'])
