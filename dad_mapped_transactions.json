@@ -1,0 +1,1571 @@
+{
+  "months": [
+    "Aug 2023",
+    "Sep 2023",
+    "Oct 2023",
+    "Nov 2023",
+    "Dec 2023",
+    "Jan 2024",
+    "Feb 2024",
+    "March 2024",
+    "April 2024",
+    "May 2024",
+    "June 2024",
+    "July 2024"
+  ],
+  "person_monthly": {
+    "Swaroop (Plot Purchase)": {
+      "Aug 2023": 800000.0
+    },
+    "Y S Reddy (Civil Contractor)": {
+      "Aug 2023": 199990.0,
+      "Sep 2023": 398650.0,
+      "Oct 2023": 130000.0,
+      "Nov 2023": 180000.0,
+      "Dec 2023": 43000.0,
+      "Jan 2024": 55000.0
+    },
+    "HDFC Loan (EMI)": {
+      "Aug 2023": 111262.0,
+      "Sep 2023": 111262.0,
+      "Oct 2023": 111262.0,
+      "Nov 2023": 111262.0,
+      "Dec 2023": 111262.0,
+      "Jan 2024": 49822.0,
+      "Feb 2024": 49822.0,
+      "March 2024": 49822.0,
+      "May 2024": 222524.0,
+      "July 2024": 49822.0
+    },
+    "SBI Payee (3724152818)": {
+      "Aug 2023": 244000.0
+    },
+    "Remaining Balance Reconciliation": {
+      "Aug 2023": 197353.0,
+      "Sep 2023": 19388.91,
+      "Dec 2023": 22794.65,
+      "May 2024": 15967.52
+    },
+    "ATM Cash (Construction & Labour)": {
+      "Aug 2023": 198500.0,
+      "Sep 2023": 44000.0,
+      "April 2024": 96200.0,
+      "May 2024": 66000.0,
+      "June 2024": 48500.0,
+      "July 2024": 10500.0
+    },
+    "Rajashekar (Dad's Driver)": {
+      "Aug 2023": 30000.0,
+      "Oct 2023": 70000.0,
+      "Nov 2023": 60000.0,
+      "Dec 2023": 294000.0,
+      "Jan 2024": 96800.0,
+      "Feb 2024": 250500.0,
+      "March 2024": 161000.0,
+      "May 2024": 44145.0,
+      "June 2024": 8000.0,
+      "July 2024": 11800.0
+    },
+    "HDFC Account (5010048145)": {
+      "Aug 2023": 50000.0
+    },
+    "BillDesk Utility": {
+      "Aug 2023": 101001.24
+    },
+    "Miscellaneous & Contingency": {
+      "Aug 2023": 100000.0,
+      "Sep 2023": 200000.0,
+      "Dec 2023": 63975.35,
+      "Jan 2024": 70554.5,
+      "March 2024": 62961.0,
+      "April 2024": 20961.0,
+      "May 2024": 99032.0,
+      "June 2024": 32817.52
+    },
+    "Dadi Babu Reddy (Sand Contractor)": {
+      "Sep 2023": 50000.0
+    },
+    "Susheel Axis Bank Granites": {
+      "Oct 2023": 280000.0,
+      "Nov 2023": 259000.0,
+      "April 2024": 251220.0
+    },
+    "Nagarjuna Steel": {
+      "Oct 2023": 176200.0,
+      "Nov 2023": 2700000.0,
+      "Dec 2023": 186700.0,
+      "Feb 2024": 277330.0,
+      "March 2024": 6700.0,
+      "April 2024": 3500.0,
+      "May 2024": 25040.0
+    },
+    "Garuda Courier": {
+      "Oct 2023": 8260.0
+    },
+    "V V Ramana": {
+      "Oct 2023": 20000.0,
+      "Nov 2023": 4368.0,
+      "Dec 2023": 11000.0
+    },
+    "Mastri / Sri Lakshmi (Labour Contractor)": {
+      "Oct 2023": 221276.0,
+      "June 2024": 28000.0,
+      "July 2024": 88000.0
+    },
+    "Venkateshwara Raju": {
+      "Nov 2023": 35000.0
+    },
+    "Abhishek (House Planner)": {
+      "Nov 2023": 5000.0,
+      "Feb 2024": 60000.0
+    },
+    "Ammi Reddy": {
+      "Dec 2023": 8000.0
+    },
+    "Star Health Insurance": {
+      "Dec 2023": 32015.0
+    },
+    "OMBK Payee": {
+      "Dec 2023": 23575.0
+    },
+    "ICICI Bank Acc (0680050022)": {
+      "Dec 2023": 72215.0
+    },
+    "Edward Rao Concrete": {
+      "Jan 2024": 40010.0
+    },
+    "Ashok Sand Contractor": {
+      "Jan 2024": 108830.0
+    },
+    "Bhaskar Bricks Supplier": {
+      "Jan 2024": 52800.0,
+      "Feb 2024": 40000.0,
+      "March 2024": 8000.0
+    },
+    "Ravanna Chinnagaru": {
+      "Jan 2024": 30000.0
+    },
+    "UPI Small Supplies": {
+      "Jan 2024": 5053.5
+    },
+    "UPI Contractor (400498718305)": {
+      "Jan 2024": 19990.0
+    },
+    "UPI Contractor (400929233107)": {
+      "Jan 2024": 59500.0
+    },
+    "Giri babu Interiors": {
+      "Feb 2024": 2000.0
+    },
+    "Access Tough Doors": {
+      "Feb 2024": 65000.0
+    },
+    "Rajesh Bricks Supplier": {
+      "Feb 2024": 120400.0,
+      "March 2024": 60200.0,
+      "June 2024": 60200.0
+    },
+    "Edigi K": {
+      "Feb 2024": 10000.0
+    },
+    "Nenavath Sujatha (Water Supply)": {
+      "Feb 2024": 10000.0,
+      "June 2024": 580.0,
+      "July 2024": 600.0
+    },
+    "Govardhan (Khammam Lawyer)": {
+      "Feb 2024": 20000.0,
+      "March 2024": 15000.0,
+      "May 2024": 15000.0
+    },
+    "Syed Imtiaz Construction / Electrical": {
+      "Feb 2024": 5650.0,
+      "March 2024": 12520.0,
+      "April 2024": 1040.0,
+      "May 2024": 5000.0,
+      "July 2024": 21050.0
+    },
+    "Velaram Construction": {
+      "Feb 2024": 8926.0,
+      "March 2024": 828.0,
+      "June 2024": 23080.0
+    },
+    "Ramu Py (Vadde Ve Construction)": {
+      "Feb 2024": 2000.0,
+      "May 2024": 2000.0,
+      "June 2024": 4000.0,
+      "July 2024": 4000.0
+    },
+    "SBI Life Insurance": {
+      "Feb 2024": 50000.0
+    },
+    "Majety Construction": {
+      "March 2024": 190000.0
+    },
+    "Redcliffe Patients Labs": {
+      "March 2024": 2577.0
+    },
+    "Vanjakshi Motors": {
+      "March 2024": 7490.0
+    },
+    "Mohd Aqueel Construction": {
+      "March 2024": 13960.0,
+      "May 2024": 28600.0
+    },
+    "Naveen Electrical": {
+      "March 2024": 5737.0
+    },
+    "Raneel Reddy": {
+      "March 2024": 2000.0
+    },
+    "Sudhakar Electrical (Tejaram)": {
+      "March 2024": 51430.0
+    },
+    "Mohd Aslam Urban Claffs": {
+      "March 2024": 3200.0
+    },
+    "Praveen Nagarjuna Cement (Mothuku)": {
+      "April 2024": 8000.0,
+      "May 2024": 11600.0,
+      "June 2024": 6600.0,
+      "July 2024": 9750.0
+    },
+    "Gangapur Balnars Construction": {
+      "April 2024": 1050.0
+    },
+    "Shaik Aslam Urban Claffs": {
+      "April 2024": 21210.0
+    },
+    "Raj Kumar Construction": {
+      "April 2024": 12233.0
+    },
+    "Nenavat H Construction": {
+      "April 2024": 840.0,
+      "May 2024": 1000.0
+    },
+    "Ram Sharma (Hardware)": {
+      "April 2024": 3000.0
+    },
+    "Nakoda Service Wire": {
+      "April 2024": 6500.0,
+      "July 2024": 1800.0
+    },
+    "P Shekar Construction": {
+      "April 2024": 15300.0
+    },
+    "Chidvilasini / Chidvila School Owner": {
+      "April 2024": 130000.0,
+      "May 2024": 99000.0,
+      "June 2024": 180000.0,
+      "July 2024": 97500.0
+    },
+    "Union Bank Acc (0334101000)": {
+      "April 2024": 122000.0
+    },
+    "Mr Mishra Hardware": {
+      "April 2024": 1120.0
+    },
+    "Pravalika Reddy": {
+      "April 2024": 35000.0
+    },
+    "Mateti Krishna Construction": {
+      "May 2024": 2750.0
+    },
+    "J Suvarna": {
+      "May 2024": 75.0
+    },
+    "Jalaram S S Railing": {
+      "May 2024": 70000.0,
+      "June 2024": 10000.0,
+      "July 2024": 500.0
+    },
+    "Lila Devi Construction": {
+      "May 2024": 7000.0
+    },
+    "Surender (Painter)": {
+      "May 2024": 16000.0,
+      "June 2024": 28000.0
+    },
+    "Sama Sridhar Reddy (Dust Supplier)": {
+      "May 2024": 19290.0
+    },
+    "JSK Traders (Hardware / Steel)": {
+      "May 2024": 56560.0,
+      "June 2024": 59590.0,
+      "July 2024": 26305.0
+    },
+    "MS Prasad Apartment / Flat": {
+      "May 2024": 6000.0,
+      "July 2024": 23000.0
+    },
+    "Saladi Bhuvanesh": {
+      "May 2024": 15000.0
+    },
+    "RedBus Travel": {
+      "May 2024": 4150.65
+    },
+    "Doma Gopal (Plumber)": {
+      "May 2024": 15000.0,
+      "June 2024": 26500.0,
+      "July 2024": 500.0
+    },
+    "Doma Anil (Dust)": {
+      "June 2024": 19650.0
+    },
+    "Diesel (Fuel)": {
+      "June 2024": 3080.0,
+      "July 2024": 1010.0
+    },
+    "Ram Charan (Granite Laying)": {
+      "June 2024": 39350.0,
+      "July 2024": 17000.0
+    },
+    "Intiaj Electrician (Kismatpura)": {
+      "June 2024": 2000.0,
+      "July 2024": 2000.0
+    },
+    "NENAVATH Construction": {
+      "June 2024": 650.0
+    },
+    "Ravi Line Man Construction": {
+      "June 2024": 6000.0
+    },
+    "MS Decentry Cement": {
+      "June 2024": 28600.0
+    },
+    "A Prasanth": {
+      "June 2024": 3630.0
+    },
+    "Arihanth Tile Mart": {
+      "June 2024": 5580.0
+    },
+    "Mastri Tea Point": {
+      "June 2024": 810.0
+    },
+    "Anando Brahma (Pyd)": {
+      "June 2024": 2250.0
+    },
+    "Lavakush Granites": {
+      "June 2024": 9300.0
+    },
+    "Sri Amar Hardware": {
+      "June 2024": 1720.0
+    },
+    "Ramavath Anil Construction": {
+      "June 2024": 1000.0
+    },
+    "Doma Srisailam": {
+      "June 2024": 900.0,
+      "July 2024": 1850.0
+    },
+    "UPVC Windows (Sirvi Naresh)": {
+      "July 2024": 49000.0
+    },
+    "Carpenter (Narasimha Rao)": {
+      "July 2024": 9500.0
+    },
+    "WPC Doors (Ms Geeta)": {
+      "July 2024": 69700.0
+    },
+    "Mani Kumari (Mom)": {
+      "July 2024": 1000.0
+    },
+    "Dinesh Reddy": {
+      "July 2024": 2000.0
+    },
+    "Neelam Naga Venkata": {
+      "July 2024": 750.0
+    },
+    "P Harishwar Cement Bags": {
+      "July 2024": 22500.0
+    },
+    "Indraseena Reddy Steel": {
+      "July 2024": 5000.0
+    },
+    "Sagar Kangula": {
+      "July 2024": 5000.0
+    },
+    "Dust": {
+      "July 2024": 2700.0
+    },
+    "Mohammad Haroon": {
+      "July 2024": 17500.0
+    },
+    "Bhagyamma Construction": {
+      "July 2024": 1500.0
+    },
+    "Maneesh Kumar (Sink)": {
+      "July 2024": 900.0
+    },
+    "Hanuma Enterprises (Granite Gum)": {
+      "July 2024": 950.0
+    }
+  },
+  "monthly_items": {
+    "Aug 2023": [
+      {
+        "vendor": "Swaroop (Plot Purchase)",
+        "raw": "Swaroop Plot Purchase",
+        "amount": 800000.0
+      },
+      {
+        "vendor": "Y S Reddy (Civil Contractor)",
+        "raw": "YsrReddyphonepe",
+        "amount": 99990.0
+      },
+      {
+        "vendor": "Y S Reddy (Civil Contractor)",
+        "raw": "YsrReddycash",
+        "amount": 100000.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc Loan EMI",
+        "amount": 111262.0
+      },
+      {
+        "vendor": "SBI Payee (3724152818)",
+        "raw": "SBIN/3724152818/Payme",
+        "amount": 244000.0
+      },
+      {
+        "vendor": "Remaining Balance Reconciliation",
+        "raw": "Remaining balance",
+        "amount": 197353.0
+      },
+      {
+        "vendor": "ATM Cash (Construction & Labour)",
+        "raw": "ATM Cash Withdrawal",
+        "amount": 198500.0
+      },
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "Rajashekar Driver",
+        "amount": 30000.0
+      },
+      {
+        "vendor": "HDFC Account (5010048145)",
+        "raw": "5010048145/hdfc",
+        "amount": 50000.0
+      },
+      {
+        "vendor": "BillDesk Utility",
+        "raw": "PhonePe/UTIB/BILLDESKHE/Paymen",
+        "amount": 101001.24
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscillneous",
+        "amount": 100000.0
+      }
+    ],
+    "Sep 2023": [
+      {
+        "vendor": "Y S Reddy (Civil Contractor)",
+        "raw": "YsrReddy",
+        "amount": 398650.0
+      },
+      {
+        "vendor": "Dadi Babu Reddy (Sand Contractor)",
+        "raw": "Dadi Babu Reddy Sand Contractor",
+        "amount": 50000.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc Loan EMI",
+        "amount": 111262.0
+      },
+      {
+        "vendor": "ATM Cash (Construction & Labour)",
+        "raw": "Atm cash for construction",
+        "amount": 44000.0
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscillneous",
+        "amount": 200000.0
+      },
+      {
+        "vendor": "Remaining Balance Reconciliation",
+        "raw": "Remaining Balance:",
+        "amount": 19388.91
+      }
+    ],
+    "Oct 2023": [
+      {
+        "vendor": "Y S Reddy (Civil Contractor)",
+        "raw": "Ys Reddy",
+        "amount": 130000.0
+      },
+      {
+        "vendor": "Susheel Axis Bank Granites",
+        "raw": "Susheel Axis Bank Granite",
+        "amount": 280000.0
+      },
+      {
+        "vendor": "Nagarjuna Steel",
+        "raw": "Nagarjuna steel",
+        "amount": 176200.0
+      },
+      {
+        "vendor": "Garuda Courier",
+        "raw": "Garuda Courier",
+        "amount": 8260.0
+      },
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "Bondala",
+        "amount": 70000.0
+      },
+      {
+        "vendor": "V V Ramana",
+        "raw": "VV Ramana",
+        "amount": 20000.0
+      },
+      {
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)",
+        "raw": "Mastri Cash With Drawl",
+        "amount": 221276.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "RajashekarDriver:  1,01,000 ,  Hdfc Loan EMI",
+        "amount": 111262.0
+      }
+    ],
+    "Nov 2023": [
+      {
+        "vendor": "Nagarjuna Steel",
+        "raw": "Nagarjuna Steel",
+        "amount": 2700000.0
+      },
+      {
+        "vendor": "Y S Reddy (Civil Contractor)",
+        "raw": "YsrReddy",
+        "amount": 180000.0
+      },
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver:  1,01,000 , Balraju Metal Contractor",
+        "amount": 60000.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "KatamNagaraju: 59,000(Mastri Cash)  ,  Hdfc Loan EMI",
+        "amount": 111262.0
+      },
+      {
+        "vendor": "Venkateshwara Raju",
+        "raw": "Venkateshwara Raju",
+        "amount": 35000.0
+      },
+      {
+        "vendor": "V V Ramana",
+        "raw": "VV Ramana: 2000, Miscillneous",
+        "amount": 4368.0
+      },
+      {
+        "vendor": "Abhishek (House Planner)",
+        "raw": "Abhishek Planner",
+        "amount": 5000.0
+      },
+      {
+        "vendor": "Susheel Axis Bank Granites",
+        "raw": "Susheel Axis Bank Granites",
+        "amount": 259000.0
+      }
+    ],
+    "Dec 2023": [
+      {
+        "vendor": "Nagarjuna Steel",
+        "raw": "Nagarjuna Steel",
+        "amount": 186700.0
+      },
+      {
+        "vendor": "Ammi Reddy",
+        "raw": "/AMMI RED /Payme",
+        "amount": 8000.0
+      },
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver",
+        "amount": 294000.0
+      },
+      {
+        "vendor": "Star Health Insurance",
+        "raw": "Star health",
+        "amount": 32015.0
+      },
+      {
+        "vendor": "OMBK Payee",
+        "raw": "/ombk.AACI2/Payme",
+        "amount": 23575.0
+      },
+      {
+        "vendor": "V V Ramana",
+        "raw": "VV Ramana",
+        "amount": 11000.0
+      },
+      {
+        "vendor": "Y S Reddy (Civil Contractor)",
+        "raw": "YsrReddy",
+        "amount": 43000.0
+      },
+      {
+        "vendor": "ICICI Bank Acc (0680050022)",
+        "raw": "UPI/DR/336006416854/Bank Acc/ICIC/0680050022/Payme",
+        "amount": 72215.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc Loan EMI",
+        "amount": 111262.0
+      },
+      {
+        "vendor": "Remaining Balance Reconciliation",
+        "raw": "Remaining Balance",
+        "amount": 22794.65
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscillneous",
+        "amount": 63975.35
+      }
+    ],
+    "Jan 2024": [
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver",
+        "amount": 96800.0
+      },
+      {
+        "vendor": "Y S Reddy (Civil Contractor)",
+        "raw": "YsrReddy",
+        "amount": 55000.0
+      },
+      {
+        "vendor": "Edward Rao Concrete",
+        "raw": "Edward Rao concrete",
+        "amount": 40010.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc Loan EMI",
+        "amount": 49822.0
+      },
+      {
+        "vendor": "Ashok Sand Contractor",
+        "raw": "Ashok Sand Contractor",
+        "amount": 108830.0
+      },
+      {
+        "vendor": "Bhaskar Bricks Supplier",
+        "raw": "Bhaskar Bricks Supplier",
+        "amount": 52800.0
+      },
+      {
+        "vendor": "Ravanna Chinnagaru",
+        "raw": "Ravanna chinnagaru",
+        "amount": 30000.0
+      },
+      {
+        "vendor": "UPI Small Supplies",
+        "raw": "WDL TFR UPI/DR/400191236166",
+        "amount": 2553.5
+      },
+      {
+        "vendor": "UPI Small Supplies",
+        "raw": "WDL TFR UPI/DR/437003050577",
+        "amount": 2500.0
+      },
+      {
+        "vendor": "UPI Contractor (400498718305)",
+        "raw": "WDL TFR UPI/DR/400498718305:",
+        "amount": 19990.0
+      },
+      {
+        "vendor": "UPI Contractor (400929233107)",
+        "raw": "WDL TFR UPI/DR/400929233107",
+        "amount": 59500.0
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscillneous",
+        "amount": 70554.5
+      }
+    ],
+    "Feb 2024": [
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver",
+        "amount": 250500.0
+      },
+      {
+        "vendor": "Nagarjuna Steel",
+        "raw": "Nagarjuna steel",
+        "amount": 277330.0
+      },
+      {
+        "vendor": "Giri babu Interiors",
+        "raw": "Giri babu Interiors",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "Access Tough Doors",
+        "raw": "Access Tough Doors",
+        "amount": 65000.0
+      },
+      {
+        "vendor": "Abhishek (House Planner)",
+        "raw": "Abhishek Planner",
+        "amount": 40000.0
+      },
+      {
+        "vendor": "Abhishek (House Planner)",
+        "raw": "WDL TFR UPI/DR/403993480880/Bank Acc/HDFC/0359161000/Paym 0097693162093",
+        "amount": 20000.0
+      },
+      {
+        "vendor": "Rajesh Bricks Supplier",
+        "raw": "Rajesh Brick",
+        "amount": 60200.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc Loan EMI",
+        "amount": 49822.0
+      },
+      {
+        "vendor": "Edigi K",
+        "raw": "EDIGI K",
+        "amount": 10000.0
+      },
+      {
+        "vendor": "Nenavath Sujatha (Water Supply)",
+        "raw": "Sujatha",
+        "amount": 10000.0
+      },
+      {
+        "vendor": "Bhaskar Bricks Supplier",
+        "raw": "Bhaskar Bricks Supplier",
+        "amount": 40000.0
+      },
+      {
+        "vendor": "Govardhan (Khammam Lawyer)",
+        "raw": "GOVARDH Khammam Lawyer",
+        "amount": 20000.0
+      },
+      {
+        "vendor": "Rajesh Bricks Supplier",
+        "raw": "Rajesh Bricks",
+        "amount": 60200.0
+      },
+      {
+        "vendor": "Syed Imtiaz Construction / Electrical",
+        "raw": "Syed Construction",
+        "amount": 5650.0
+      },
+      {
+        "vendor": "Velaram Construction",
+        "raw": "Velaram Construction",
+        "amount": 8926.0
+      },
+      {
+        "vendor": "Ramu Py (Vadde Ve Construction)",
+        "raw": "Vaadde",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "SBI Life Insurance",
+        "raw": "SBI Life Insurance",
+        "amount": 50000.0
+      }
+    ],
+    "March 2024": [
+      {
+        "vendor": "Velaram Construction",
+        "raw": "VELARAM construction",
+        "amount": 828.0
+      },
+      {
+        "vendor": "Majety Construction",
+        "raw": "MAJETY construction",
+        "amount": 190000.0
+      },
+      {
+        "vendor": "Redcliffe Patients Labs",
+        "raw": "Redclif Patients",
+        "amount": 2577.0
+      },
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver",
+        "amount": 161000.0
+      },
+      {
+        "vendor": "Vanjakshi Motors",
+        "raw": "Vanjakshi Motors",
+        "amount": 7490.0
+      },
+      {
+        "vendor": "Nagarjuna Steel",
+        "raw": "Nagarjuna steel",
+        "amount": 6700.0
+      },
+      {
+        "vendor": "Govardhan (Khammam Lawyer)",
+        "raw": "GOVARDH Khammam Lawyer",
+        "amount": 15000.0
+      },
+      {
+        "vendor": "Rajesh Bricks Supplier",
+        "raw": "Rajesh Brick",
+        "amount": 60200.0
+      },
+      {
+        "vendor": "Syed Imtiaz Construction / Electrical",
+        "raw": "Syed Construction",
+        "amount": 12520.0
+      },
+      {
+        "vendor": "Mohd Aqueel Construction",
+        "raw": "MOhd Aqueel Construction",
+        "amount": 13960.0
+      },
+      {
+        "vendor": "Naveen Electrical",
+        "raw": "WDL TFR UPI/DR/444448347419/NAVEEN K/BKID/naveenpans/Paym 0097690162095",
+        "amount": 5737.0
+      },
+      {
+        "vendor": "Bhaskar Bricks Supplier",
+        "raw": "Bhaskar Bricks Supplier",
+        "amount": 8000.0
+      },
+      {
+        "vendor": "Raneel Reddy",
+        "raw": "Raneel Reddy",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc Loan EMI",
+        "amount": 49822.0
+      },
+      {
+        "vendor": "Sudhakar Electrical (Tejaram)",
+        "raw": "Tejaram umaji choudhary",
+        "amount": 51430.0
+      },
+      {
+        "vendor": "Mohd Aslam Urban Claffs",
+        "raw": "MOHD ASLAM",
+        "amount": 3200.0
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscellaneous",
+        "amount": 62961.0
+      }
+    ],
+    "April 2024": [
+      {
+        "vendor": "Susheel Axis Bank Granites",
+        "raw": "Susheela Granite",
+        "amount": 251220.0
+      },
+      {
+        "vendor": "ATM Cash (Construction & Labour)",
+        "raw": "ATM CASH",
+        "amount": 96200.0
+      },
+      {
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)",
+        "raw": "UPI/DR/446201876146/MOTHUKU /SBIN/mothukupra/Paym",
+        "amount": 8000.0
+      },
+      {
+        "vendor": "Gangapur Balnars Construction",
+        "raw": "UPI/DR/446271596159/GANGAPU R/BARB/balnars@yb/Paym",
+        "amount": 1050.0
+      },
+      {
+        "vendor": "Shaik Aslam Urban Claffs",
+        "raw": "UPI/DR/409813111522/SHAIK SA/ICIC/shaiksamad/Paym",
+        "amount": 21210.0
+      },
+      {
+        "vendor": "Raj Kumar Construction",
+        "raw": "UPI/DR/446442427502/RAJ KUMAR/SBIN/7816032501/Pa",
+        "amount": 12233.0
+      },
+      {
+        "vendor": "Nenavat H Construction",
+        "raw": "UPI/DR/409873841914/NENAVAT H/APGV/7660812560/Paym",
+        "amount": 840.0
+      },
+      {
+        "vendor": "Ram Sharma (Hardware)",
+        "raw": "UPI/DR/446759284877/RAM SHA/SBIN/9849625311/Paym",
+        "amount": 3000.0
+      },
+      {
+        "vendor": "Nakoda Service Wire",
+        "raw": "UPI/DR/447553741868/NEW NAKO/YESB/Q615518818/Paym",
+        "amount": 6500.0
+      },
+      {
+        "vendor": "Nagarjuna Steel",
+        "raw": "Nagarjuna Steel",
+        "amount": 3500.0
+      },
+      {
+        "vendor": "P Shekar Construction",
+        "raw": "P Shekar Construction",
+        "amount": 15300.0
+      },
+      {
+        "vendor": "Chidvilasini / Chidvila School Owner",
+        "raw": "CHIDVILA School Owner",
+        "amount": 130000.0
+      },
+      {
+        "vendor": "Union Bank Acc (0334101000)",
+        "raw": "UPI/DR/411043592361/Bank Acc/UBIN/0334101000/Paym",
+        "amount": 87000.0
+      },
+      {
+        "vendor": "Union Bank Acc (0334101000)",
+        "raw": "UPI/DR/411055210581/Bank Acc/UBIN/0334101000/Paym",
+        "amount": 35000.0
+      },
+      {
+        "vendor": "Syed Imtiaz Construction / Electrical",
+        "raw": "Syed Construction",
+        "amount": 1040.0
+      },
+      {
+        "vendor": "Mr Mishra Hardware",
+        "raw": "UPI/DR/411564447904/Mr MISHR/YESB/q653436064/UPI",
+        "amount": 1120.0
+      },
+      {
+        "vendor": "Pravalika Reddy",
+        "raw": "UPI/DR/448237775504/PRAVALIK A/UTIB/9618617960/Pay",
+        "amount": 35000.0
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscellaneous",
+        "amount": 20961.0
+      }
+    ],
+    "May 2024": [
+      {
+        "vendor": "Chidvilasini / Chidvila School Owner",
+        "raw": "CHIDVILA School Owner",
+        "amount": 99000.0
+      },
+      {
+        "vendor": "Mateti Krishna Construction",
+        "raw": "UPI/DR/412410785732/MATETI K/UBIN/mateti.kri/Paym",
+        "amount": 2750.0
+      },
+      {
+        "vendor": "J Suvarna",
+        "raw": "UPI/DR/449020633765/J Suvar/SBIN/9177769550/Paym",
+        "amount": 75.0
+      },
+      {
+        "vendor": "ATM Cash (Construction & Labour)",
+        "raw": "ATM CASH 116",
+        "amount": 66000.0
+      },
+      {
+        "vendor": "Govardhan (Khammam Lawyer)",
+        "raw": "GOVARDH Khammam Lawyer",
+        "amount": 15000.0
+      },
+      {
+        "vendor": "Nagarjuna Steel",
+        "raw": "Nagarjuna Steel",
+        "amount": 25040.0
+      },
+      {
+        "vendor": "Jalaram S S Railing",
+        "raw": "Jalaram S S Railing",
+        "amount": 70000.0
+      },
+      {
+        "vendor": "Lila Devi Construction",
+        "raw": "UPI/DR/449425113840/LILA DEVI/SBIN/new.electr/Pa",
+        "amount": 7000.0
+      },
+      {
+        "vendor": "Surender (Painter)",
+        "raw": "Surender Painter",
+        "amount": 16000.0
+      },
+      {
+        "vendor": "Sama Sridhar Reddy (Dust Supplier)",
+        "raw": "Sama Sridhar Reddy Dust",
+        "amount": 19290.0
+      },
+      {
+        "vendor": "JSK Traders (Hardware / Steel)",
+        "raw": "Jsk Traders",
+        "amount": 56560.0
+      },
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver",
+        "amount": 44145.0
+      },
+      {
+        "vendor": "Ramu Py (Vadde Ve Construction)",
+        "raw": "UPI/DR/449884358798/VADDE VE/UBIN/7893651940/Paym",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "MS Prasad Apartment / Flat",
+        "raw": "Prasad Flat",
+        "amount": 6000.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc Loan EMI",
+        "amount": 222524.0
+      },
+      {
+        "vendor": "Saladi Bhuvanesh",
+        "raw": "saladibhus",
+        "amount": 15000.0
+      },
+      {
+        "vendor": "RedBus Travel",
+        "raw": "RedBus",
+        "amount": 4150.65
+      },
+      {
+        "vendor": "Mohd Aqueel Construction",
+        "raw": "MOHD AQ Construction",
+        "amount": 28600.0
+      },
+      {
+        "vendor": "Nenavat H Construction",
+        "raw": "Nenavat H Construction",
+        "amount": 1000.0
+      },
+      {
+        "vendor": "Syed Imtiaz Construction / Electrical",
+        "raw": "Syed Construction",
+        "amount": 5000.0
+      },
+      {
+        "vendor": "Doma Gopal (Plumber)",
+        "raw": "Gopi Plumber",
+        "amount": 15000.0
+      },
+      {
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)",
+        "raw": "UPI/DR/451893849372/MOTHUKU /SBIN/mothukupra",
+        "amount": 11600.0
+      },
+      {
+        "vendor": "Remaining Balance Reconciliation",
+        "raw": "Remaining balance",
+        "amount": 15967.52
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscellaneous",
+        "amount": 99032.0
+      }
+    ],
+    "June 2024": [
+      {
+        "vendor": "Jalaram S S Railing",
+        "raw": "Jalaram S S Railing",
+        "amount": 10000.0
+      },
+      {
+        "vendor": "Doma Anil (Dust)",
+        "raw": "Doma Anil Dust",
+        "amount": 19650.0
+      },
+      {
+        "vendor": "Diesel (Fuel)",
+        "raw": "UPI/DR/452184501534/APPEES M/YESB/Q702823875",
+        "amount": 1530.0
+      },
+      {
+        "vendor": "ATM Cash (Construction & Labour)",
+        "raw": "ATM CASH",
+        "amount": 29000.0
+      },
+      {
+        "vendor": "Chidvilasini / Chidvila School Owner",
+        "raw": "CHIDVILA",
+        "amount": 130000.0
+      },
+      {
+        "vendor": "Ramu Py (Vadde Ve Construction)",
+        "raw": "UPI/DR/452178708733/VADDE VE/UBIN/7893651940",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver",
+        "amount": 8000.0
+      },
+      {
+        "vendor": "JSK Traders (Hardware / Steel)",
+        "raw": "Jsk Traders",
+        "amount": 18240.0
+      },
+      {
+        "vendor": "Rajesh Bricks Supplier",
+        "raw": "Rajesh Brick",
+        "amount": 60200.0
+      },
+      {
+        "vendor": "Doma Gopal (Plumber)",
+        "raw": "Gopi Plumber",
+        "amount": 13500.0
+      },
+      {
+        "vendor": "Surender (Painter)",
+        "raw": "Surender Painter",
+        "amount": 28000.0
+      },
+      {
+        "vendor": "Ram Charan (Granite Laying)",
+        "raw": "Ram Charan Granite",
+        "amount": 39350.0
+      },
+      {
+        "vendor": "Diesel (Fuel)",
+        "raw": "UPI/DR/416264625789/Telangan/YESB/paytm-7412",
+        "amount": 1550.0
+      },
+      {
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)",
+        "raw": "UPI/DR/452803246550/MOTHUKU /SBIN/mothukupra/Payme",
+        "amount": 6600.0
+      },
+      {
+        "vendor": "Velaram Construction",
+        "raw": "VELARAM Construction",
+        "amount": 23080.0
+      },
+      {
+        "vendor": "JSK Traders (Hardware / Steel)",
+        "raw": "JSK Traders",
+        "amount": 41350.0
+      },
+      {
+        "vendor": "Intiaj Electrician (Kismatpura)",
+        "raw": "Intiaj Electrician Kismatpura",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "NENAVATH Construction",
+        "raw": "NENAVATH Construction",
+        "amount": 650.0
+      },
+      {
+        "vendor": "Ravi Line Man Construction",
+        "raw": "Ravi Line Man Kismat  Construction",
+        "amount": 6000.0
+      },
+      {
+        "vendor": "Doma Gopal (Plumber)",
+        "raw": "Doma Gopal Construction",
+        "amount": 10000.0
+      },
+      {
+        "vendor": "MS Decentry Cement",
+        "raw": "MS Decentry Cement",
+        "amount": 28600.0
+      },
+      {
+        "vendor": "A Prasanth",
+        "raw": "A Prasanth",
+        "amount": 3630.0
+      },
+      {
+        "vendor": "Chidvilasini / Chidvila School Owner",
+        "raw": "CHIDVILA",
+        "amount": 50000.0
+      },
+      {
+        "vendor": "Arihanth Tile Mart",
+        "raw": "Arihanth Tile Mart",
+        "amount": 5580.0
+      },
+      {
+        "vendor": "ATM Cash (Construction & Labour)",
+        "raw": "ATM CASH",
+        "amount": 19500.0
+      },
+      {
+        "vendor": "Mastri Tea Point",
+        "raw": "Mastri Tea Point",
+        "amount": 810.0
+      },
+      {
+        "vendor": "Ramu Py (Vadde Ve Construction)",
+        "raw": "UPI/DR/453842481526/VADDE VE/UBIN/7893651940",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)",
+        "raw": "Mastri",
+        "amount": 3000.0
+      },
+      {
+        "vendor": "Anando Brahma (Pyd)",
+        "raw": "Anando Brahma Pyd",
+        "amount": 2250.0
+      },
+      {
+        "vendor": "Lavakush Granites",
+        "raw": "Lavakush Granities",
+        "amount": 9300.0
+      },
+      {
+        "vendor": "Sri Amar Hardware",
+        "raw": "Sri Amar Hardware",
+        "amount": 1720.0
+      },
+      {
+        "vendor": "Doma Gopal (Plumber)",
+        "raw": "Dama Gopal",
+        "amount": 3000.0
+      },
+      {
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)",
+        "raw": "vorluvothu sri lakshmi (MASTRI)",
+        "amount": 25000.0
+      },
+      {
+        "vendor": "Nenavath Sujatha (Water Supply)",
+        "raw": "nenavath sujatha for water",
+        "amount": 580.0
+      },
+      {
+        "vendor": "Ramavath Anil Construction",
+        "raw": "ramavath anil",
+        "amount": 1000.0
+      },
+      {
+        "vendor": "Doma Srisailam",
+        "raw": "Doma srisailasam",
+        "amount": 900.0
+      },
+      {
+        "vendor": "Miscellaneous & Contingency",
+        "raw": "Miscallenous",
+        "amount": 32817.52
+      }
+    ],
+    "July 2024": [
+      {
+        "vendor": "Rajashekar (Dad's Driver)",
+        "raw": "RajashekarDriver",
+        "amount": 11800.0
+      },
+      {
+        "vendor": "HDFC Loan (EMI)",
+        "raw": "Hdfc",
+        "amount": 49822.0
+      },
+      {
+        "vendor": "Doma Srisailam",
+        "raw": "Doma Srisailam",
+        "amount": 1850.0
+      },
+      {
+        "vendor": "MS Prasad Apartment / Flat",
+        "raw": "MS Prasad Apartment",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "Ram Charan (Granite Laying)",
+        "raw": "Ramcharan granite laying",
+        "amount": 17000.0
+      },
+      {
+        "vendor": "JSK Traders (Hardware / Steel)",
+        "raw": "J SK TRADERS",
+        "amount": 26305.0
+      },
+      {
+        "vendor": "Ramu Py (Vadde Ve Construction)",
+        "raw": "UPI/DR/455001799060/VADDE VE/UBIN/7893651940/Payme",
+        "amount": 4000.0
+      },
+      {
+        "vendor": "UPVC Windows (Sirvi Naresh)",
+        "raw": "upvc windows",
+        "amount": 19000.0
+      },
+      {
+        "vendor": "Doma Gopal (Plumber)",
+        "raw": "Doma gopal (plumber)",
+        "amount": 500.0
+      },
+      {
+        "vendor": "Carpenter (Narasimha Rao)",
+        "raw": "Carpentor",
+        "amount": 500.0
+      },
+      {
+        "vendor": "WPC Doors (Ms Geeta)",
+        "raw": "Geeta(for wpc doors)",
+        "amount": 68500.0
+      },
+      {
+        "vendor": "Chidvilasini / Chidvila School Owner",
+        "raw": "CHIDVILA",
+        "amount": 97500.0
+      },
+      {
+        "vendor": "Mani Kumari (Mom)",
+        "raw": "ManiKumari",
+        "amount": 1000.0
+      },
+      {
+        "vendor": "WPC Doors (Ms Geeta)",
+        "raw": "arvind kumar bhosle van for wpc doors",
+        "amount": 1200.0
+      },
+      {
+        "vendor": "Dinesh Reddy",
+        "raw": "dinesreddy/Payme",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "Nenavath Sujatha (Water Supply)",
+        "raw": "NENAVATH For water",
+        "amount": 600.0
+      },
+      {
+        "vendor": "Neelam Naga Venkata",
+        "raw": "Neelam Naga Venkata",
+        "amount": 750.0
+      },
+      {
+        "vendor": "MS Prasad Apartment / Flat",
+        "raw": "UBIN/1154120100",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "P Harishwar Cement Bags",
+        "raw": "P HARISHWAR CEMENT Bags",
+        "amount": 22500.0
+      },
+      {
+        "vendor": "Intiaj Electrician (Kismatpura)",
+        "raw": "Intiaj Electrician Kismatpura",
+        "amount": 2000.0
+      },
+      {
+        "vendor": "Nakoda Service Wire",
+        "raw": "Nakoda Service Wire",
+        "amount": 1800.0
+      },
+      {
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)",
+        "raw": "Mastri",
+        "amount": 30000.0
+      },
+      {
+        "vendor": "Indraseena Reddy Steel",
+        "raw": "Indraseena reddy steel",
+        "amount": 5000.0
+      },
+      {
+        "vendor": "ATM Cash (Construction & Labour)",
+        "raw": "ATM CASH",
+        "amount": 10500.0
+      },
+      {
+        "vendor": "MS Prasad Apartment / Flat",
+        "raw": "Prasad Flat",
+        "amount": 19000.0
+      },
+      {
+        "vendor": "Sagar Kangula",
+        "raw": "sagarkangu",
+        "amount": 5000.0
+      },
+      {
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)",
+        "raw": "Mastri",
+        "amount": 58000.0
+      },
+      {
+        "vendor": "Jalaram S S Railing",
+        "raw": "Jalaram S S Railing",
+        "amount": 500.0
+      },
+      {
+        "vendor": "Carpenter (Narasimha Rao)",
+        "raw": "Carpentor Narasimha Rao",
+        "amount": 9000.0
+      },
+      {
+        "vendor": "Dust",
+        "raw": "Dust",
+        "amount": 2700.0
+      },
+      {
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)",
+        "raw": "MOTHUKU",
+        "amount": 9750.0
+      },
+      {
+        "vendor": "Mohammad Haroon",
+        "raw": "MOHAMMAD-mohdharoon",
+        "amount": 17500.0
+      },
+      {
+        "vendor": "Bhagyamma Construction",
+        "raw": "UPI/DR/455660874309/BHAGYAMM/SBIN/krishnaman/Payme",
+        "amount": 1500.0
+      },
+      {
+        "vendor": "Syed Imtiaz Construction / Electrical",
+        "raw": "Syed",
+        "amount": 10850.0
+      },
+      {
+        "vendor": "Syed Imtiaz Construction / Electrical",
+        "raw": "(missing transaction amount: 10200 for syed)",
+        "amount": 10200.0
+      },
+      {
+        "vendor": "UPVC Windows (Sirvi Naresh)",
+        "raw": "Upvs windows(UPI/DR/455381034487/SIRVI NA/UTIB/sirvinares/Payme)",
+        "amount": 30000.0
+      },
+      {
+        "vendor": "Diesel (Fuel)",
+        "raw": "Mr majeed abdul diesel",
+        "amount": 1010.0
+      },
+      {
+        "vendor": "Maneesh Kumar (Sink)",
+        "raw": "maneesh kumar for sink",
+        "amount": 900.0
+      },
+      {
+        "vendor": "Hanuma Enterprises (Granite Gum)",
+        "raw": "hanuma enterprises gum to granite steps",
+        "amount": 950.0
+      }
+    ]
+  },
+  "person_totals": {
+    "Swaroop (Plot Purchase)": 800000.0,
+    "Y S Reddy (Civil Contractor)": 1006640.0,
+    "HDFC Loan (EMI)": 978122.0,
+    "SBI Payee (3724152818)": 244000.0,
+    "Remaining Balance Reconciliation": 255504.08,
+    "ATM Cash (Construction & Labour)": 463700.0,
+    "Rajashekar (Dad's Driver)": 1026245.0,
+    "HDFC Account (5010048145)": 50000.0,
+    "BillDesk Utility": 101001.24,
+    "Miscellaneous & Contingency": 650301.37,
+    "Dadi Babu Reddy (Sand Contractor)": 50000.0,
+    "Susheel Axis Bank Granites": 790220.0,
+    "Nagarjuna Steel": 3375470.0,
+    "Garuda Courier": 8260.0,
+    "V V Ramana": 35368.0,
+    "Mastri / Sri Lakshmi (Labour Contractor)": 337276.0,
+    "Venkateshwara Raju": 35000.0,
+    "Abhishek (House Planner)": 65000.0,
+    "Ammi Reddy": 8000.0,
+    "Star Health Insurance": 32015.0,
+    "OMBK Payee": 23575.0,
+    "ICICI Bank Acc (0680050022)": 72215.0,
+    "Edward Rao Concrete": 40010.0,
+    "Ashok Sand Contractor": 108830.0,
+    "Bhaskar Bricks Supplier": 100800.0,
+    "Ravanna Chinnagaru": 30000.0,
+    "UPI Small Supplies": 5053.5,
+    "UPI Contractor (400498718305)": 19990.0,
+    "UPI Contractor (400929233107)": 59500.0,
+    "Giri babu Interiors": 2000.0,
+    "Access Tough Doors": 65000.0,
+    "Rajesh Bricks Supplier": 240800.0,
+    "Edigi K": 10000.0,
+    "Nenavath Sujatha (Water Supply)": 11180.0,
+    "Govardhan (Khammam Lawyer)": 50000.0,
+    "Syed Imtiaz Construction / Electrical": 45260.0,
+    "Velaram Construction": 32834.0,
+    "Ramu Py (Vadde Ve Construction)": 12000.0,
+    "SBI Life Insurance": 50000.0,
+    "Majety Construction": 190000.0,
+    "Redcliffe Patients Labs": 2577.0,
+    "Vanjakshi Motors": 7490.0,
+    "Mohd Aqueel Construction": 42560.0,
+    "Naveen Electrical": 5737.0,
+    "Raneel Reddy": 2000.0,
+    "Sudhakar Electrical (Tejaram)": 51430.0,
+    "Mohd Aslam Urban Claffs": 3200.0,
+    "Praveen Nagarjuna Cement (Mothuku)": 35950.0,
+    "Gangapur Balnars Construction": 1050.0,
+    "Shaik Aslam Urban Claffs": 21210.0,
+    "Raj Kumar Construction": 12233.0,
+    "Nenavat H Construction": 1840.0,
+    "Ram Sharma (Hardware)": 3000.0,
+    "Nakoda Service Wire": 8300.0,
+    "P Shekar Construction": 15300.0,
+    "Chidvilasini / Chidvila School Owner": 506500.0,
+    "Union Bank Acc (0334101000)": 122000.0,
+    "Mr Mishra Hardware": 1120.0,
+    "Pravalika Reddy": 35000.0,
+    "Mateti Krishna Construction": 2750.0,
+    "J Suvarna": 75.0,
+    "Jalaram S S Railing": 80500.0,
+    "Lila Devi Construction": 7000.0,
+    "Surender (Painter)": 44000.0,
+    "Sama Sridhar Reddy (Dust Supplier)": 19290.0,
+    "JSK Traders (Hardware / Steel)": 142455.0,
+    "MS Prasad Apartment / Flat": 29000.0,
+    "Saladi Bhuvanesh": 15000.0,
+    "RedBus Travel": 4150.65,
+    "Doma Gopal (Plumber)": 42000.0,
+    "Doma Anil (Dust)": 19650.0,
+    "Diesel (Fuel)": 4090.0,
+    "Ram Charan (Granite Laying)": 56350.0,
+    "Intiaj Electrician (Kismatpura)": 4000.0,
+    "NENAVATH Construction": 650.0,
+    "Ravi Line Man Construction": 6000.0,
+    "MS Decentry Cement": 28600.0,
+    "A Prasanth": 3630.0,
+    "Arihanth Tile Mart": 5580.0,
+    "Mastri Tea Point": 810.0,
+    "Anando Brahma (Pyd)": 2250.0,
+    "Lavakush Granites": 9300.0,
+    "Sri Amar Hardware": 1720.0,
+    "Ramavath Anil Construction": 1000.0,
+    "Doma Srisailam": 2750.0,
+    "UPVC Windows (Sirvi Naresh)": 49000.0,
+    "Carpenter (Narasimha Rao)": 9500.0,
+    "WPC Doors (Ms Geeta)": 69700.0,
+    "Mani Kumari (Mom)": 1000.0,
+    "Dinesh Reddy": 2000.0,
+    "Neelam Naga Venkata": 750.0,
+    "P Harishwar Cement Bags": 22500.0,
+    "Indraseena Reddy Steel": 5000.0,
+    "Sagar Kangula": 5000.0,
+    "Dust": 2700.0,
+    "Mohammad Haroon": 17500.0,
+    "Bhagyamma Construction": 1500.0,
+    "Maneesh Kumar (Sink)": 900.0,
+    "Hanuma Enterprises (Granite Gum)": 950.0
+  }
+}
