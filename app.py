@@ -7,11 +7,14 @@ live charts, subscription breakdown, and markdown exports.
 import os
 import tempfile
 import json
+import re
+from datetime import datetime
+from collections import defaultdict
 from flask import Flask, render_template, request, jsonify, Response, send_file
 from werkzeug.utils import secure_filename
 
 from core.pipeline import SpendingAnalysisPipeline
-from core.models import AnalysisReport
+from core.models import AnalysisReport, Transaction, TransactionType
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join(tempfile.gettempdir(), 'bank_agent_uploads')
@@ -34,14 +37,15 @@ USER_SETTINGS = {
 LATEST_REPORT = {
     "report": None,
     "transactions": [],
-    "markdown": ""
+    "markdown": "",
+    "metadata": []
 }
 
 
-def generate_budget(report_dict, user_settings=None):
+def generate_budget(report_dict, user_settings=None, transactions=None):
     """
-    Computes safe-to-spend allowance, category budget targets,
-    pacing status, and recommended category spending caps.
+    Computes safe-to-spend allowance / net surplus, category budget targets,
+    pacing status, review queue metrics, monthly spending trend, and transparent calculation breakdown.
     """
     settings = user_settings or USER_SETTINGS
     inflow = float(report_dict.get("total_inflow", 0.0))
@@ -50,6 +54,21 @@ def generate_budget(report_dict, user_settings=None):
     recurring_monthly = float(report_dict.get("total_recurring_monthly", 0.0))
     currency = report_dict.get("currency", "USD")
     sym = report_dict.get("currency_symbol", "$" if currency != "INR" else "₹")
+    statement_period = report_dict.get("statement_period", "")
+
+    # Parse period dates to determine if multi-month historical or current cycle
+    is_historical = True
+    months_count = 1
+    date_matches = re.findall(r'\b(20\d{2}-\d{2}-\d{2})\b', statement_period)
+    if len(date_matches) >= 2:
+        try:
+            d1 = datetime.strptime(date_matches[0], "%Y-%m-%d")
+            d2 = datetime.strptime(date_matches[1], "%Y-%m-%d")
+            days_span = (d2 - d1).days
+            months_count = max(1, round(days_span / 30.4))
+            is_historical = (days_span > 45)
+        except Exception:
+            pass
 
     custom_budgets = settings.get("category_budgets", {})
     categories = report_dict.get("category_breakdowns", [])
@@ -57,16 +76,20 @@ def generate_budget(report_dict, user_settings=None):
     category_budgets = []
     total_budgeted = 0.0
     total_variable_spent = 0.0
+    needs_review_amount = 0.0
+    needs_review_count = 0
 
     for cat in categories:
         c_name = cat["category"]
         c_spent = float(cat["total_spent"])
 
+        if c_name in ["Miscellaneous / Other", "Uncategorized / Needs Review"]:
+            needs_review_amount += c_spent
+
         # Determine budget limit
         if c_name in custom_budgets and custom_budgets[c_name] is not None:
             limit = float(custom_budgets[c_name])
         else:
-            # Category budget recommendation
             if currency == "INR":
                 if c_spent > 0:
                     limit = float(max(round(c_spent * 1.15, -2), round(c_spent + 200, -2)))
@@ -100,18 +123,84 @@ def generate_budget(report_dict, user_settings=None):
             "top_merchants": cat.get("top_merchants", [])
         })
 
-    # Safe-to-Spend Allowance:
-    # Safe to Spend = Monthly Inflow - Fixed Recurring Bills - Variable Outflow to date
-    if income > 0:
+    # Count transactions needing review if transactions list provided
+    if transactions:
+        needs_review_txs = [
+            t for t in transactions 
+            if (getattr(t, 'category', '') in ["Miscellaneous / Other", "Uncategorized / Needs Review"])
+            and (getattr(t, 'type', None) == TransactionType.DEBIT or getattr(t, 'type', None) == 'DEBIT')
+            and not getattr(t, 'is_internal_transfer', False)
+            and not getattr(t, 'is_excluded', False)
+        ]
+        needs_review_count = len(needs_review_txs)
+        needs_review_amount = sum(getattr(t, 'amount', 0.0) for t in needs_review_txs)
+
+    # Safe to Spend / Net Discretionary Surplus calculation
+    if is_historical:
         safe_to_spend = max(0.0, income - recurring_monthly - total_variable_spent)
         allowance_total = max(0.0, income - recurring_monthly)
+        safe_label = "Net Discretionary Surplus (Historical Period)"
+        period_label = f"Historical analysis: {statement_period}"
+        daily_safe_allowance = None  # Suppress per-day in historical mode
     else:
-        allowance_total = total_budgeted
-        safe_to_spend = max(0.0, total_budgeted - total_outflow)
+        allowance_total = max(0.0, income - recurring_monthly) if income > 0 else total_budgeted
+        safe_to_spend = max(0.0, income - recurring_monthly - total_variable_spent) if income > 0 else max(0.0, total_budgeted - total_outflow)
+        safe_label = "Safe-to-Spend Allowance"
+        period_label = f"Billing cycle: {statement_period}"
+        days_left = 18
+        daily_safe_allowance = round(safe_to_spend / days_left, 2) if days_left > 0 else 0.0
 
-    days_in_month = 30
-    days_left = 18  # Typical projection window
-    daily_safe_allowance = (safe_to_spend / days_left) if days_left > 0 else 0.0
+    # Monthly Trend (Spend over time)
+    monthly_trend = []
+    if transactions:
+        month_buckets = defaultdict(lambda: {"outflow": 0.0, "inflow": 0.0})
+        for t in transactions:
+            t_date = getattr(t, 'date', '')
+            if len(t_date) >= 7:
+                m_key = t_date[:7]  # YYYY-MM
+                t_amt = getattr(t, 'amount', 0.0)
+                t_type = getattr(t, 'type', None)
+                t_type_val = t_type.value if hasattr(t_type, 'value') else str(t_type)
+                is_xfer = getattr(t, 'is_internal_transfer', False)
+                is_excl = getattr(t, 'is_excluded', False)
+                if not is_xfer and not is_excl:
+                    if t_type_val == 'DEBIT':
+                        month_buckets[m_key]["outflow"] += t_amt
+                    elif t_type_val == 'CREDIT':
+                        month_buckets[m_key]["inflow"] += t_amt
+
+        for mk in sorted(month_buckets.keys()):
+            try:
+                m_obj = datetime.strptime(mk, "%Y-%m")
+                m_label = m_obj.strftime("%b %Y")
+            except Exception:
+                m_label = mk
+            out_val = round(month_buckets[mk]["outflow"], 2)
+            in_val = round(month_buckets[mk]["inflow"], 2)
+            monthly_trend.append({
+                "key": mk,
+                "label": m_label,
+                "outflow": out_val,
+                "inflow": in_val,
+                "net": round(in_val - out_val, 2)
+            })
+
+    # Transparent calculation breakdown for users
+    calculation_breakdown = {
+        "formula": "Safe to Spend = Total Inflows (Income) − Fixed Recurring Bills − Variable Living Expenses",
+        "inflow_total": round(income, 2),
+        "fixed_bills": round(recurring_monthly, 2),
+        "variable_spend": round(total_variable_spent, 2),
+        "safe_to_spend": round(safe_to_spend, 2),
+        "internal_transfers_excluded": report_dict.get("internal_transfers_excluded", 0),
+        "bills_zero_explanation": (
+            "₹0 Fixed Bills / Subscriptions Detected: In Indian bank statements, recurring debits (like rent, utilities, insurance, "
+            "or investments) are frequently transferred manually via NEFT, Cheque, or ad-hoc UPI rather than auto-debit mandates (NACH/ECS). "
+            "These large transfers are currently grouped under 'Miscellaneous / Other' and 'Uncategorized / Needs Review'. "
+            "Use the Review Queue below to re-classify or exclude them."
+        ),
+        "period_context": f"Calculated across the {months_count}-month period ({statement_period})."
+    }
 
     return {
         "income_baseline": round(income, 2),
@@ -122,9 +211,16 @@ def generate_budget(report_dict, user_settings=None):
         "safe_to_spend": round(safe_to_spend, 2),
         "allowance_total": round(allowance_total, 2),
         "safe_to_spend_percent": round((safe_to_spend / allowance_total * 100.0) if allowance_total > 0 else 0.0, 1),
-        "daily_safe_allowance": round(daily_safe_allowance, 2),
-        "days_left": days_left,
+        "daily_safe_allowance": daily_safe_allowance,
+        "is_historical": is_historical,
+        "safe_label": safe_label,
+        "period_label": period_label,
+        "months_count": months_count,
+        "needs_review_amount": round(needs_review_amount, 2),
+        "needs_review_count": needs_review_count,
         "category_budgets": category_budgets,
+        "monthly_trend": monthly_trend,
+        "calculation_breakdown": calculation_breakdown,
         "pay_cadence": settings.get("pay_cadence", "Monthly"),
         "savings_rate_projected": round(((income - total_outflow) / income * 100.0) if income > 0 else 0.0, 1),
         "canceled_subscriptions": list(settings.get("canceled_subscriptions", {}).values()),
@@ -163,7 +259,7 @@ def analyze_drive():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        budget_data = generate_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS, txs)
 
         return jsonify({
             "success": True,
@@ -204,7 +300,7 @@ def analyze_files():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        budget_data = generate_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS, txs)
 
         return jsonify({
             "success": True,
@@ -227,7 +323,6 @@ def analyze_downloaded():
 
     drive_dir = os.path.join(os.path.dirname(__file__), "downloads", "drive_folder_1RncmKINKSQozomIa_yy6jl4anWqMccVP")
     if not os.path.exists(drive_dir):
-        # Check any folder inside downloads
         downloads_base = os.path.join(os.path.dirname(__file__), "downloads")
         subdirs = [os.path.join(downloads_base, d) for d in os.listdir(downloads_base) if os.path.isdir(os.path.join(downloads_base, d))]
         if subdirs:
@@ -249,7 +344,7 @@ def analyze_downloaded():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        budget_data = generate_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS, txs)
 
         return jsonify({
             "success": True,
@@ -262,7 +357,6 @@ def analyze_downloaded():
         err_msg = str(e)
         is_enc = any(k in err_msg.lower() for k in ["password", "encrypted", "decrypt"])
         return jsonify({"success": False, "error": err_msg, "is_encrypted": is_enc}), 200 if is_enc else 500
-
 
 
 @app.route('/api/sample-demo', methods=['GET', 'POST'])
@@ -288,7 +382,7 @@ def sample_demo():
         LATEST_REPORT["markdown"] = md_text
 
         rep_dict = report.to_dict()
-        budget_data = generate_budget(rep_dict, USER_SETTINGS)
+        budget_data = generate_budget(rep_dict, USER_SETTINGS, txs)
 
         return jsonify({
             "success": True,
@@ -299,6 +393,133 @@ def sample_demo():
         })
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route('/api/transaction/update', methods=['POST'])
+def update_transaction():
+    """Update single transaction category, transfer classification, exclusion, or note."""
+    data = request.get_json() or {}
+    tx_id = data.get('tx_id')
+    new_category = data.get('category')
+    is_transfer = data.get('is_internal_transfer')
+    is_excluded = data.get('is_excluded')
+    note = data.get('note')
+
+    if not LATEST_REPORT["transactions"]:
+        return jsonify({"success": False, "error": "No statement active"}), 400
+
+    target_tx = None
+    for tx in LATEST_REPORT["transactions"]:
+        if tx.id == tx_id:
+            target_tx = tx
+            break
+
+    if not target_tx:
+        return jsonify({"success": False, "error": f"Transaction {tx_id} not found"}), 404
+
+    if new_category is not None:
+        target_tx.category = new_category
+    if is_transfer is not None:
+        target_tx.is_internal_transfer = bool(is_transfer)
+    if is_excluded is not None:
+        target_tx.is_excluded = bool(is_excluded)
+    if note is not None:
+        target_tx.notes = str(note)
+
+    # Re-analyze with updated transactions
+    updated_report = pipeline.analyst.analyze(
+        LATEST_REPORT["transactions"],
+        metadata_list=LATEST_REPORT.get("metadata")
+    )
+    LATEST_REPORT["report"] = updated_report
+    LATEST_REPORT["markdown"] = pipeline.analyst.format_markdown_report(updated_report)
+
+    rep_dict = updated_report.to_dict()
+    budget_data = generate_budget(rep_dict, USER_SETTINGS, LATEST_REPORT["transactions"])
+
+    return jsonify({
+        "success": True,
+        "report": rep_dict,
+        "transactions": [t.to_dict() for t in LATEST_REPORT["transactions"]],
+        "budget": budget_data
+    })
+
+
+@app.route('/api/transactions/batch-update', methods=['POST'])
+def batch_update_transactions():
+    """Batch re-classify transactions (e.g. mark multiple as transfer or exclude)."""
+    data = request.get_json() or {}
+    tx_ids = set(data.get('tx_ids', []))
+    action = data.get('action')
+    category = data.get('category')
+
+    if not LATEST_REPORT["transactions"]:
+        return jsonify({"success": False, "error": "No statement active"}), 400
+
+    updated_count = 0
+    for tx in LATEST_REPORT["transactions"]:
+        if tx.id in tx_ids:
+            if action == 'mark_transfer':
+                tx.is_internal_transfer = True
+            elif action == 'unmark_transfer':
+                tx.is_internal_transfer = False
+            elif action == 'exclude':
+                tx.is_excluded = True
+            elif action == 'unexclude':
+                tx.is_excluded = False
+            elif action == 'categorize' and category:
+                tx.category = category
+            updated_count += 1
+
+    updated_report = pipeline.analyst.analyze(
+        LATEST_REPORT["transactions"],
+        metadata_list=LATEST_REPORT.get("metadata")
+    )
+    LATEST_REPORT["report"] = updated_report
+    LATEST_REPORT["markdown"] = pipeline.analyst.format_markdown_report(updated_report)
+
+    rep_dict = updated_report.to_dict()
+    budget_data = generate_budget(rep_dict, USER_SETTINGS, LATEST_REPORT["transactions"])
+
+    return jsonify({
+        "success": True,
+        "updated_count": updated_count,
+        "report": rep_dict,
+        "transactions": [t.to_dict() for t in LATEST_REPORT["transactions"]],
+        "budget": budget_data
+    })
+
+
+@app.route('/api/filter-period', methods=['POST'])
+def filter_period():
+    """Filter dashboard by month (e.g. 2023-12) or return all."""
+    data = request.get_json() or {}
+    period_key = data.get('period', 'ALL')
+
+    if not LATEST_REPORT["transactions"]:
+        return jsonify({"success": False, "error": "No statements loaded"}), 400
+
+    if period_key == 'ALL':
+        selected_txs = LATEST_REPORT["transactions"]
+    else:
+        selected_txs = [t for t in LATEST_REPORT["transactions"] if t.date.startswith(period_key)]
+
+    if not selected_txs:
+        return jsonify({"success": False, "error": f"No transactions found for period {period_key}"}), 404
+
+    period_report = pipeline.analyst.analyze(
+        selected_txs,
+        metadata_list=LATEST_REPORT.get("metadata")
+    )
+    rep_dict = period_report.to_dict()
+    budget_data = generate_budget(rep_dict, USER_SETTINGS, selected_txs)
+
+    return jsonify({
+        "success": True,
+        "report": rep_dict,
+        "transactions": [t.to_dict() for t in selected_txs],
+        "budget": budget_data
+    })
 
 
 @app.route('/api/budget-settings', methods=['GET', 'POST'])

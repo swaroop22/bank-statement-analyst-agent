@@ -77,7 +77,7 @@ class StatementAnalyst:
             if tx.account_source:
                 account_sources.add(self.redact_pii(tx.account_source))
 
-            if tx.is_internal_transfer:
+            if tx.is_internal_transfer or getattr(tx, 'is_excluded', False):
                 internal_transfers_count += 1
                 continue
 
@@ -189,34 +189,54 @@ class StatementAnalyst:
         for rank, item in enumerate(top_3, 1):
             merchant_summary = ", ".join([f"{m} ({sym}{amt:,.2f})" for m, amt in item.top_merchants[:2]])
             drivers.append(
-                f"**#{rank} {item.category}**: {sym}{item.total_spent:,.2f} ({item.percentage_of_spend:.1f}% of total spend)"
+                f"#{rank} {item.category}: {sym}{item.total_spent:,.2f} ({item.percentage_of_spend:.1f}% of total spend)"
                 + (f" — Primary drivers: {merchant_summary}" if merchant_summary else "")
             )
         return drivers
 
     def _detect_anomalies(self, transactions: List[Transaction], sym: str = "$") -> List[str]:
-        """Detect unusually large one-time transactions, spikes, or sudden charges."""
-        debits = [t for t in transactions if t.type == TransactionType.DEBIT and not t.is_internal_transfer and not t.is_refund]
+        """Detect unusually large one-time transactions, spikes, or sudden charges with explicit trigger rules."""
+        debits = [
+            t for t in transactions 
+            if t.type == TransactionType.DEBIT 
+            and not t.is_internal_transfer 
+            and not getattr(t, 'is_excluded', False) 
+            and not t.is_refund
+        ]
         if not debits:
             return ["No outflow transactions recorded to evaluate anomalies."]
 
         amounts = [t.amount for t in debits]
         avg_amount = sum(amounts) / len(amounts)
+        sorted_amounts = sorted(amounts)
+        median_amount = sorted_amounts[len(sorted_amounts) // 2]
         
+        # Rigorous outlier criteria:
+        # 1. Amount MUST be strictly greater than overall average
+        # 2. Amount MUST be at least 2.5x the average debit
+        # 3. Currency-aware absolute threshold to prevent flagging minor routine debits
+        min_abs_threshold = 25000.0 if sym == "₹" else 500.0
+        outlier_multiplier = 2.5
+        threshold = max(avg_amount * outlier_multiplier, min_abs_threshold)
+
         anomalies = []
-        for tx in debits:
-            if tx.category == SpendingCategory.HOUSING_UTILITIES.value and tx.amount > 1000:
-                continue
-            if tx.amount >= 350.0 or tx.amount >= 3.5 * avg_amount:
+        # Sort descending to show highest genuine spikes first
+        sorted_debits = sorted(debits, key=lambda x: x.amount, reverse=True)
+        for tx in sorted_debits:
+            if tx.amount >= threshold and tx.amount > avg_amount:
+                multiple = tx.amount / avg_amount if avg_amount > 0 else 0
+                rule_desc = f"Amount is {multiple:.1f}× average transaction size ({sym}{avg_amount:,.2f})"
                 anomalies.append(
-                    f"**{sym}{tx.amount:,.2f}** at **{tx.clean_payee}** on {tx.date} ({tx.category}) — "
-                    f"Significantly exceeds the average transaction size ({sym}{avg_amount:,.2f})."
+                    f"{sym}{tx.amount:,.2f} • {tx.clean_payee} on {tx.date} ({tx.category}) — "
+                    f"Triggered Rule: {rule_desc}."
                 )
+            if len(anomalies) >= 5:
+                break
 
         if not anomalies:
-            anomalies.append("No irregular expenditure spikes detected; transaction sizes remain within standard statistical variance.")
+            anomalies.append("No irregular expenditure spikes detected; all transaction sizes remain within standard variance.")
 
-        return anomalies[:5]
+        return anomalies
 
     def _generate_optimizations(
         self,

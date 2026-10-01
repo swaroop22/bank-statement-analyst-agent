@@ -63,6 +63,7 @@ class Transaction:
     is_internal_transfer: bool = False
     is_refund: bool = False
     is_subscription: bool = False
+    is_excluded: bool = False
     notes: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,6 +79,7 @@ class Transaction:
             "is_internal_transfer": bool(self.is_internal_transfer),
             "is_refund": bool(self.is_refund),
             "is_subscription": bool(self.is_subscription),
+            "is_excluded": bool(self.is_excluded),
             "notes": str(self.notes or "")
         }
 

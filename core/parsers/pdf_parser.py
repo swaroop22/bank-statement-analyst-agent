@@ -447,6 +447,23 @@ class PdfStatementParser(BaseStatementParser):
         if upi_match3:
             return upi_match3.group(1).replace('-', ' ').strip().title()
 
+        # Clean Indian Cheque & NEFT patterns
+        chq_match = re.search(r'Chq No\.?\s*\d+\s+[A-Z0-9]+\s+([A-Za-z\s]+?)(?:\s+\d+|$)', text, re.I)
+        if chq_match and chq_match.group(1).strip():
+            return chq_match.group(1).strip().title()
+
+        if re.search(r'(?:NEFT\s+UTR\s+)?NO:\s*SBIN', text, re.I):
+            return "NEFT Transfer"
+
+        if re.search(r'TRANSFER\s+TO\b', text, re.I):
+            return "Bank Account Transfer"
+
+        if re.search(r'Transfer through GCC', text, re.I):
+            return "GCC Bank Transfer"
+
+        if re.search(r'IMPS.*HDFC', text, re.I):
+            return "HDFC Bank Transfer (IMPS)"
+
         # Clean NEFT, IMPS, RTGS, Transfer-INB
         text = re.sub(r'^(?:NEFT|IMPS|RTGS)[-\s:]*(?:[A-Z0-9]+)?\s*', '', text, flags=re.I)
         text = re.sub(r'^(?:TO|BY)\s+TRANSFER-(?:INB|UPI|NEFT|RTGS)\s*', '', text, flags=re.I)
