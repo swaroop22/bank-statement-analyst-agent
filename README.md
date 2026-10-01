@@ -16,7 +16,13 @@ An autonomous Personal Finance & Financial Data Extraction Agent designed to acc
    - **De-duplication:** Hashes date, amount, and sanitized payee to eliminate overlapping statement duplicate transactions.
    - **Refund Offsetting:** Detects merchant returns and offsets them directly against their originating expense category instead of skewing income figures.
 
-3. **Strict 9-Category Schema + Inflows:**
+3. **Rocket Money Onboarding & Smart Budgeting:**
+   - **Multi-Step Onboarding Flow:** Modeled directly after Rocket Money's onboarding experience (`onboarding.rocketmoney.com/budgeting`). Guides users through financial goals, pay cadence, take-home income baseline, and statement connection.
+   - **Interactive Category Budget Sliders:** Category spend trackers for Groceries, Dining, Housing, Utilities, Shopping, and Transport with real-time sliders and spend-alert meters (Green < 75%, Amber 75-99%, Coral Red ≥ 100%).
+   - **"Safe to Spend" / "Left to Spend" Allowance Gauge:** Calculates remaining allowance using Rocket Money's formula (`Income - Fixed Bills - Variable Outflows = Safe to Spend`) with daily safe burn pace.
+   - **Subscription Cancel Concierge:** 1-click concierge cancellation simulation that computes projected annual savings, tracks active cancellations, and increments the savings counter.
+
+4. **Strict 9-Category Schema + Inflows:**
    - **Housing & Utilities** (rent, electric, gas, water, internet, trash)
    - **Groceries** (supermarkets, wholesale clubs, local produce)
    - **Dining Out & Food Delivery** (restaurants, cafes, delivery services)
@@ -29,12 +35,9 @@ An autonomous Personal Finance & Financial Data Extraction Agent designed to acc
    - **Uncategorized / Needs Review** (strict fallback to prevent hallucinations)
    - **Income / Inflows** (isolated in executive summary, never treated as negative spend)
 
-4. **Recurring Subscriptions & Fixed Burn Detection:**
-   - Automatically clusters recurring merchant charges (Netflix, Spotify, Gym, Utilities, iCloud) and computes true monthly commitments.
-
 5. **Security & Privacy Guardrails:**
-   - **Account Redaction:** Masks account numbers to the last 4 digits (e.g., `Checking ...4812`).
-   - **PII Scrubbing:** Strips SSNs, routing numbers, and residential street addresses from all outputs.
+   - **Account Redaction:** Masks account numbers to the last 4 digits (e.g., `Checking ...4812`, `SBI Savings ...0544`).
+   - **PII Scrubbing:** Strips SSNs, PANs, routing numbers, and residential street addresses from all outputs.
    - **100.0% Mathematical Reconciliation:** Category breakdown percentages are strictly balanced to sum to exactly 100.0% of total reported outflow.
 
 ---
