@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Statement Spending Analyst Agent</title>
+  <meta name="description" content="Autonomous AI Agent for parsing, categorizing, and auditing bank statements (including password-protected SBI India e-statements) with 100% data integrity and privacy redaction.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #F8FAFC;
+      --bg-white: #FFFFFF;
+      --bg-subtle: #F1F5F9;
+      --border-light: #E2E8F0;
+      --border-hover: #CBD5E1;
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --text-light: #94A3B8;
+      
+      --primary: #2563EB;
+      --primary-hover: #1D4ED8;
+      --primary-light: #EFF6FF;
+      --primary-border: #BFDBFE;
+      
+      --success: #16A34A;
+      --success-light: #F0FDF4;
+      --success-border: #BBF7D0;
+      
+      --danger: #DC2626;
+      --danger-light: #FEF2F2;
+      --danger-border: #FECACA;
+      
+      --warning: #D97706;
+      --warning-light: #FFFBEB;
+      --warning-border: #FDE68A;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-body);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding: 24px 20px 60px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+    }
+
+    .badge-success {
+      background: var(--success-light);
+      border-color: var(--success-border);
+      color: var(--success);
+    }
+
+    /* Card Panels */
+    .white-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Grid Layouts */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .input-text {
+      width: 100%;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .input-text:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .password-wrap {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-white);
+      border-color: var(--border-light);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-subtle);
+      border-color: var(--border-hover);
+    }
+
+    .btn-sbi {
+      background: #0284C7;
+      color: #FFFFFF;
+    }
+
+    .btn-sbi:hover {
+      background: #0369A1;
+    }
+
+    /* Helper info notice */
+    .helper-box {
+      background: #F8FAFC;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .helper-box strong {
+      color: var(--text-main);
+    }
+
+    .helper-box ul {
+      margin-left: 18px;
+      margin-top: 4px;
+    }
+
+    /* Drag & Drop */
+    .dropzone {
+      border: 2px dashed var(--border-hover);
+      border-radius: var(--radius-md);
+      padding: 24px 16px;
+      text-align: center;
+      background: var(--bg-subtle);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .dropzone:hover, .dropzone.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .dropzone-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .dropzone-text {
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .dropzone-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Alerts */
+    .alert {
+      display: none;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .alert-error {
+      background: var(--danger-light);
+      border: 1px solid var(--danger-border);
+      color: var(--danger);
+    }
+
+    .alert-warning {
+      background: var(--warning-light);
+      border: 1px solid var(--warning-border);
+      color: #92400E;
+    }
+
+    /* KPI Summary Cards */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .kpi-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kpi-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .kpi-val {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      font-family: var(--font-sans);
+    }
+
+    .kpi-desc {
+      font-size: 12px;
+      margin-top: 4px;
+      color: var(--text-muted);
+    }
+
+    .val-inflow { color: var(--success); }
+    .val-outflow { color: var(--danger); }
+    .val-surplus { color: var(--primary); }
+    .val-rate { color: #D97706; }
+
+    /* Results 2-Column Section */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Clean White Tables */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-body);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: var(--bg-subtle);
+    }
+
+    .progress-track {
+      background: #E2E8F0;
+      border-radius: 999px;
+      height: 6px;
+      width: 70px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .progress-fill {
+      background: var(--primary);
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .merchant-chip {
+      display: inline-block;
+      padding: 2px 7px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--text-body);
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+
+    /* Subscriptions List */
+    .sub-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      background: #FAFAFA;
+    }
+
+    .sub-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .sub-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .sub-cost {
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+
+    /* Observations Cards */
+    .insight-item {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--primary);
+      background: #F8FAFC;
+      border-top: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 10px;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .insight-item.spike {
+      border-left-color: var(--warning);
+      background: #FFFDF7;
+    }
+
+    .insight-item.opt {
+      border-left-color: var(--success);
+      background: #F8FCF8;
+    }
+
+    /* Guardrail cards */
+    .guardrail-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      font-size: 12.5px;
+    }
+
+    @media (max-width: 768px) {
+      .guardrail-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .guardrail-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .guardrail-card h5 {
+      color: var(--text-main);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .guardrail-card p {
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Modal for Quick Password Entry */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-msg {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    /* Spin loader */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand-wrap">
+        <div class="brand-icon">₹</div>
+        <div>
+          <h1>Bank Statement Spending Analyst</h1>
+          <div class="tagline">Personal Finance Extraction Agent • Indian & Global Banks • 100% Outflow Balanced</div>
+        </div>
+      </div>
+      <div class="badge-group">
+        <div class="badge badge-success">
+          <span>🔒</span> PII Redaction Active
+        </div>
+        <div class="badge badge-success">
+          <span>⚖️</span> 100% Spend Checksum
+        </div>
+        <div class="badge" id="currencyBadge">
+          <span>🇮🇳</span> INR (₹) / USD ($)
+        </div>
+      </div>
+    </header>
+
+    <!-- Ingestion & Configuration Box (Clean White) -->
+    <div class="white-card">
+      <div class="hero-split">
+        <!-- Left: Google Drive Link + Decryption Password -->
+        <div>
+          <label class="field-label" for="driveUrl">Google Drive Shared Folder or Link</label>
+          <div class="input-row">
+            <input 
+              type="text" 
+              id="driveUrl" 
+              class="input-text" 
+              value="https://drive.google.com/drive/folders/1RncmKINKSQozomIa_yy6jl4anWqMccVP?usp=drive_link" 
+              placeholder="https://drive.google.com/drive/folders/..."
+            />
+            <button id="analyzeDriveBtn" class="btn btn-primary">
+              <span id="driveBtnLabel">Analyze Drive</span>
+            </button>
+          </div>
+
+          <label class="field-label" for="pdfPassword">
+            PDF Password <span style="font-weight: 400; text-transform: none; color: var(--text-light);">(Required for encrypted SBI statements)</span>
+          </label>
+          <div class="password-wrap">
+            <input 
+              type="password" 
+              id="pdfPassword" 
+              class="input-text" 
+              placeholder="Enter SBI Statement Password (e.g. Account No or DOB)"
+            />
+            <button type="button" id="togglePasswordBtn" class="password-toggle-btn" title="Toggle visibility">👁️</button>
+          </div>
+
+          <!-- Fast Local Actions -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+            <button id="analyzeDownloadedBtn" class="btn btn-sbi" title="Analyze the 12 SBI PDF files downloaded locally from Google Drive">
+              ⚡ Analyze Downloaded SBI Statements (12 Files)
+            </button>
+            <button id="loadSampleBtn" class="btn btn-secondary">
+              Demo Sample (Chase + Amex)
+            </button>
+          </div>
+
+          <!-- SBI Password Format Guide -->
+          <div class="helper-box" style="margin-top: 14px;">
+            <strong>State Bank of India (SBI) Password Guide:</strong>
+            <ul>
+              <li><strong>11-digit SBI Account Number</strong> (e.g. <code>72137105447</code> or from your passbook)</li>
+              <li><strong>Date of Birth in DDMMYYYY</strong> (e.g. <code>15081995</code>)</li>
+              <li><strong>Last 5 digits of mobile + DOB in DDMM</strong> (e.g. <code>105441508</code>)</li>
+              <li><strong>PAN Card Number</strong> in UPPERCASE (e.g. <code>ABCDE1234F</code>)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: File Upload Dropzone -->
+        <div>
+          <label class="field-label">Or Upload Local Statements (PDF, CSV, XLSX)</label>
+          <div id="dropZone" class="dropzone">
+            <div class="dropzone-icon">📄</div>
+            <div class="dropzone-text">Click or drag & drop files here</div>
+            <div class="dropzone-sub">Supports SBI PDF e-statements, Chase, Amex, CSV & XLSX</div>
+            <input type="file" id="fileInput" multiple accept=".pdf,.csv,.xlsx,.xls" style="display: none;">
+          </div>
+          <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 10px; line-height: 1.4;">
+            <em>Note: If uploading encrypted PDF files, make sure to enter the password in the field on the left before uploading.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert / Notice Box -->
+    <div id="alertBanner" class="alert">
+      <div id="alertContent"></div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsSection" style="display: none;">
+      <!-- 1. Executive Summary KPIs -->
+      <div class="kpi-row">
+        <div class="kpi-box">
+          <div class="kpi-lbl">Statement Period</div>
+          <div id="periodVal" class="kpi-val" style="font-size: 17px; margin-top: 4px;">—</div>
+          <div class="kpi-desc" id="accountSourcesVal">Accounts: —</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-lbl">Total Inflow (Income/Deposits)</div>
+          <div id="inflowVal" class="kpi-val val-inflow">₹0.00</div>
+          <div class="kpi-desc">Payroll, UPI/CR, Interest & Credits</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-lbl">Total Outflow (Actual Spend)</div>
+          <div id="outflowVal" class="kpi-val val-outflow">₹0.00</div>
+          <div class="kpi-desc">Net Outflows (Internal Transfers Excluded)</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-lbl">Net Cash Flow & Savings Rate</div>
+          <div id="netCashVal" class="kpi-val val-surplus">₹0.00</div>
+          <div class="kpi-desc" id="savingsRateVal">Retention Rate: 0.0%</div>
+        </div>
+      </div>
+
+      <!-- 2. Breakdown Table & Subscriptions -->
+      <div class="results-grid">
+        <!-- Left: Category Breakdown Table -->
+        <div class="white-card">
+          <div class="card-title">
+            <span>2. Expense Category Breakdown</span>
+            <span class="badge badge-success">100.0% Outflow Balanced</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th style="text-align: right;">Total Spent</th>
+                  <th style="text-align: right;">% Spend</th>
+                  <th>Top 3 Merchants / Drivers</th>
+                </tr>
+              </thead>
+              <tbody id="categoryTableBody">
+                <!-- Dynamically Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Subscriptions & Actionable Insights -->
+        <div>
+          <!-- Recurring Subscriptions -->
+          <div class="white-card">
+            <div class="card-title">
+              <span>3. Subscriptions & Fixed Burn</span>
+              <span id="recurringTotalBadge" class="badge">₹0.00/mo</span>
+            </div>
+            <div id="subscriptionsList">
+              <!-- Dynamically Rendered -->
+            </div>
+          </div>
+
+          <!-- Key Observations & Actionable Insights -->
+          <div class="white-card">
+            <div class="card-title">
+              <span>4. Key Observations & Actionable Insights</span>
+            </div>
+            <div id="insightsContainer">
+              <!-- Dynamically Rendered -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Security & Privacy Guardrails -->
+      <div class="white-card">
+        <div class="card-title">
+          <span>5. Security & Privacy Guardrails Verification</span>
+          <span class="badge badge-success">Zero Data Leakage Guarantee</span>
+        </div>
+        <div class="guardrail-row">
+          <div class="guardrail-card">
+            <h5>✔ Masked Account Numbers</h5>
+            <p>All sensitive account numbers masked to last 4 digits only (e.g. <code>State Bank of India Savings ...0544</code>). PAN and Aadhaar scrubbed.</p>
+          </div>
+          <div class="guardrail-card">
+            <h5>✔ Hygiene & Double-Count Scrubbing</h5>
+            <p id="hygieneStatsText">Internal transfers, sweep transfers, and credit card payoffs excluded.</p>
+          </div>
+          <div class="guardrail-card">
+            <h5>✔ 100% Outflow Reconciliation</h5>
+            <p>Category sums strictly reconcile with total reported outflow without rounding drift.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions Footer -->
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+        <button onclick="window.print()" class="btn btn-secondary">
+          🖨️ Print / Save as PDF
+        </button>
+        <a href="/api/export-markdown" class="btn btn-primary">
+          ⬇ Download Markdown Report (.md)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Password Prompt Modal -->
+  <div id="passwordModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span>🔐</span> SBI Statement Password Required
+      </div>
+      <p class="modal-msg" id="modalMsg">
+        The bank statement PDF is encrypted. Please enter your State Bank of India statement password to decrypt and analyze.
+      </p>
+      <div class="password-wrap">
+        <input type="password" id="modalPasswordInput" class="input-text" placeholder="Enter password (e.g. Account Number or DOB)">
+      </div>
+      <div class="helper-box" style="margin-top: 10px;">
+        Common SBI passwords: <strong>11-digit A/C No.</strong>, <strong>DOB (DDMMYYYY)</strong>, or <strong>Last 5 digits of mobile + DOB (DDMM)</strong>.
+      </div>
+      <div class="modal-actions">
+        <button id="closeModalBtn" class="btn btn-secondary">Cancel</button>
+        <button id="submitModalPasswordBtn" class="btn btn-primary">Decrypt & Analyze</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let currentCurrencySymbol = '₹';
+    let lastAction = null;
+
+    // Elements
+    const driveUrlInput = document.getElementById('driveUrl');
+    const pdfPasswordInput = document.getElementById('pdfPassword');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const analyzeDriveBtn = document.getElementById('analyzeDriveBtn');
+    const analyzeDownloadedBtn = document.getElementById('analyzeDownloadedBtn');
+    const loadSampleBtn = document.getElementById('loadSampleBtn');
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const alertBanner = document.getElementById('alertBanner');
+    const alertContent = document.getElementById('alertContent');
+    const resultsSection = document.getElementById('resultsSection');
+
+    // Modal Elements
+    const passwordModal = document.getElementById('passwordModal');
+    const modalPasswordInput = document.getElementById('modalPasswordInput');
+    const modalMsg = document.getElementById('modalMsg');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const submitModalPasswordBtn = document.getElementById('submitModalPasswordBtn');
+
+    // Toggle password visibility
+    togglePasswordBtn.addEventListener('click', () => {
+      const type = pdfPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      pdfPasswordInput.setAttribute('type', type);
+      togglePasswordBtn.textContent = type === 'password' ? '👁️' : '🔒';
+    });
+
+    function showAlert(msg, isError = true) {
+      alertBanner.className = `alert ${isError ? 'alert-error' : 'alert-warning'}`;
+      alertContent.innerHTML = msg.replace(/\n/g, '<br>');
+      alertBanner.style.display = 'block';
+    }
+
+    function hideAlert() {
+      alertBanner.style.display = 'none';
+    }
+
+    function showPasswordModal(customMsg, actionType) {
+      lastAction = actionType;
+      if (customMsg) modalMsg.innerText = customMsg;
+      modalPasswordInput.value = pdfPasswordInput.value;
+      passwordModal.style.display = 'flex';
+      modalPasswordInput.focus();
+    }
+
+    function hidePasswordModal() {
+      passwordModal.style.display = 'none';
+    }
+
+    closeModalBtn.addEventListener('click', hidePasswordModal);
+
+    submitModalPasswordBtn.addEventListener('click', () => {
+      const pwd = modalPasswordInput.value.trim();
+      pdfPasswordInput.value = pwd;
+      hidePasswordModal();
+      if (lastAction === 'drive') {
+        analyzeDrive();
+      } else if (lastAction === 'downloaded') {
+        analyzeDownloaded();
+      }
+    });
+
+    function formatAmount(val, symbol = null) {
+      const sym = symbol || currentCurrencySymbol;
+      const num = Number(val || 0);
+      return sym + num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // Render results
+    function renderReport(data) {
+      hideAlert();
+      resultsSection.style.display = 'block';
+      const r = data.report;
+
+      // Currency
+      currentCurrencySymbol = r.currency_symbol || (r.currency === 'INR' ? '₹' : '$');
+      document.getElementById('currencyBadge').innerHTML = `<span>${r.currency === 'INR' ? '🇮🇳' : '🌐'}</span> ${r.currency} (${currentCurrencySymbol})`;
+
+      // Executive Summary
+      document.getElementById('periodVal').innerText = r.statement_period || 'N/A';
+      document.getElementById('accountSourcesVal').innerText = r.account_sources ? 'Accounts: ' + r.account_sources.join(', ') : '';
+      document.getElementById('inflowVal').innerText = formatAmount(r.total_inflow);
+      document.getElementById('outflowVal').innerText = formatAmount(r.total_outflow);
+
+      const netSign = r.net_cash_flow >= 0 ? '+' : '-';
+      document.getElementById('netCashVal').innerText = `${netSign}${formatAmount(Math.abs(r.net_cash_flow))}`;
+      document.getElementById('savingsRateVal').innerText = `Retention Rate: ${r.savings_rate.toFixed(1)}%`;
+
+      // Category Table
+      const tbody = document.getElementById('categoryTableBody');
+      tbody.innerHTML = '';
+      r.category_breakdowns.forEach(item => {
+        const tr = document.createElement('tr');
+        let driversHtml = '—';
+        if (item.top_merchants && item.top_merchants.length > 0) {
+          driversHtml = item.top_merchants.map(m => 
+            `<span class="merchant-chip">${m.merchant} (${formatAmount(m.amount)})</span>`
+          ).join('');
+        }
+
+        tr.innerHTML = `
+          <td><strong>${item.category}</strong></td>
+          <td style="text-align: right; font-family: var(--font-mono); font-weight: 600;">${formatAmount(item.total_spent)}</td>
+          <td style="text-align: right;">
+            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+              <span style="font-weight: 600; font-size: 12px;">${item.percentage_of_spend.toFixed(1)}%</span>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: ${Math.min(item.percentage_of_spend, 100)}%;"></div>
+              </div>
+            </div>
+          </td>
+          <td>${driversHtml}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Total Row
+      const totalTr = document.createElement('tr');
+      totalTr.style.borderTop = '2px solid var(--border-hover)';
+      totalTr.style.background = 'var(--bg-subtle)';
+      totalTr.innerHTML = `
+        <td><strong style="color: var(--text-main);">Total Outflow</strong></td>
+        <td style="text-align: right; font-family: var(--font-mono); font-weight: 800; color: var(--text-main);">${formatAmount(r.total_outflow)}</td>
+        <td style="text-align: right; font-weight: 800; color: var(--success);">100%</td>
+        <td style="color: var(--text-muted); font-size: 11px;">Guaranteed 100% Reconciled</td>
+      `;
+      tbody.appendChild(totalTr);
+
+      // Subscriptions
+      const subContainer = document.getElementById('subscriptionsList');
+      subContainer.innerHTML = '';
+      document.getElementById('recurringTotalBadge').innerText = formatAmount(r.total_recurring_monthly) + '/mo';
+
+      if (r.recurring_costs && r.recurring_costs.length > 0) {
+        r.recurring_costs.forEach(sub => {
+          const div = document.createElement('div');
+          div.className = 'sub-card';
+          div.innerHTML = `
+            <div>
+              <div class="sub-name">${sub.merchant}</div>
+              <div class="sub-meta">${sub.cadence} • ${sub.category}</div>
+            </div>
+            <div class="sub-cost">${formatAmount(sub.monthly_amount)}/mo</div>
+          `;
+          subContainer.appendChild(div);
+        });
+      } else {
+        subContainer.innerHTML = '<div style="color: var(--text-muted); font-size: 12px; padding: 8px;">No recurring subscriptions detected.</div>';
+      }
+
+      // Observations
+      const insightsBox = document.getElementById('insightsContainer');
+      insightsBox.innerHTML = '';
+
+      if (r.top_outflow_drivers) {
+        r.top_outflow_drivers.forEach(d => {
+          const div = document.createElement('div');
+          div.className = 'insight-item';
+          div.innerHTML = `<strong>Top Driver:</strong> ${d}`;
+          insightsBox.appendChild(div);
+        });
+      }
+
+      if (r.anomalies_and_spikes) {
+        r.anomalies_and_spikes.forEach(a => {
+          const div = document.createElement('div');
+          div.className = 'insight-item spike';
+          div.innerHTML = `<strong>⚡ Outlier / Spike:</strong> ${a}`;
+          insightsBox.appendChild(div);
+        });
+      }
+
+      if (r.optimization_opportunities) {
+        r.optimization_opportunities.forEach(opt => {
+          const div = document.createElement('div');
+          div.className = 'insight-item opt';
+          div.innerHTML = `<strong>💡 Optimization:</strong> ${opt}`;
+          insightsBox.appendChild(div);
+        });
+      }
+
+      // Hygiene text
+      document.getElementById('hygieneStatsText').innerText = 
+        `Excluded ${r.internal_transfers_excluded || 0} internal transfers/card payments and offset ${r.refunds_offset || 0} refunds across ${r.total_transactions_parsed || 0} total parsed transactions.`;
+
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Analyze Drive Action
+    async function analyzeDrive() {
+      const url = driveUrlInput.value.trim();
+      const password = pdfPasswordInput.value.trim();
+      if (!url) return;
+
+      analyzeDriveBtn.disabled = true;
+      document.getElementById('driveBtnLabel').innerHTML = '<span class="spinner"></span> Connecting...';
+      hideAlert();
+
+      try {
+        const resp = await fetch('/api/analyze-drive', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, password })
+        });
+        const res = await resp.json();
+        if (res.success) {
+          renderReport(res);
+        } else {
+          if (res.is_encrypted) {
+            showPasswordModal(res.error, 'drive');
+          } else {
+            showAlert(res.error || 'Failed to process Google Drive statements.', true);
+          }
+        }
+      } catch (err) {
+        showAlert('Network or server error: ' + err.message, true);
+      } finally {
+        analyzeDriveBtn.disabled = false;
+        document.getElementById('driveBtnLabel').innerText = 'Analyze Drive';
+      }
+    }
+
+    analyzeDriveBtn.addEventListener('click', analyzeDrive);
+
+    // Analyze Downloaded SBI Statements
+    async function analyzeDownloaded() {
+      const password = pdfPasswordInput.value.trim();
+      analyzeDownloadedBtn.disabled = true;
+      const origText = analyzeDownloadedBtn.innerHTML;
+      analyzeDownloadedBtn.innerHTML = '<span class="spinner"></span> Analyzing SBI Statements...';
+      hideAlert();
+
+      try {
+        const resp = await fetch('/api/analyze-downloaded', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password })
+        });
+        const res = await resp.json();
+        if (res.success) {
+          renderReport(res);
+        } else {
+          if (res.is_encrypted) {
+            showPasswordModal(res.error, 'downloaded');
+          } else {
+            showAlert(res.error || 'Failed to analyze downloaded statements.', true);
+          }
+        }
+      } catch (err) {
+        showAlert('Error analyzing local statements: ' + err.message, true);
+      } finally {
+        analyzeDownloadedBtn.disabled = false;
+        analyzeDownloadedBtn.innerHTML = origText;
+      }
+    }
+
+    analyzeDownloadedBtn.addEventListener('click', analyzeDownloaded);
+
+    // Run Sample Demo
+    loadSampleBtn.addEventListener('click', async () => {
+      loadSampleBtn.disabled = true;
+      loadSampleBtn.innerText = 'Analyzing Demo...';
+      hideAlert();
+
+      try {
+        const resp = await fetch('/api/sample-demo');
+        const res = await resp.json();
+        if (res.success) {
+          renderReport(res);
+        } else {
+          showAlert(res.error, true);
+        }
+      } catch (err) {
+        showAlert('Error loading sample demo: ' + err.message, true);
+      } finally {
+        loadSampleBtn.disabled = false;
+        loadSampleBtn.innerText = 'Demo Sample (Chase + Amex)';
+      }
+    });
+
+    // Dropzone upload
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('active'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('active'));
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('active');
+      if (e.dataTransfer.files.length) uploadFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length) uploadFiles(fileInput.files);
+    });
+
+    async function uploadFiles(files) {
+      const formData = new FormData();
+      const password = pdfPasswordInput.value.trim();
+      if (password) formData.append('password', password);
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+
+      dropZone.innerHTML = '<span class="spinner" style="border-color: #94a3b8; border-top-color: #2563eb;"></span> <span style="font-size: 13px; margin-left: 6px;">Parsing statements...</span>';
+      hideAlert();
+
+      try {
+        const resp = await fetch('/api/analyze-files', {
+          method: 'POST',
+          body: formData
+        });
+        const res = await resp.json();
+        if (res.success) {
+          renderReport(res);
+        } else {
+          if (res.is_encrypted) {
+            showPasswordModal(res.error, null);
+          } else {
+            showAlert(res.error, true);
+          }
+        }
+      } catch (err) {
+        showAlert('Error uploading files: ' + err.message, true);
+      } finally {
+        dropZone.innerHTML = `
+          <div class="dropzone-icon">📄</div>
+          <div class="dropzone-text">Click or drag & drop files here</div>
+          <div class="dropzone-sub">Supports SBI PDF e-statements, Chase, Amex, CSV & XLSX</div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

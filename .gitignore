@@ -1,0 +1,28 @@
+# Virtual environment & Python cache
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# User statements & outputs (Strict Privacy Protection)
+downloads/
+uploads/
+*.pdf
+spending_analysis_report.md
+spending_analysis_report.json
+
+# Whitelist synthetic sample files for tests & demos
+!samples/*.csv
+!samples/*.pdf
+!samples/*.xlsx
+
+# Environment & secrets
+.env
+*.env.local
+
+# OS files
+.DS_Store
+*.egg-info/
+
