@@ -20,12 +20,116 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 pipeline = SpendingAnalysisPipeline()
 
+# Rocket Money Budget & Concierge State
+USER_SETTINGS = {
+    "income_target": None,
+    "pay_cadence": "Monthly",
+    "savings_goal_percent": 20.0,
+    "category_budgets": {},
+    "canceled_subscriptions": {},  # merchant -> {monthly_amount, annual_savings, canceled_at}
+    "total_annual_saved": 0.0
+}
+
 # Cache latest report
 LATEST_REPORT = {
     "report": None,
     "transactions": [],
     "markdown": ""
 }
+
+
+def generate_rocket_budget(report_dict, user_settings=None):
+    """
+    Computes Rocket Money style safe-to-spend allowance, category budget targets,
+    pacing status, and recommended category spending caps.
+    """
+    settings = user_settings or USER_SETTINGS
+    inflow = float(report_dict.get("total_inflow", 0.0))
+    income = float(settings.get("income_target") or inflow)
+    total_outflow = float(report_dict.get("total_outflow", 0.0))
+    recurring_monthly = float(report_dict.get("total_recurring_monthly", 0.0))
+    currency = report_dict.get("currency", "USD")
+    sym = report_dict.get("currency_symbol", "$" if currency != "INR" else "₹")
+
+    custom_budgets = settings.get("category_budgets", {})
+    categories = report_dict.get("category_breakdowns", [])
+
+    category_budgets = []
+    total_budgeted = 0.0
+    total_variable_spent = 0.0
+
+    for cat in categories:
+        c_name = cat["category"]
+        c_spent = float(cat["total_spent"])
+
+        # Determine budget limit
+        if c_name in custom_budgets and custom_budgets[c_name] is not None:
+            limit = float(custom_budgets[c_name])
+        else:
+            # Intelligent Rocket Money recommendation
+            if currency == "INR":
+                if c_spent > 0:
+                    limit = float(max(round(c_spent * 1.15, -2), round(c_spent + 200, -2)))
+                else:
+                    limit = 1000.0
+            else:
+                if c_spent > 0:
+                    limit = float(max(round(c_spent * 1.15, -1), round(c_spent + 25, -1)))
+                else:
+                    limit = 100.0
+
+        total_budgeted += limit
+        pct_used = (c_spent / limit * 100.0) if limit > 0 else 0.0
+        remaining = limit - c_spent
+
+        is_fixed = any(k in c_name.lower() for k in ["housing", "debt", "rent"])
+        if not is_fixed:
+            total_variable_spent += c_spent
+
+        status = "danger" if pct_used >= 100.0 else ("warning" if pct_used >= 75.0 else "good")
+
+        category_budgets.append({
+            "category": c_name,
+            "spent": round(c_spent, 2),
+            "budget": round(limit, 2),
+            "percentage_used": round(pct_used, 1),
+            "remaining": round(remaining, 2),
+            "is_over": bool(c_spent > limit),
+            "over_amount": round(max(0.0, c_spent - limit), 2),
+            "status": status,
+            "top_merchants": cat.get("top_merchants", [])
+        })
+
+    # Rocket Money Safe-to-Spend Allowance:
+    # Safe to Spend = Monthly Inflow - Fixed Recurring Bills - Variable Outflow to date
+    if income > 0:
+        safe_to_spend = max(0.0, income - recurring_monthly - total_variable_spent)
+        allowance_total = max(0.0, income - recurring_monthly)
+    else:
+        allowance_total = total_budgeted
+        safe_to_spend = max(0.0, total_budgeted - total_outflow)
+
+    days_in_month = 30
+    days_left = 18  # Typical projection window
+    daily_safe_allowance = (safe_to_spend / days_left) if days_left > 0 else 0.0
+
+    return {
+        "income_baseline": round(income, 2),
+        "fixed_bills_monthly": round(recurring_monthly, 2),
+        "variable_spent": round(total_variable_spent, 2),
+        "total_spent": round(total_outflow, 2),
+        "total_budgeted": round(total_budgeted, 2),
+        "safe_to_spend": round(safe_to_spend, 2),
+        "allowance_total": round(allowance_total, 2),
+        "safe_to_spend_percent": round((safe_to_spend / allowance_total * 100.0) if allowance_total > 0 else 0.0, 1),
+        "daily_safe_allowance": round(daily_safe_allowance, 2),
+        "days_left": days_left,
+        "category_budgets": category_budgets,
+        "pay_cadence": settings.get("pay_cadence", "Monthly"),
+        "savings_rate_projected": round(((income - total_outflow) / income * 100.0) if income > 0 else 0.0, 1),
+        "canceled_subscriptions": list(settings.get("canceled_subscriptions", {}).values()),
+        "total_annual_saved": round(settings.get("total_annual_saved", 0.0), 2)
+    }
 
 
 @app.route('/')
@@ -56,11 +160,15 @@ def analyze_drive():
         LATEST_REPORT["transactions"] = txs
         LATEST_REPORT["markdown"] = md_text
 
+        rep_dict = report.to_dict()
+        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+
         return jsonify({
             "success": True,
-            "report": report.to_dict(),
+            "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
-            "markdown": md_text
+            "markdown": md_text,
+            "rocket_budget": rocket_budget
         })
     except Exception as e:
         err_msg = str(e)
@@ -93,11 +201,15 @@ def analyze_files():
         LATEST_REPORT["transactions"] = txs
         LATEST_REPORT["markdown"] = md_text
 
+        rep_dict = report.to_dict()
+        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+
         return jsonify({
             "success": True,
-            "report": report.to_dict(),
+            "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
-            "markdown": md_text
+            "markdown": md_text,
+            "rocket_budget": rocket_budget
         })
     except Exception as e:
         err_msg = str(e)
@@ -134,11 +246,15 @@ def analyze_downloaded():
         LATEST_REPORT["transactions"] = txs
         LATEST_REPORT["markdown"] = md_text
 
+        rep_dict = report.to_dict()
+        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+
         return jsonify({
             "success": True,
-            "report": report.to_dict(),
+            "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
-            "markdown": md_text
+            "markdown": md_text,
+            "rocket_budget": rocket_budget
         })
     except Exception as e:
         err_msg = str(e)
@@ -156,7 +272,6 @@ def sample_demo():
         if f.lower().endswith(('.csv', '.pdf', '.xlsx'))
     ]
     if not files:
-        # Re-generate if missing
         from samples.generate_sample_data import generate_samples
         generate_samples(samples_dir)
         files = [
@@ -170,14 +285,121 @@ def sample_demo():
         LATEST_REPORT["transactions"] = txs
         LATEST_REPORT["markdown"] = md_text
 
+        rep_dict = report.to_dict()
+        rocket_budget = generate_rocket_budget(rep_dict, USER_SETTINGS)
+
         return jsonify({
             "success": True,
-            "report": report.to_dict(),
+            "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
-            "markdown": md_text
+            "markdown": md_text,
+            "rocket_budget": rocket_budget
         })
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route('/api/budget-settings', methods=['GET', 'POST'])
+def budget_settings():
+    """Retrieve or update Rocket Money budget targets and pay schedule."""
+    if request.method == 'POST':
+        data = request.get_json() or {}
+        if 'income_target' in data:
+            try:
+                USER_SETTINGS['income_target'] = float(data['income_target']) if data['income_target'] else None
+            except (ValueError, TypeError):
+                pass
+        if 'pay_cadence' in data:
+            USER_SETTINGS['pay_cadence'] = str(data['pay_cadence'])
+        if 'savings_goal_percent' in data:
+            try:
+                USER_SETTINGS['savings_goal_percent'] = float(data['savings_goal_percent'])
+            except (ValueError, TypeError):
+                pass
+        if 'category_budgets' in data and isinstance(data['category_budgets'], dict):
+            for cat, limit in data['category_budgets'].items():
+                try:
+                    USER_SETTINGS['category_budgets'][cat] = float(limit)
+                except (ValueError, TypeError):
+                    pass
+
+    # If we have an active report, return updated rocket budget
+    current_budget = None
+    if LATEST_REPORT["report"]:
+        current_budget = generate_rocket_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
+
+    return jsonify({
+        "success": True,
+        "settings": {
+            "income_target": USER_SETTINGS['income_target'],
+            "pay_cadence": USER_SETTINGS['pay_cadence'],
+            "savings_goal_percent": USER_SETTINGS['savings_goal_percent'],
+            "category_budgets": USER_SETTINGS['category_budgets'],
+            "total_annual_saved": USER_SETTINGS['total_annual_saved']
+        },
+        "rocket_budget": current_budget
+    })
+
+
+@app.route('/api/concierge-cancel', methods=['POST'])
+def concierge_cancel():
+    """Cancel subscription via Rocket Money concierge simulation."""
+    data = request.get_json() or {}
+    merchant = data.get('merchant', '').strip()
+    monthly_amount = float(data.get('monthly_amount', 0.0))
+    annual_savings = round(monthly_amount * 12.0, 2)
+
+    if not merchant:
+        return jsonify({"success": False, "error": "Merchant name required"}), 400
+
+    USER_SETTINGS["canceled_subscriptions"][merchant] = {
+        "merchant": merchant,
+        "monthly_amount": monthly_amount,
+        "annual_savings": annual_savings,
+        "status": "Cancellation Initiated"
+    }
+
+    # Recalculate total annual savings
+    USER_SETTINGS["total_annual_saved"] = sum(
+        item["annual_savings"] for item in USER_SETTINGS["canceled_subscriptions"].values()
+    )
+
+    current_budget = None
+    if LATEST_REPORT["report"]:
+        current_budget = generate_rocket_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
+
+    return jsonify({
+        "success": True,
+        "merchant": merchant,
+        "annual_savings": annual_savings,
+        "total_annual_saved": USER_SETTINGS["total_annual_saved"],
+        "canceled_subscriptions": list(USER_SETTINGS["canceled_subscriptions"].values()),
+        "rocket_budget": current_budget
+    })
+
+
+@app.route('/api/concierge-restore', methods=['POST'])
+def concierge_restore():
+    """Restore a previously cancelled subscription."""
+    data = request.get_json() or {}
+    merchant = data.get('merchant', '').strip()
+    if merchant in USER_SETTINGS["canceled_subscriptions"]:
+        del USER_SETTINGS["canceled_subscriptions"][merchant]
+
+    USER_SETTINGS["total_annual_saved"] = sum(
+        item["annual_savings"] for item in USER_SETTINGS["canceled_subscriptions"].values()
+    )
+
+    current_budget = None
+    if LATEST_REPORT["report"]:
+        current_budget = generate_rocket_budget(LATEST_REPORT["report"].to_dict(), USER_SETTINGS)
+
+    return jsonify({
+        "success": True,
+        "total_annual_saved": USER_SETTINGS["total_annual_saved"],
+        "canceled_subscriptions": list(USER_SETTINGS["canceled_subscriptions"].values()),
+        "rocket_budget": current_budget
+    })
 
 
 @app.route('/api/export-markdown', methods=['GET'])
