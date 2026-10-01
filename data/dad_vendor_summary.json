@@ -1,0 +1,2381 @@
+{
+  "categories": [
+    {
+      "category": "Steel & Structural Metals",
+      "percentage": 26.93,
+      "total": 3522925.0
+    },
+    {
+      "category": "General & Contingency",
+      "percentage": 14.76,
+      "total": 1930300.19
+    },
+    {
+      "category": "Civil Construction Contractors",
+      "percentage": 14.08,
+      "total": 1842317.0
+    },
+    {
+      "category": "Vehicle, Transport & Fuel",
+      "percentage": 7.93,
+      "total": 1037885.65
+    },
+    {
+      "category": "Loan EMI & Financials",
+      "percentage": 7.48,
+      "total": 978122.0
+    },
+    {
+      "category": "Granite, Marble & Tiles",
+      "percentage": 6.59,
+      "total": 862400.0
+    },
+    {
+      "category": "Land & Property Acquisition",
+      "percentage": 6.12,
+      "total": 800000.0
+    },
+    {
+      "category": "Property & Advance Accounts",
+      "percentage": 4.09,
+      "total": 535500.0
+    },
+    {
+      "category": "Bricks & Masonry",
+      "percentage": 2.61,
+      "total": 341600.0
+    },
+    {
+      "category": "Site Labour & Supervision",
+      "percentage": 2.58,
+      "total": 338086.0
+    },
+    {
+      "category": "Sand & Fine Aggregates",
+      "percentage": 1.53,
+      "total": 200470.0
+    },
+    {
+      "category": "Doors & UPVC Windows",
+      "percentage": 1.4,
+      "total": 183700.0
+    },
+    {
+      "category": "Cement & Ready Mix",
+      "percentage": 0.97,
+      "total": 127060.0
+    },
+    {
+      "category": "Architect, Planning & Legal",
+      "percentage": 0.88,
+      "total": 115000.0
+    },
+    {
+      "category": "Insurance",
+      "percentage": 0.63,
+      "total": 82015.0
+    },
+    {
+      "category": "Electrical & Wiring",
+      "percentage": 0.53,
+      "total": 69467.0
+    },
+    {
+      "category": "Plumbing & Carpentry",
+      "percentage": 0.39,
+      "total": 51500.0
+    },
+    {
+      "category": "Painting & Finishing",
+      "percentage": 0.34,
+      "total": 44000.0
+    },
+    {
+      "category": "Water Supply",
+      "percentage": 0.09,
+      "total": 11180.0
+    },
+    {
+      "category": "Hardware, Tools & Fixtures",
+      "percentage": 0.05,
+      "total": 6740.0
+    }
+  ],
+  "grand_total": 13080267.840000002,
+  "monthly_items": {
+    "April 2024": [
+      {
+        "amount": 251220.0,
+        "raw": "Susheela Granite",
+        "vendor": "Susheel Axis Bank Granites"
+      },
+      {
+        "amount": 96200.0,
+        "raw": "ATM CASH",
+        "vendor": "ATM Cash (Construction & Labour)"
+      },
+      {
+        "amount": 8000.0,
+        "raw": "UPI/DR/446201876146/MOTHUKU /SBIN/mothukupra/Paym",
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)"
+      },
+      {
+        "amount": 1050.0,
+        "raw": "UPI/DR/446271596159/GANGAPU R/BARB/balnars@yb/Paym",
+        "vendor": "Gangapur Balnars Construction"
+      },
+      {
+        "amount": 21210.0,
+        "raw": "UPI/DR/409813111522/SHAIK SA/ICIC/shaiksamad/Paym",
+        "vendor": "Shaik Aslam Urban Claffs"
+      },
+      {
+        "amount": 12233.0,
+        "raw": "UPI/DR/446442427502/RAJ KUMAR/SBIN/7816032501/Pa",
+        "vendor": "Raj Kumar Construction"
+      },
+      {
+        "amount": 840.0,
+        "raw": "UPI/DR/409873841914/NENAVAT H/APGV/7660812560/Paym",
+        "vendor": "Nenavat H Construction"
+      },
+      {
+        "amount": 3000.0,
+        "raw": "UPI/DR/446759284877/RAM SHA/SBIN/9849625311/Paym",
+        "vendor": "Ram Sharma (Hardware)"
+      },
+      {
+        "amount": 6500.0,
+        "raw": "UPI/DR/447553741868/NEW NAKO/YESB/Q615518818/Paym",
+        "vendor": "Nakoda Service Wire"
+      },
+      {
+        "amount": 3500.0,
+        "raw": "Nagarjuna Steel",
+        "vendor": "Nagarjuna Steel"
+      },
+      {
+        "amount": 15300.0,
+        "raw": "P Shekar Construction",
+        "vendor": "P Shekar Construction"
+      },
+      {
+        "amount": 130000.0,
+        "raw": "CHIDVILA School Owner",
+        "vendor": "Chidvilasini / Chidvila School Owner"
+      },
+      {
+        "amount": 87000.0,
+        "raw": "UPI/DR/411043592361/Bank Acc/UBIN/0334101000/Paym",
+        "vendor": "Union Bank Acc (0334101000)"
+      },
+      {
+        "amount": 35000.0,
+        "raw": "UPI/DR/411055210581/Bank Acc/UBIN/0334101000/Paym",
+        "vendor": "Union Bank Acc (0334101000)"
+      },
+      {
+        "amount": 1040.0,
+        "raw": "Syed Construction",
+        "vendor": "Syed Imtiaz Construction / Electrical"
+      },
+      {
+        "amount": 1120.0,
+        "raw": "UPI/DR/411564447904/Mr MISHR/YESB/q653436064/UPI",
+        "vendor": "Mr Mishra Hardware"
+      },
+      {
+        "amount": 35000.0,
+        "raw": "UPI/DR/448237775504/PRAVALIK A/UTIB/9618617960/Pay",
+        "vendor": "Pravalika Reddy"
+      },
+      {
+        "amount": 20961.0,
+        "raw": "Miscellaneous",
+        "vendor": "Miscellaneous & Contingency"
+      }
+    ],
+    "Aug 2023": [
+      {
+        "amount": 800000.0,
+        "raw": "Swaroop Plot Purchase",
+        "vendor": "Swaroop (Plot Purchase)"
+      },
+      {
+        "amount": 99990.0,
+        "raw": "YsrReddyphonepe",
+        "vendor": "Y S Reddy (Civil Contractor)"
+      },
+      {
+        "amount": 100000.0,
+        "raw": "YsrReddycash",
+        "vendor": "Y S Reddy (Civil Contractor)"
+      },
+      {
+        "amount": 111262.0,
+        "raw": "Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 244000.0,
+        "raw": "SBIN/3724152818/Payme",
+        "vendor": "SBI Payee (3724152818)"
+      },
+      {
+        "amount": 197353.0,
+        "raw": "Remaining balance",
+        "vendor": "Remaining Balance Reconciliation"
+      },
+      {
+        "amount": 198500.0,
+        "raw": "ATM Cash Withdrawal",
+        "vendor": "ATM Cash (Construction & Labour)"
+      },
+      {
+        "amount": 30000.0,
+        "raw": "Rajashekar Driver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 50000.0,
+        "raw": "5010048145/hdfc",
+        "vendor": "HDFC Account (5010048145)"
+      },
+      {
+        "amount": 101001.24,
+        "raw": "PhonePe/UTIB/BILLDESKHE/Paymen",
+        "vendor": "BillDesk Utility"
+      },
+      {
+        "amount": 100000.0,
+        "raw": "Miscillneous",
+        "vendor": "Miscellaneous & Contingency"
+      }
+    ],
+    "Dec 2023": [
+      {
+        "amount": 186700.0,
+        "raw": "Nagarjuna Steel",
+        "vendor": "Nagarjuna Steel"
+      },
+      {
+        "amount": 8000.0,
+        "raw": "/AMMI RED /Payme",
+        "vendor": "Ammi Reddy"
+      },
+      {
+        "amount": 294000.0,
+        "raw": "RajashekarDriver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 32015.0,
+        "raw": "Star health",
+        "vendor": "Star Health Insurance"
+      },
+      {
+        "amount": 23575.0,
+        "raw": "/ombk.AACI2/Payme",
+        "vendor": "OMBK Payee"
+      },
+      {
+        "amount": 11000.0,
+        "raw": "VV Ramana",
+        "vendor": "V V Ramana"
+      },
+      {
+        "amount": 43000.0,
+        "raw": "YsrReddy",
+        "vendor": "Y S Reddy (Civil Contractor)"
+      },
+      {
+        "amount": 72215.0,
+        "raw": "UPI/DR/336006416854/Bank Acc/ICIC/0680050022/Payme",
+        "vendor": "ICICI Bank Acc (0680050022)"
+      },
+      {
+        "amount": 111262.0,
+        "raw": "Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 22794.65,
+        "raw": "Remaining Balance",
+        "vendor": "Remaining Balance Reconciliation"
+      },
+      {
+        "amount": 63975.35,
+        "raw": "Miscillneous",
+        "vendor": "Miscellaneous & Contingency"
+      }
+    ],
+    "Feb 2024": [
+      {
+        "amount": 250500.0,
+        "raw": "RajashekarDriver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 277330.0,
+        "raw": "Nagarjuna steel",
+        "vendor": "Nagarjuna Steel"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "Giri babu Interiors",
+        "vendor": "Giri babu Interiors"
+      },
+      {
+        "amount": 65000.0,
+        "raw": "Access Tough Doors",
+        "vendor": "Access Tough Doors"
+      },
+      {
+        "amount": 40000.0,
+        "raw": "Abhishek Planner",
+        "vendor": "Abhishek (House Planner)"
+      },
+      {
+        "amount": 20000.0,
+        "raw": "WDL TFR UPI/DR/403993480880/Bank Acc/HDFC/0359161000/Paym 0097693162093",
+        "vendor": "Abhishek (House Planner)"
+      },
+      {
+        "amount": 60200.0,
+        "raw": "Rajesh Brick",
+        "vendor": "Rajesh Bricks Supplier"
+      },
+      {
+        "amount": 49822.0,
+        "raw": "Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 10000.0,
+        "raw": "EDIGI K",
+        "vendor": "Edigi K"
+      },
+      {
+        "amount": 10000.0,
+        "raw": "Sujatha",
+        "vendor": "Nenavath Sujatha (Water Supply)"
+      },
+      {
+        "amount": 40000.0,
+        "raw": "Bhaskar Bricks Supplier",
+        "vendor": "Bhaskar Bricks Supplier"
+      },
+      {
+        "amount": 20000.0,
+        "raw": "GOVARDH Khammam Lawyer",
+        "vendor": "Govardhan (Khammam Lawyer)"
+      },
+      {
+        "amount": 60200.0,
+        "raw": "Rajesh Bricks",
+        "vendor": "Rajesh Bricks Supplier"
+      },
+      {
+        "amount": 5650.0,
+        "raw": "Syed Construction",
+        "vendor": "Syed Imtiaz Construction / Electrical"
+      },
+      {
+        "amount": 8926.0,
+        "raw": "Velaram Construction",
+        "vendor": "Velaram Construction"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "Vaadde",
+        "vendor": "Ramu Py (Vadde Ve Construction)"
+      },
+      {
+        "amount": 50000.0,
+        "raw": "SBI Life Insurance",
+        "vendor": "SBI Life Insurance"
+      }
+    ],
+    "Jan 2024": [
+      {
+        "amount": 96800.0,
+        "raw": "RajashekarDriver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 55000.0,
+        "raw": "YsrReddy",
+        "vendor": "Y S Reddy (Civil Contractor)"
+      },
+      {
+        "amount": 40010.0,
+        "raw": "Edward Rao concrete",
+        "vendor": "Edward Rao Concrete"
+      },
+      {
+        "amount": 49822.0,
+        "raw": "Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 108830.0,
+        "raw": "Ashok Sand Contractor",
+        "vendor": "Ashok Sand Contractor"
+      },
+      {
+        "amount": 52800.0,
+        "raw": "Bhaskar Bricks Supplier",
+        "vendor": "Bhaskar Bricks Supplier"
+      },
+      {
+        "amount": 30000.0,
+        "raw": "Ravanna chinnagaru",
+        "vendor": "Ravanna Chinnagaru"
+      },
+      {
+        "amount": 2553.5,
+        "raw": "WDL TFR UPI/DR/400191236166",
+        "vendor": "UPI Small Supplies"
+      },
+      {
+        "amount": 2500.0,
+        "raw": "WDL TFR UPI/DR/437003050577",
+        "vendor": "UPI Small Supplies"
+      },
+      {
+        "amount": 19990.0,
+        "raw": "WDL TFR UPI/DR/400498718305:",
+        "vendor": "UPI Contractor (400498718305)"
+      },
+      {
+        "amount": 59500.0,
+        "raw": "WDL TFR UPI/DR/400929233107",
+        "vendor": "UPI Contractor (400929233107)"
+      },
+      {
+        "amount": 70554.5,
+        "raw": "Miscillneous",
+        "vendor": "Miscellaneous & Contingency"
+      }
+    ],
+    "July 2024": [
+      {
+        "amount": 11800.0,
+        "raw": "RajashekarDriver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 49822.0,
+        "raw": "Hdfc",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 1850.0,
+        "raw": "Doma Srisailam",
+        "vendor": "Doma Srisailam"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "MS Prasad Apartment",
+        "vendor": "MS Prasad Apartment / Flat"
+      },
+      {
+        "amount": 17000.0,
+        "raw": "Ramcharan granite laying",
+        "vendor": "Ram Charan (Granite Laying)"
+      },
+      {
+        "amount": 26305.0,
+        "raw": "J SK TRADERS",
+        "vendor": "JSK Traders (Hardware / Steel)"
+      },
+      {
+        "amount": 4000.0,
+        "raw": "UPI/DR/455001799060/VADDE VE/UBIN/7893651940/Payme",
+        "vendor": "Ramu Py (Vadde Ve Construction)"
+      },
+      {
+        "amount": 19000.0,
+        "raw": "upvc windows",
+        "vendor": "UPVC Windows (Sirvi Naresh)"
+      },
+      {
+        "amount": 500.0,
+        "raw": "Doma gopal (plumber)",
+        "vendor": "Doma Gopal (Plumber)"
+      },
+      {
+        "amount": 500.0,
+        "raw": "Carpentor",
+        "vendor": "Carpenter (Narasimha Rao)"
+      },
+      {
+        "amount": 68500.0,
+        "raw": "Geeta(for wpc doors)",
+        "vendor": "WPC Doors (Ms Geeta)"
+      },
+      {
+        "amount": 97500.0,
+        "raw": "CHIDVILA",
+        "vendor": "Chidvilasini / Chidvila School Owner"
+      },
+      {
+        "amount": 1000.0,
+        "raw": "ManiKumari",
+        "vendor": "Mani Kumari (Mom)"
+      },
+      {
+        "amount": 1200.0,
+        "raw": "arvind kumar bhosle van for wpc doors",
+        "vendor": "WPC Doors (Ms Geeta)"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "dinesreddy/Payme",
+        "vendor": "Dinesh Reddy"
+      },
+      {
+        "amount": 600.0,
+        "raw": "NENAVATH For water",
+        "vendor": "Nenavath Sujatha (Water Supply)"
+      },
+      {
+        "amount": 750.0,
+        "raw": "Neelam Naga Venkata",
+        "vendor": "Neelam Naga Venkata"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "UBIN/1154120100",
+        "vendor": "MS Prasad Apartment / Flat"
+      },
+      {
+        "amount": 22500.0,
+        "raw": "P HARISHWAR CEMENT Bags",
+        "vendor": "P Harishwar Cement Bags"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "Intiaj Electrician Kismatpura",
+        "vendor": "Intiaj Electrician (Kismatpura)"
+      },
+      {
+        "amount": 1800.0,
+        "raw": "Nakoda Service Wire",
+        "vendor": "Nakoda Service Wire"
+      },
+      {
+        "amount": 30000.0,
+        "raw": "Mastri",
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)"
+      },
+      {
+        "amount": 5000.0,
+        "raw": "Indraseena reddy steel",
+        "vendor": "Indraseena Reddy Steel"
+      },
+      {
+        "amount": 10500.0,
+        "raw": "ATM CASH",
+        "vendor": "ATM Cash (Construction & Labour)"
+      },
+      {
+        "amount": 19000.0,
+        "raw": "Prasad Flat",
+        "vendor": "MS Prasad Apartment / Flat"
+      },
+      {
+        "amount": 5000.0,
+        "raw": "sagarkangu",
+        "vendor": "Sagar Kangula"
+      },
+      {
+        "amount": 58000.0,
+        "raw": "Mastri",
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)"
+      },
+      {
+        "amount": 500.0,
+        "raw": "Jalaram S S Railing",
+        "vendor": "Jalaram S S Railing"
+      },
+      {
+        "amount": 9000.0,
+        "raw": "Carpentor Narasimha Rao",
+        "vendor": "Carpenter (Narasimha Rao)"
+      },
+      {
+        "amount": 2700.0,
+        "raw": "Dust",
+        "vendor": "Dust"
+      },
+      {
+        "amount": 9750.0,
+        "raw": "MOTHUKU",
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)"
+      },
+      {
+        "amount": 17500.0,
+        "raw": "MOHAMMAD-mohdharoon",
+        "vendor": "Mohammad Haroon"
+      },
+      {
+        "amount": 1500.0,
+        "raw": "UPI/DR/455660874309/BHAGYAMM/SBIN/krishnaman/Payme",
+        "vendor": "Bhagyamma Construction"
+      },
+      {
+        "amount": 10850.0,
+        "raw": "Syed",
+        "vendor": "Syed Imtiaz Construction / Electrical"
+      },
+      {
+        "amount": 10200.0,
+        "raw": "(missing transaction amount: 10200 for syed)",
+        "vendor": "Syed Imtiaz Construction / Electrical"
+      },
+      {
+        "amount": 30000.0,
+        "raw": "Upvs windows(UPI/DR/455381034487/SIRVI NA/UTIB/sirvinares/Payme)",
+        "vendor": "UPVC Windows (Sirvi Naresh)"
+      },
+      {
+        "amount": 1010.0,
+        "raw": "Mr majeed abdul diesel",
+        "vendor": "Diesel (Fuel)"
+      },
+      {
+        "amount": 900.0,
+        "raw": "maneesh kumar for sink",
+        "vendor": "Maneesh Kumar (Sink)"
+      },
+      {
+        "amount": 950.0,
+        "raw": "hanuma enterprises gum to granite steps",
+        "vendor": "Hanuma Enterprises (Granite Gum)"
+      }
+    ],
+    "June 2024": [
+      {
+        "amount": 10000.0,
+        "raw": "Jalaram S S Railing",
+        "vendor": "Jalaram S S Railing"
+      },
+      {
+        "amount": 19650.0,
+        "raw": "Doma Anil Dust",
+        "vendor": "Doma Anil (Dust)"
+      },
+      {
+        "amount": 1530.0,
+        "raw": "UPI/DR/452184501534/APPEES M/YESB/Q702823875",
+        "vendor": "Diesel (Fuel)"
+      },
+      {
+        "amount": 29000.0,
+        "raw": "ATM CASH",
+        "vendor": "ATM Cash (Construction & Labour)"
+      },
+      {
+        "amount": 130000.0,
+        "raw": "CHIDVILA",
+        "vendor": "Chidvilasini / Chidvila School Owner"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "UPI/DR/452178708733/VADDE VE/UBIN/7893651940",
+        "vendor": "Ramu Py (Vadde Ve Construction)"
+      },
+      {
+        "amount": 8000.0,
+        "raw": "RajashekarDriver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 18240.0,
+        "raw": "Jsk Traders",
+        "vendor": "JSK Traders (Hardware / Steel)"
+      },
+      {
+        "amount": 60200.0,
+        "raw": "Rajesh Brick",
+        "vendor": "Rajesh Bricks Supplier"
+      },
+      {
+        "amount": 13500.0,
+        "raw": "Gopi Plumber",
+        "vendor": "Doma Gopal (Plumber)"
+      },
+      {
+        "amount": 28000.0,
+        "raw": "Surender Painter",
+        "vendor": "Surender (Painter)"
+      },
+      {
+        "amount": 39350.0,
+        "raw": "Ram Charan Granite",
+        "vendor": "Ram Charan (Granite Laying)"
+      },
+      {
+        "amount": 1550.0,
+        "raw": "UPI/DR/416264625789/Telangan/YESB/paytm-7412",
+        "vendor": "Diesel (Fuel)"
+      },
+      {
+        "amount": 6600.0,
+        "raw": "UPI/DR/452803246550/MOTHUKU /SBIN/mothukupra/Payme",
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)"
+      },
+      {
+        "amount": 23080.0,
+        "raw": "VELARAM Construction",
+        "vendor": "Velaram Construction"
+      },
+      {
+        "amount": 41350.0,
+        "raw": "JSK Traders",
+        "vendor": "JSK Traders (Hardware / Steel)"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "Intiaj Electrician Kismatpura",
+        "vendor": "Intiaj Electrician (Kismatpura)"
+      },
+      {
+        "amount": 650.0,
+        "raw": "NENAVATH Construction",
+        "vendor": "NENAVATH Construction"
+      },
+      {
+        "amount": 6000.0,
+        "raw": "Ravi Line Man Kismat  Construction",
+        "vendor": "Ravi Line Man Construction"
+      },
+      {
+        "amount": 10000.0,
+        "raw": "Doma Gopal Construction",
+        "vendor": "Doma Gopal (Plumber)"
+      },
+      {
+        "amount": 28600.0,
+        "raw": "MS Decentry Cement",
+        "vendor": "MS Decentry Cement"
+      },
+      {
+        "amount": 3630.0,
+        "raw": "A Prasanth",
+        "vendor": "A Prasanth"
+      },
+      {
+        "amount": 50000.0,
+        "raw": "CHIDVILA",
+        "vendor": "Chidvilasini / Chidvila School Owner"
+      },
+      {
+        "amount": 5580.0,
+        "raw": "Arihanth Tile Mart",
+        "vendor": "Arihanth Tile Mart"
+      },
+      {
+        "amount": 19500.0,
+        "raw": "ATM CASH",
+        "vendor": "ATM Cash (Construction & Labour)"
+      },
+      {
+        "amount": 810.0,
+        "raw": "Mastri Tea Point",
+        "vendor": "Mastri Tea Point"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "UPI/DR/453842481526/VADDE VE/UBIN/7893651940",
+        "vendor": "Ramu Py (Vadde Ve Construction)"
+      },
+      {
+        "amount": 3000.0,
+        "raw": "Mastri",
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)"
+      },
+      {
+        "amount": 2250.0,
+        "raw": "Anando Brahma Pyd",
+        "vendor": "Anando Brahma (Pyd)"
+      },
+      {
+        "amount": 9300.0,
+        "raw": "Lavakush Granities",
+        "vendor": "Lavakush Granites"
+      },
+      {
+        "amount": 1720.0,
+        "raw": "Sri Amar Hardware",
+        "vendor": "Sri Amar Hardware"
+      },
+      {
+        "amount": 3000.0,
+        "raw": "Dama Gopal",
+        "vendor": "Doma Gopal (Plumber)"
+      },
+      {
+        "amount": 25000.0,
+        "raw": "vorluvothu sri lakshmi (MASTRI)",
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)"
+      },
+      {
+        "amount": 580.0,
+        "raw": "nenavath sujatha for water",
+        "vendor": "Nenavath Sujatha (Water Supply)"
+      },
+      {
+        "amount": 1000.0,
+        "raw": "ramavath anil",
+        "vendor": "Ramavath Anil Construction"
+      },
+      {
+        "amount": 900.0,
+        "raw": "Doma srisailasam",
+        "vendor": "Doma Srisailam"
+      },
+      {
+        "amount": 32817.52,
+        "raw": "Miscallenous",
+        "vendor": "Miscellaneous & Contingency"
+      }
+    ],
+    "March 2024": [
+      {
+        "amount": 828.0,
+        "raw": "VELARAM construction",
+        "vendor": "Velaram Construction"
+      },
+      {
+        "amount": 190000.0,
+        "raw": "MAJETY construction",
+        "vendor": "Majety Construction"
+      },
+      {
+        "amount": 2577.0,
+        "raw": "Redclif Patients",
+        "vendor": "Redcliffe Patients Labs"
+      },
+      {
+        "amount": 161000.0,
+        "raw": "RajashekarDriver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 7490.0,
+        "raw": "Vanjakshi Motors",
+        "vendor": "Vanjakshi Motors"
+      },
+      {
+        "amount": 6700.0,
+        "raw": "Nagarjuna steel",
+        "vendor": "Nagarjuna Steel"
+      },
+      {
+        "amount": 15000.0,
+        "raw": "GOVARDH Khammam Lawyer",
+        "vendor": "Govardhan (Khammam Lawyer)"
+      },
+      {
+        "amount": 60200.0,
+        "raw": "Rajesh Brick",
+        "vendor": "Rajesh Bricks Supplier"
+      },
+      {
+        "amount": 12520.0,
+        "raw": "Syed Construction",
+        "vendor": "Syed Imtiaz Construction / Electrical"
+      },
+      {
+        "amount": 13960.0,
+        "raw": "MOhd Aqueel Construction",
+        "vendor": "Mohd Aqueel Construction"
+      },
+      {
+        "amount": 5737.0,
+        "raw": "WDL TFR UPI/DR/444448347419/NAVEEN K/BKID/naveenpans/Paym 0097690162095",
+        "vendor": "Naveen Electrical"
+      },
+      {
+        "amount": 8000.0,
+        "raw": "Bhaskar Bricks Supplier",
+        "vendor": "Bhaskar Bricks Supplier"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "Raneel Reddy",
+        "vendor": "Raneel Reddy"
+      },
+      {
+        "amount": 49822.0,
+        "raw": "Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 51430.0,
+        "raw": "Tejaram umaji choudhary",
+        "vendor": "Sudhakar Electrical (Tejaram)"
+      },
+      {
+        "amount": 3200.0,
+        "raw": "MOHD ASLAM",
+        "vendor": "Mohd Aslam Urban Claffs"
+      },
+      {
+        "amount": 62961.0,
+        "raw": "Miscellaneous",
+        "vendor": "Miscellaneous & Contingency"
+      }
+    ],
+    "May 2024": [
+      {
+        "amount": 99000.0,
+        "raw": "CHIDVILA School Owner",
+        "vendor": "Chidvilasini / Chidvila School Owner"
+      },
+      {
+        "amount": 2750.0,
+        "raw": "UPI/DR/412410785732/MATETI K/UBIN/mateti.kri/Paym",
+        "vendor": "Mateti Krishna Construction"
+      },
+      {
+        "amount": 75.0,
+        "raw": "UPI/DR/449020633765/J Suvar/SBIN/9177769550/Paym",
+        "vendor": "J Suvarna"
+      },
+      {
+        "amount": 66000.0,
+        "raw": "ATM CASH 116",
+        "vendor": "ATM Cash (Construction & Labour)"
+      },
+      {
+        "amount": 15000.0,
+        "raw": "GOVARDH Khammam Lawyer",
+        "vendor": "Govardhan (Khammam Lawyer)"
+      },
+      {
+        "amount": 25040.0,
+        "raw": "Nagarjuna Steel",
+        "vendor": "Nagarjuna Steel"
+      },
+      {
+        "amount": 70000.0,
+        "raw": "Jalaram S S Railing",
+        "vendor": "Jalaram S S Railing"
+      },
+      {
+        "amount": 7000.0,
+        "raw": "UPI/DR/449425113840/LILA DEVI/SBIN/new.electr/Pa",
+        "vendor": "Lila Devi Construction"
+      },
+      {
+        "amount": 16000.0,
+        "raw": "Surender Painter",
+        "vendor": "Surender (Painter)"
+      },
+      {
+        "amount": 19290.0,
+        "raw": "Sama Sridhar Reddy Dust",
+        "vendor": "Sama Sridhar Reddy (Dust Supplier)"
+      },
+      {
+        "amount": 56560.0,
+        "raw": "Jsk Traders",
+        "vendor": "JSK Traders (Hardware / Steel)"
+      },
+      {
+        "amount": 44145.0,
+        "raw": "RajashekarDriver",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 2000.0,
+        "raw": "UPI/DR/449884358798/VADDE VE/UBIN/7893651940/Paym",
+        "vendor": "Ramu Py (Vadde Ve Construction)"
+      },
+      {
+        "amount": 6000.0,
+        "raw": "Prasad Flat",
+        "vendor": "MS Prasad Apartment / Flat"
+      },
+      {
+        "amount": 222524.0,
+        "raw": "Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 15000.0,
+        "raw": "saladibhus",
+        "vendor": "Saladi Bhuvanesh"
+      },
+      {
+        "amount": 4150.65,
+        "raw": "RedBus",
+        "vendor": "RedBus Travel"
+      },
+      {
+        "amount": 28600.0,
+        "raw": "MOHD AQ Construction",
+        "vendor": "Mohd Aqueel Construction"
+      },
+      {
+        "amount": 1000.0,
+        "raw": "Nenavat H Construction",
+        "vendor": "Nenavat H Construction"
+      },
+      {
+        "amount": 5000.0,
+        "raw": "Syed Construction",
+        "vendor": "Syed Imtiaz Construction / Electrical"
+      },
+      {
+        "amount": 15000.0,
+        "raw": "Gopi Plumber",
+        "vendor": "Doma Gopal (Plumber)"
+      },
+      {
+        "amount": 11600.0,
+        "raw": "UPI/DR/451893849372/MOTHUKU /SBIN/mothukupra",
+        "vendor": "Praveen Nagarjuna Cement (Mothuku)"
+      },
+      {
+        "amount": 15967.52,
+        "raw": "Remaining balance",
+        "vendor": "Remaining Balance Reconciliation"
+      },
+      {
+        "amount": 99032.0,
+        "raw": "Miscellaneous",
+        "vendor": "Miscellaneous & Contingency"
+      }
+    ],
+    "Nov 2023": [
+      {
+        "amount": 2700000.0,
+        "raw": "Nagarjuna Steel",
+        "vendor": "Nagarjuna Steel"
+      },
+      {
+        "amount": 180000.0,
+        "raw": "YsrReddy",
+        "vendor": "Y S Reddy (Civil Contractor)"
+      },
+      {
+        "amount": 60000.0,
+        "raw": "RajashekarDriver:  1,01,000 , Balraju Metal Contractor",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 111262.0,
+        "raw": "KatamNagaraju: 59,000(Mastri Cash)  ,  Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 35000.0,
+        "raw": "Venkateshwara Raju",
+        "vendor": "Venkateshwara Raju"
+      },
+      {
+        "amount": 4368.0,
+        "raw": "VV Ramana: 2000, Miscillneous",
+        "vendor": "V V Ramana"
+      },
+      {
+        "amount": 5000.0,
+        "raw": "Abhishek Planner",
+        "vendor": "Abhishek (House Planner)"
+      },
+      {
+        "amount": 259000.0,
+        "raw": "Susheel Axis Bank Granites",
+        "vendor": "Susheel Axis Bank Granites"
+      }
+    ],
+    "Oct 2023": [
+      {
+        "amount": 130000.0,
+        "raw": "Ys Reddy",
+        "vendor": "Y S Reddy (Civil Contractor)"
+      },
+      {
+        "amount": 280000.0,
+        "raw": "Susheel Axis Bank Granite",
+        "vendor": "Susheel Axis Bank Granites"
+      },
+      {
+        "amount": 176200.0,
+        "raw": "Nagarjuna steel",
+        "vendor": "Nagarjuna Steel"
+      },
+      {
+        "amount": 8260.0,
+        "raw": "Garuda Courier",
+        "vendor": "Garuda Courier"
+      },
+      {
+        "amount": 70000.0,
+        "raw": "Bondala",
+        "vendor": "Rajashekar (Dad's Driver)"
+      },
+      {
+        "amount": 20000.0,
+        "raw": "VV Ramana",
+        "vendor": "V V Ramana"
+      },
+      {
+        "amount": 221276.0,
+        "raw": "Mastri Cash With Drawl",
+        "vendor": "Mastri / Sri Lakshmi (Labour Contractor)"
+      },
+      {
+        "amount": 111262.0,
+        "raw": "RajashekarDriver:  1,01,000 ,  Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      }
+    ],
+    "Sep 2023": [
+      {
+        "amount": 398650.0,
+        "raw": "YsrReddy",
+        "vendor": "Y S Reddy (Civil Contractor)"
+      },
+      {
+        "amount": 50000.0,
+        "raw": "Dadi Babu Reddy Sand Contractor",
+        "vendor": "Dadi Babu Reddy (Sand Contractor)"
+      },
+      {
+        "amount": 111262.0,
+        "raw": "Hdfc Loan EMI",
+        "vendor": "HDFC Loan (EMI)"
+      },
+      {
+        "amount": 44000.0,
+        "raw": "Atm cash for construction",
+        "vendor": "ATM Cash (Construction & Labour)"
+      },
+      {
+        "amount": 200000.0,
+        "raw": "Miscillneous",
+        "vendor": "Miscellaneous & Contingency"
+      },
+      {
+        "amount": 19388.91,
+        "raw": "Remaining Balance:",
+        "vendor": "Remaining Balance Reconciliation"
+      }
+    ]
+  },
+  "monthly_totals": {
+    "April 2024": 729174.0,
+    "Aug 2023": 2032106.24,
+    "Dec 2023": 868537.0,
+    "Feb 2024": 971628.0,
+    "Jan 2024": 588360.0,
+    "July 2024": 554987.0,
+    "June 2024": 640387.52,
+    "March 2024": 653425.0,
+    "May 2024": 846734.17,
+    "Nov 2023": 3354630.0,
+    "Oct 2023": 1016998.0,
+    "Sep 2023": 823300.91
+  },
+  "months": [
+    "Aug 2023",
+    "Sep 2023",
+    "Oct 2023",
+    "Nov 2023",
+    "Dec 2023",
+    "Jan 2024",
+    "Feb 2024",
+    "March 2024",
+    "April 2024",
+    "May 2024",
+    "June 2024",
+    "July 2024"
+  ],
+  "success": true,
+  "total_vendors": 99,
+  "vendors": [
+    {
+      "active_months_count": 7,
+      "category": "Steel & Structural Metals",
+      "monthly": {
+        "April 2024": 3500.0,
+        "Dec 2023": 186700.0,
+        "Feb 2024": 277330.0,
+        "March 2024": 6700.0,
+        "May 2024": 25040.0,
+        "Nov 2023": 2700000.0,
+        "Oct 2023": 176200.0
+      },
+      "name": "Nagarjuna Steel",
+      "percentage": 25.81,
+      "rank": 1,
+      "total": 3375470.0
+    },
+    {
+      "active_months_count": 10,
+      "category": "Vehicle, Transport & Fuel",
+      "monthly": {
+        "Aug 2023": 30000.0,
+        "Dec 2023": 294000.0,
+        "Feb 2024": 250500.0,
+        "Jan 2024": 96800.0,
+        "July 2024": 11800.0,
+        "June 2024": 8000.0,
+        "March 2024": 161000.0,
+        "May 2024": 44145.0,
+        "Nov 2023": 60000.0,
+        "Oct 2023": 70000.0
+      },
+      "name": "Rajashekar (Dad's Driver)",
+      "percentage": 7.85,
+      "rank": 2,
+      "total": 1026245.0
+    },
+    {
+      "active_months_count": 6,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "Aug 2023": 199990.0,
+        "Dec 2023": 43000.0,
+        "Jan 2024": 55000.0,
+        "Nov 2023": 180000.0,
+        "Oct 2023": 130000.0,
+        "Sep 2023": 398650.0
+      },
+      "name": "Y S Reddy (Civil Contractor)",
+      "percentage": 7.7,
+      "rank": 3,
+      "total": 1006640.0
+    },
+    {
+      "active_months_count": 10,
+      "category": "Loan EMI & Financials",
+      "monthly": {
+        "Aug 2023": 111262.0,
+        "Dec 2023": 111262.0,
+        "Feb 2024": 49822.0,
+        "Jan 2024": 49822.0,
+        "July 2024": 49822.0,
+        "March 2024": 49822.0,
+        "May 2024": 222524.0,
+        "Nov 2023": 111262.0,
+        "Oct 2023": 111262.0,
+        "Sep 2023": 111262.0
+      },
+      "name": "HDFC Loan (EMI)",
+      "percentage": 7.48,
+      "rank": 4,
+      "total": 978122.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Land & Property Acquisition",
+      "monthly": {
+        "Aug 2023": 800000.0
+      },
+      "name": "Swaroop (Plot Purchase)",
+      "percentage": 6.12,
+      "rank": 5,
+      "total": 800000.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Granite, Marble & Tiles",
+      "monthly": {
+        "April 2024": 251220.0,
+        "Nov 2023": 259000.0,
+        "Oct 2023": 280000.0
+      },
+      "name": "Susheel Axis Bank Granites",
+      "percentage": 6.04,
+      "rank": 6,
+      "total": 790220.0
+    },
+    {
+      "active_months_count": 8,
+      "category": "General & Contingency",
+      "monthly": {
+        "April 2024": 20961.0,
+        "Aug 2023": 100000.0,
+        "Dec 2023": 63975.35,
+        "Jan 2024": 70554.5,
+        "June 2024": 32817.52,
+        "March 2024": 62961.0,
+        "May 2024": 99032.0,
+        "Sep 2023": 200000.0
+      },
+      "name": "Miscellaneous & Contingency",
+      "percentage": 4.97,
+      "rank": 7,
+      "total": 650301.37
+    },
+    {
+      "active_months_count": 4,
+      "category": "Property & Advance Accounts",
+      "monthly": {
+        "April 2024": 130000.0,
+        "July 2024": 97500.0,
+        "June 2024": 180000.0,
+        "May 2024": 99000.0
+      },
+      "name": "Chidvilasini / Chidvila School Owner",
+      "percentage": 3.87,
+      "rank": 8,
+      "total": 506500.0
+    },
+    {
+      "active_months_count": 6,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "April 2024": 96200.0,
+        "Aug 2023": 198500.0,
+        "July 2024": 10500.0,
+        "June 2024": 48500.0,
+        "May 2024": 66000.0,
+        "Sep 2023": 44000.0
+      },
+      "name": "ATM Cash (Construction & Labour)",
+      "percentage": 3.55,
+      "rank": 9,
+      "total": 463700.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Site Labour & Supervision",
+      "monthly": {
+        "July 2024": 88000.0,
+        "June 2024": 28000.0,
+        "Oct 2023": 221276.0
+      },
+      "name": "Mastri / Sri Lakshmi (Labour Contractor)",
+      "percentage": 2.58,
+      "rank": 10,
+      "total": 337276.0
+    },
+    {
+      "active_months_count": 4,
+      "category": "General & Contingency",
+      "monthly": {
+        "Aug 2023": 197353.0,
+        "Dec 2023": 22794.65,
+        "May 2024": 15967.52,
+        "Sep 2023": 19388.91
+      },
+      "name": "Remaining Balance Reconciliation",
+      "percentage": 1.95,
+      "rank": 11,
+      "total": 255504.08
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Aug 2023": 244000.0
+      },
+      "name": "SBI Payee (3724152818)",
+      "percentage": 1.87,
+      "rank": 12,
+      "total": 244000.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Bricks & Masonry",
+      "monthly": {
+        "Feb 2024": 120400.0,
+        "June 2024": 60200.0,
+        "March 2024": 60200.0
+      },
+      "name": "Rajesh Bricks Supplier",
+      "percentage": 1.84,
+      "rank": 13,
+      "total": 240800.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "March 2024": 190000.0
+      },
+      "name": "Majety Construction",
+      "percentage": 1.45,
+      "rank": 14,
+      "total": 190000.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Steel & Structural Metals",
+      "monthly": {
+        "July 2024": 26305.0,
+        "June 2024": 59590.0,
+        "May 2024": 56560.0
+      },
+      "name": "JSK Traders (Hardware / Steel)",
+      "percentage": 1.09,
+      "rank": 15,
+      "total": 142455.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "April 2024": 122000.0
+      },
+      "name": "Union Bank Acc (0334101000)",
+      "percentage": 0.93,
+      "rank": 16,
+      "total": 122000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Sand & Fine Aggregates",
+      "monthly": {
+        "Jan 2024": 108830.0
+      },
+      "name": "Ashok Sand Contractor",
+      "percentage": 0.83,
+      "rank": 17,
+      "total": 108830.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Aug 2023": 101001.24
+      },
+      "name": "BillDesk Utility",
+      "percentage": 0.77,
+      "rank": 18,
+      "total": 101001.24
+    },
+    {
+      "active_months_count": 3,
+      "category": "Bricks & Masonry",
+      "monthly": {
+        "Feb 2024": 40000.0,
+        "Jan 2024": 52800.0,
+        "March 2024": 8000.0
+      },
+      "name": "Bhaskar Bricks Supplier",
+      "percentage": 0.77,
+      "rank": 19,
+      "total": 100800.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 500.0,
+        "June 2024": 10000.0,
+        "May 2024": 70000.0
+      },
+      "name": "Jalaram S S Railing",
+      "percentage": 0.62,
+      "rank": 20,
+      "total": 80500.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Dec 2023": 72215.0
+      },
+      "name": "ICICI Bank Acc (0680050022)",
+      "percentage": 0.55,
+      "rank": 21,
+      "total": 72215.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Doors & UPVC Windows",
+      "monthly": {
+        "July 2024": 69700.0
+      },
+      "name": "WPC Doors (Ms Geeta)",
+      "percentage": 0.53,
+      "rank": 22,
+      "total": 69700.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Architect, Planning & Legal",
+      "monthly": {
+        "Feb 2024": 60000.0,
+        "Nov 2023": 5000.0
+      },
+      "name": "Abhishek (House Planner)",
+      "percentage": 0.5,
+      "rank": 23,
+      "total": 65000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Doors & UPVC Windows",
+      "monthly": {
+        "Feb 2024": 65000.0
+      },
+      "name": "Access Tough Doors",
+      "percentage": 0.5,
+      "rank": 24,
+      "total": 65000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Jan 2024": 59500.0
+      },
+      "name": "UPI Contractor (400929233107)",
+      "percentage": 0.45,
+      "rank": 25,
+      "total": 59500.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Granite, Marble & Tiles",
+      "monthly": {
+        "July 2024": 17000.0,
+        "June 2024": 39350.0
+      },
+      "name": "Ram Charan (Granite Laying)",
+      "percentage": 0.43,
+      "rank": 26,
+      "total": 56350.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Electrical & Wiring",
+      "monthly": {
+        "March 2024": 51430.0
+      },
+      "name": "Sudhakar Electrical (Tejaram)",
+      "percentage": 0.39,
+      "rank": 27,
+      "total": 51430.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Aug 2023": 50000.0
+      },
+      "name": "HDFC Account (5010048145)",
+      "percentage": 0.38,
+      "rank": 28,
+      "total": 50000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Sand & Fine Aggregates",
+      "monthly": {
+        "Sep 2023": 50000.0
+      },
+      "name": "Dadi Babu Reddy (Sand Contractor)",
+      "percentage": 0.38,
+      "rank": 29,
+      "total": 50000.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Architect, Planning & Legal",
+      "monthly": {
+        "Feb 2024": 20000.0,
+        "March 2024": 15000.0,
+        "May 2024": 15000.0
+      },
+      "name": "Govardhan (Khammam Lawyer)",
+      "percentage": 0.38,
+      "rank": 30,
+      "total": 50000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Insurance",
+      "monthly": {
+        "Feb 2024": 50000.0
+      },
+      "name": "SBI Life Insurance",
+      "percentage": 0.38,
+      "rank": 31,
+      "total": 50000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Doors & UPVC Windows",
+      "monthly": {
+        "July 2024": 49000.0
+      },
+      "name": "UPVC Windows (Sirvi Naresh)",
+      "percentage": 0.37,
+      "rank": 32,
+      "total": 49000.0
+    },
+    {
+      "active_months_count": 5,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "April 2024": 1040.0,
+        "Feb 2024": 5650.0,
+        "July 2024": 21050.0,
+        "March 2024": 12520.0,
+        "May 2024": 5000.0
+      },
+      "name": "Syed Imtiaz Construction / Electrical",
+      "percentage": 0.35,
+      "rank": 33,
+      "total": 45260.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Painting & Finishing",
+      "monthly": {
+        "June 2024": 28000.0,
+        "May 2024": 16000.0
+      },
+      "name": "Surender (Painter)",
+      "percentage": 0.34,
+      "rank": 34,
+      "total": 44000.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "March 2024": 13960.0,
+        "May 2024": 28600.0
+      },
+      "name": "Mohd Aqueel Construction",
+      "percentage": 0.33,
+      "rank": 35,
+      "total": 42560.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Plumbing & Carpentry",
+      "monthly": {
+        "July 2024": 500.0,
+        "June 2024": 26500.0,
+        "May 2024": 15000.0
+      },
+      "name": "Doma Gopal (Plumber)",
+      "percentage": 0.32,
+      "rank": 36,
+      "total": 42000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Cement & Ready Mix",
+      "monthly": {
+        "Jan 2024": 40010.0
+      },
+      "name": "Edward Rao Concrete",
+      "percentage": 0.31,
+      "rank": 37,
+      "total": 40010.0
+    },
+    {
+      "active_months_count": 4,
+      "category": "Cement & Ready Mix",
+      "monthly": {
+        "April 2024": 8000.0,
+        "July 2024": 9750.0,
+        "June 2024": 6600.0,
+        "May 2024": 11600.0
+      },
+      "name": "Praveen Nagarjuna Cement (Mothuku)",
+      "percentage": 0.27,
+      "rank": 38,
+      "total": 35950.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "General & Contingency",
+      "monthly": {
+        "Dec 2023": 11000.0,
+        "Nov 2023": 4368.0,
+        "Oct 2023": 20000.0
+      },
+      "name": "V V Ramana",
+      "percentage": 0.27,
+      "rank": 39,
+      "total": 35368.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Nov 2023": 35000.0
+      },
+      "name": "Venkateshwara Raju",
+      "percentage": 0.27,
+      "rank": 40,
+      "total": 35000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "April 2024": 35000.0
+      },
+      "name": "Pravalika Reddy",
+      "percentage": 0.27,
+      "rank": 41,
+      "total": 35000.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "Feb 2024": 8926.0,
+        "June 2024": 23080.0,
+        "March 2024": 828.0
+      },
+      "name": "Velaram Construction",
+      "percentage": 0.25,
+      "rank": 42,
+      "total": 32834.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Insurance",
+      "monthly": {
+        "Dec 2023": 32015.0
+      },
+      "name": "Star Health Insurance",
+      "percentage": 0.24,
+      "rank": 43,
+      "total": 32015.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Jan 2024": 30000.0
+      },
+      "name": "Ravanna Chinnagaru",
+      "percentage": 0.23,
+      "rank": 44,
+      "total": 30000.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Property & Advance Accounts",
+      "monthly": {
+        "July 2024": 23000.0,
+        "May 2024": 6000.0
+      },
+      "name": "MS Prasad Apartment / Flat",
+      "percentage": 0.22,
+      "rank": 45,
+      "total": 29000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Cement & Ready Mix",
+      "monthly": {
+        "June 2024": 28600.0
+      },
+      "name": "MS Decentry Cement",
+      "percentage": 0.22,
+      "rank": 46,
+      "total": 28600.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Dec 2023": 23575.0
+      },
+      "name": "OMBK Payee",
+      "percentage": 0.18,
+      "rank": 47,
+      "total": 23575.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Cement & Ready Mix",
+      "monthly": {
+        "July 2024": 22500.0
+      },
+      "name": "P Harishwar Cement Bags",
+      "percentage": 0.17,
+      "rank": 48,
+      "total": 22500.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "April 2024": 21210.0
+      },
+      "name": "Shaik Aslam Urban Claffs",
+      "percentage": 0.16,
+      "rank": 49,
+      "total": 21210.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Jan 2024": 19990.0
+      },
+      "name": "UPI Contractor (400498718305)",
+      "percentage": 0.15,
+      "rank": 50,
+      "total": 19990.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Sand & Fine Aggregates",
+      "monthly": {
+        "June 2024": 19650.0
+      },
+      "name": "Doma Anil (Dust)",
+      "percentage": 0.15,
+      "rank": 51,
+      "total": 19650.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Sand & Fine Aggregates",
+      "monthly": {
+        "May 2024": 19290.0
+      },
+      "name": "Sama Sridhar Reddy (Dust Supplier)",
+      "percentage": 0.15,
+      "rank": 52,
+      "total": 19290.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 17500.0
+      },
+      "name": "Mohammad Haroon",
+      "percentage": 0.13,
+      "rank": 53,
+      "total": 17500.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "April 2024": 15300.0
+      },
+      "name": "P Shekar Construction",
+      "percentage": 0.12,
+      "rank": 54,
+      "total": 15300.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "May 2024": 15000.0
+      },
+      "name": "Saladi Bhuvanesh",
+      "percentage": 0.11,
+      "rank": 55,
+      "total": 15000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "April 2024": 12233.0
+      },
+      "name": "Raj Kumar Construction",
+      "percentage": 0.09,
+      "rank": 56,
+      "total": 12233.0
+    },
+    {
+      "active_months_count": 4,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "Feb 2024": 2000.0,
+        "July 2024": 4000.0,
+        "June 2024": 4000.0,
+        "May 2024": 2000.0
+      },
+      "name": "Ramu Py (Vadde Ve Construction)",
+      "percentage": 0.09,
+      "rank": 57,
+      "total": 12000.0
+    },
+    {
+      "active_months_count": 3,
+      "category": "Water Supply",
+      "monthly": {
+        "Feb 2024": 10000.0,
+        "July 2024": 600.0,
+        "June 2024": 580.0
+      },
+      "name": "Nenavath Sujatha (Water Supply)",
+      "percentage": 0.09,
+      "rank": 58,
+      "total": 11180.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Feb 2024": 10000.0
+      },
+      "name": "Edigi K",
+      "percentage": 0.08,
+      "rank": 59,
+      "total": 10000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Plumbing & Carpentry",
+      "monthly": {
+        "July 2024": 9500.0
+      },
+      "name": "Carpenter (Narasimha Rao)",
+      "percentage": 0.07,
+      "rank": 60,
+      "total": 9500.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Granite, Marble & Tiles",
+      "monthly": {
+        "June 2024": 9300.0
+      },
+      "name": "Lavakush Granites",
+      "percentage": 0.07,
+      "rank": 61,
+      "total": 9300.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Electrical & Wiring",
+      "monthly": {
+        "April 2024": 6500.0,
+        "July 2024": 1800.0
+      },
+      "name": "Nakoda Service Wire",
+      "percentage": 0.06,
+      "rank": 62,
+      "total": 8300.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Oct 2023": 8260.0
+      },
+      "name": "Garuda Courier",
+      "percentage": 0.06,
+      "rank": 63,
+      "total": 8260.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Dec 2023": 8000.0
+      },
+      "name": "Ammi Reddy",
+      "percentage": 0.06,
+      "rank": 64,
+      "total": 8000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Vehicle, Transport & Fuel",
+      "monthly": {
+        "March 2024": 7490.0
+      },
+      "name": "Vanjakshi Motors",
+      "percentage": 0.06,
+      "rank": 65,
+      "total": 7490.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "May 2024": 7000.0
+      },
+      "name": "Lila Devi Construction",
+      "percentage": 0.05,
+      "rank": 66,
+      "total": 7000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "June 2024": 6000.0
+      },
+      "name": "Ravi Line Man Construction",
+      "percentage": 0.05,
+      "rank": 67,
+      "total": 6000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Electrical & Wiring",
+      "monthly": {
+        "March 2024": 5737.0
+      },
+      "name": "Naveen Electrical",
+      "percentage": 0.04,
+      "rank": 68,
+      "total": 5737.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Granite, Marble & Tiles",
+      "monthly": {
+        "June 2024": 5580.0
+      },
+      "name": "Arihanth Tile Mart",
+      "percentage": 0.04,
+      "rank": 69,
+      "total": 5580.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Jan 2024": 5053.5
+      },
+      "name": "UPI Small Supplies",
+      "percentage": 0.04,
+      "rank": 70,
+      "total": 5053.5
+    },
+    {
+      "active_months_count": 1,
+      "category": "Steel & Structural Metals",
+      "monthly": {
+        "July 2024": 5000.0
+      },
+      "name": "Indraseena Reddy Steel",
+      "percentage": 0.04,
+      "rank": 71,
+      "total": 5000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 5000.0
+      },
+      "name": "Sagar Kangula",
+      "percentage": 0.04,
+      "rank": 72,
+      "total": 5000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Vehicle, Transport & Fuel",
+      "monthly": {
+        "May 2024": 4150.65
+      },
+      "name": "RedBus Travel",
+      "percentage": 0.03,
+      "rank": 73,
+      "total": 4150.65
+    },
+    {
+      "active_months_count": 2,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 1010.0,
+        "June 2024": 3080.0
+      },
+      "name": "Diesel (Fuel)",
+      "percentage": 0.03,
+      "rank": 74,
+      "total": 4090.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Electrical & Wiring",
+      "monthly": {
+        "July 2024": 2000.0,
+        "June 2024": 2000.0
+      },
+      "name": "Intiaj Electrician (Kismatpura)",
+      "percentage": 0.03,
+      "rank": 75,
+      "total": 4000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "June 2024": 3630.0
+      },
+      "name": "A Prasanth",
+      "percentage": 0.03,
+      "rank": 76,
+      "total": 3630.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "March 2024": 3200.0
+      },
+      "name": "Mohd Aslam Urban Claffs",
+      "percentage": 0.02,
+      "rank": 77,
+      "total": 3200.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Hardware, Tools & Fixtures",
+      "monthly": {
+        "April 2024": 3000.0
+      },
+      "name": "Ram Sharma (Hardware)",
+      "percentage": 0.02,
+      "rank": 78,
+      "total": 3000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "May 2024": 2750.0
+      },
+      "name": "Mateti Krishna Construction",
+      "percentage": 0.02,
+      "rank": 79,
+      "total": 2750.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 1850.0,
+        "June 2024": 900.0
+      },
+      "name": "Doma Srisailam",
+      "percentage": 0.02,
+      "rank": 80,
+      "total": 2750.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Sand & Fine Aggregates",
+      "monthly": {
+        "July 2024": 2700.0
+      },
+      "name": "Dust",
+      "percentage": 0.02,
+      "rank": 81,
+      "total": 2700.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "March 2024": 2577.0
+      },
+      "name": "Redcliffe Patients Labs",
+      "percentage": 0.02,
+      "rank": 82,
+      "total": 2577.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "June 2024": 2250.0
+      },
+      "name": "Anando Brahma (Pyd)",
+      "percentage": 0.02,
+      "rank": 83,
+      "total": 2250.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "Feb 2024": 2000.0
+      },
+      "name": "Giri babu Interiors",
+      "percentage": 0.02,
+      "rank": 84,
+      "total": 2000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "March 2024": 2000.0
+      },
+      "name": "Raneel Reddy",
+      "percentage": 0.02,
+      "rank": 85,
+      "total": 2000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 2000.0
+      },
+      "name": "Dinesh Reddy",
+      "percentage": 0.02,
+      "rank": 86,
+      "total": 2000.0
+    },
+    {
+      "active_months_count": 2,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "April 2024": 840.0,
+        "May 2024": 1000.0
+      },
+      "name": "Nenavat H Construction",
+      "percentage": 0.01,
+      "rank": 87,
+      "total": 1840.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Hardware, Tools & Fixtures",
+      "monthly": {
+        "June 2024": 1720.0
+      },
+      "name": "Sri Amar Hardware",
+      "percentage": 0.01,
+      "rank": 88,
+      "total": 1720.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "July 2024": 1500.0
+      },
+      "name": "Bhagyamma Construction",
+      "percentage": 0.01,
+      "rank": 89,
+      "total": 1500.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Hardware, Tools & Fixtures",
+      "monthly": {
+        "April 2024": 1120.0
+      },
+      "name": "Mr Mishra Hardware",
+      "percentage": 0.01,
+      "rank": 90,
+      "total": 1120.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "April 2024": 1050.0
+      },
+      "name": "Gangapur Balnars Construction",
+      "percentage": 0.01,
+      "rank": 91,
+      "total": 1050.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "June 2024": 1000.0
+      },
+      "name": "Ramavath Anil Construction",
+      "percentage": 0.01,
+      "rank": 92,
+      "total": 1000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 1000.0
+      },
+      "name": "Mani Kumari (Mom)",
+      "percentage": 0.01,
+      "rank": 93,
+      "total": 1000.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Granite, Marble & Tiles",
+      "monthly": {
+        "July 2024": 950.0
+      },
+      "name": "Hanuma Enterprises (Granite Gum)",
+      "percentage": 0.01,
+      "rank": 94,
+      "total": 950.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Hardware, Tools & Fixtures",
+      "monthly": {
+        "July 2024": 900.0
+      },
+      "name": "Maneesh Kumar (Sink)",
+      "percentage": 0.01,
+      "rank": 95,
+      "total": 900.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Site Labour & Supervision",
+      "monthly": {
+        "June 2024": 810.0
+      },
+      "name": "Mastri Tea Point",
+      "percentage": 0.01,
+      "rank": 96,
+      "total": 810.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "July 2024": 750.0
+      },
+      "name": "Neelam Naga Venkata",
+      "percentage": 0.01,
+      "rank": 97,
+      "total": 750.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "Civil Construction Contractors",
+      "monthly": {
+        "June 2024": 650.0
+      },
+      "name": "NENAVATH Construction",
+      "percentage": 0.0,
+      "rank": 98,
+      "total": 650.0
+    },
+    {
+      "active_months_count": 1,
+      "category": "General & Contingency",
+      "monthly": {
+        "May 2024": 75.0
+      },
+      "name": "J Suvarna",
+      "percentage": 0.0,
+      "rank": 99,
+      "total": 75.0
+    }
+  ]
+}
