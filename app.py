@@ -23,23 +23,172 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 pipeline = SpendingAnalysisPipeline()
 
-# Budget & Concierge State
-USER_SETTINGS = {
-    "income_target": None,
-    "pay_cadence": "Monthly",
-    "savings_goal_percent": 20.0,
-    "category_budgets": {},
-    "canceled_subscriptions": {},  # merchant -> {monthly_amount, annual_savings, canceled_at}
-    "total_annual_saved": 0.0
+# Multi-Profile State Management for Family Dashboards
+PROFILES = {
+    "mom": {
+        "id": "mom",
+        "name": "Mom",
+        "avatar": "👩",
+        "relation": "Mom (India)",
+        "subtitle": "State Bank of India (12 Statements) • Dec 2022 – Jan 2024",
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "drive_folder_url": "https://drive.google.com/drive/folders/1RncmKINKSQozomIa_yy6jl4anWqMccVP?usp=drive_link",
+        "pdf_password": "46756010166",
+        "user_settings": {
+            "income_target": None,
+            "pay_cadence": "Monthly",
+            "savings_goal_percent": 20.0,
+            "category_budgets": {},
+            "canceled_subscriptions": {},
+            "total_annual_saved": 0.0
+        },
+        "report": None,
+        "transactions": [],
+        "markdown": "",
+        "metadata": []
+    },
+    "dad": {
+        "id": "dad",
+        "name": "Dad",
+        "avatar": "👨",
+        "relation": "Dad (India)",
+        "subtitle": "HDFC & Senior Citizen Accounts • 2023",
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "drive_folder_url": "",
+        "pdf_password": "",
+        "user_settings": {
+            "income_target": None,
+            "pay_cadence": "Monthly",
+            "savings_goal_percent": 25.0,
+            "category_budgets": {},
+            "canceled_subscriptions": {},
+            "total_annual_saved": 0.0
+        },
+        "report": None,
+        "transactions": [],
+        "markdown": "",
+        "metadata": []
+    },
+    "wife": {
+        "id": "wife",
+        "name": "Wife",
+        "avatar": "👩‍💼",
+        "relation": "Wife (India)",
+        "subtitle": "ICICI Salary & Operational Accounts • 2023",
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "drive_folder_url": "",
+        "pdf_password": "",
+        "user_settings": {
+            "income_target": None,
+            "pay_cadence": "Monthly",
+            "savings_goal_percent": 30.0,
+            "category_budgets": {},
+            "canceled_subscriptions": {},
+            "total_annual_saved": 0.0
+        },
+        "report": None,
+        "transactions": [],
+        "markdown": "",
+        "metadata": []
+    }
 }
 
-# Cache latest report
-LATEST_REPORT = {
-    "report": None,
-    "transactions": [],
-    "markdown": "",
-    "metadata": []
-}
+ACTIVE_PROFILE_ID = "mom"
+
+def ensure_profile_loaded(profile_id: str):
+    prof = PROFILES.get(profile_id)
+    if not prof:
+        return
+    if prof.get("report") is not None and len(prof.get("transactions", [])) > 0:
+        return
+
+    if profile_id == "mom":
+        drive_dir = os.path.join(os.path.dirname(__file__), "downloads", "drive_folder_1RncmKINKSQozomIa_yy6jl4anWqMccVP")
+        if not os.path.exists(drive_dir):
+            downloads_base = os.path.join(os.path.dirname(__file__), "downloads")
+            if os.path.exists(downloads_base):
+                subdirs = [os.path.join(downloads_base, d) for d in os.listdir(downloads_base) if os.path.isdir(os.path.join(downloads_base, d))]
+                if subdirs:
+                    drive_dir = subdirs[0]
+        if os.path.exists(drive_dir):
+            files = [
+                os.path.join(drive_dir, f) for f in os.listdir(drive_dir)
+                if f.lower().endswith(('.pdf', '.csv', '.xlsx', '.xls'))
+            ]
+            if files:
+                try:
+                    report, txs, md_text = pipeline.process_files(files, password=prof.get("pdf_password") or "46756010166")
+                    prof["report"] = report
+                    prof["transactions"] = txs
+                    prof["markdown"] = md_text
+                except Exception as e:
+                    print(f"Error loading Mom statements: {e}")
+    elif profile_id == "dad":
+        dad_file = os.path.join(os.path.dirname(__file__), "samples", "dad_sbi_senior_account_2023.csv")
+        if not os.path.exists(dad_file):
+            try:
+                from samples.generate_family_samples import generate_family_statements
+                generate_family_statements(os.path.join(os.path.dirname(__file__), "samples"))
+            except Exception as e:
+                print(f"Error generating Dad sample: {e}")
+        if os.path.exists(dad_file):
+            try:
+                report, txs, md_text = pipeline.process_files([dad_file])
+                prof["report"] = report
+                prof["transactions"] = txs
+                prof["markdown"] = md_text
+            except Exception as e:
+                print(f"Error loading Dad sample: {e}")
+    elif profile_id == "wife":
+        wife_file = os.path.join(os.path.dirname(__file__), "samples", "wife_icici_salary_account_2023.csv")
+        if not os.path.exists(wife_file):
+            try:
+                from samples.generate_family_samples import generate_family_statements
+                generate_family_statements(os.path.join(os.path.dirname(__file__), "samples"))
+            except Exception as e:
+                print(f"Error generating Wife sample: {e}")
+        if os.path.exists(wife_file):
+            try:
+                report, txs, md_text = pipeline.process_files([wife_file])
+                prof["report"] = report
+                prof["transactions"] = txs
+                prof["markdown"] = md_text
+            except Exception as e:
+                print(f"Error loading Wife sample: {e}")
+
+def get_active_profile():
+    global ACTIVE_PROFILE_ID
+    ensure_profile_loaded(ACTIVE_PROFILE_ID)
+    return PROFILES.get(ACTIVE_PROFILE_ID, PROFILES["mom"])
+
+class ActiveProfileReportProxy(dict):
+    def __getitem__(self, key):
+        return get_active_profile().get(key)
+    def __setitem__(self, key, value):
+        get_active_profile()[key] = value
+    def __contains__(self, key):
+        return key in get_active_profile()
+    def get(self, key, default=None):
+        return get_active_profile().get(key, default)
+
+class ActiveProfileSettingsProxy(dict):
+    def __getitem__(self, key):
+        return get_active_profile()["user_settings"].get(key)
+    def __setitem__(self, key, value):
+        get_active_profile()["user_settings"][key] = value
+    def __contains__(self, key):
+        return key in get_active_profile()["user_settings"]
+    def get(self, key, default=None):
+        return get_active_profile()["user_settings"].get(key, default)
+    def values(self):
+        return get_active_profile()["user_settings"].values()
+
+LATEST_REPORT = ActiveProfileReportProxy()
+USER_SETTINGS = ActiveProfileSettingsProxy()
+
 
 
 def generate_budget(report_dict, user_settings=None, transactions=None):
@@ -250,13 +399,122 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/api/profiles', methods=['GET'])
+def list_profiles():
+    """List all family member profiles with aggregated health and review statistics."""
+    for pid in PROFILES:
+        ensure_profile_loaded(pid)
+    
+    profiles_summary = []
+    for pid, p in PROFILES.items():
+        rep = p.get("report")
+        txs = p.get("transactions", [])
+        rep_dict = rep.to_dict() if rep else {}
+        b_data = generate_budget(rep_dict, p["user_settings"], txs) if rep else {}
+        
+        profiles_summary.append({
+            "id": pid,
+            "name": p["name"],
+            "relation": p["relation"],
+            "avatar": p["avatar"],
+            "subtitle": p["subtitle"],
+            "currency_symbol": p.get("currency_symbol", "₹"),
+            "total_outflow": rep.total_outflow if rep else 0.0,
+            "confirmed_spending": b_data.get("confirmed_spending", 0.0),
+            "total_inflow": rep.total_inflow if rep else 0.0,
+            "net_cash_flow": rep.net_cash_flow if rep else 0.0,
+            "needs_review_count": b_data.get("needs_review_count", 0),
+            "needs_review_amount": b_data.get("needs_review_amount", 0.0),
+            "transaction_count": len(txs),
+            "drive_folder_url": p.get("drive_folder_url", ""),
+            "pdf_password": p.get("pdf_password", ""),
+            "is_active": (pid == ACTIVE_PROFILE_ID)
+        })
+
+    return jsonify({
+        "success": True,
+        "active_profile_id": ACTIVE_PROFILE_ID,
+        "profiles": profiles_summary
+    })
+
+
+@app.route('/api/profile/switch', methods=['POST'])
+def switch_profile():
+    """Switch currently active family portfolio."""
+    global ACTIVE_PROFILE_ID
+    data = request.get_json() or {}
+    new_pid = data.get('profile_id', 'mom')
+    if new_pid not in PROFILES:
+        return jsonify({"success": False, "error": f"Unknown profile: {new_pid}"}), 404
+
+    ACTIVE_PROFILE_ID = new_pid
+    ensure_profile_loaded(new_pid)
+    prof = PROFILES[new_pid]
+    rep = prof.get("report")
+    txs = prof.get("transactions", [])
+    rep_dict = rep.to_dict() if rep else {}
+    b_data = generate_budget(rep_dict, prof["user_settings"], txs) if rep else {}
+
+    return jsonify({
+        "success": True,
+        "active_profile_id": ACTIVE_PROFILE_ID,
+        "profile": {
+            "id": prof["id"],
+            "name": prof["name"],
+            "relation": prof["relation"],
+            "avatar": prof["avatar"],
+            "subtitle": prof["subtitle"],
+            "drive_folder_url": prof.get("drive_folder_url", ""),
+            "pdf_password": prof.get("pdf_password", ""),
+            "currency_symbol": prof.get("currency_symbol", "₹")
+        },
+        "report": rep_dict,
+        "transactions": [t.to_dict() for t in txs],
+        "budget": b_data,
+        "markdown": prof.get("markdown", "")
+    })
+
+
+@app.route('/api/profile/update-credentials', methods=['POST'])
+def update_profile_credentials():
+    """Update drive credentials per family profile."""
+    data = request.get_json() or {}
+    pid = data.get('profile_id', ACTIVE_PROFILE_ID)
+    if pid not in PROFILES:
+        return jsonify({"success": False, "error": f"Unknown profile: {pid}"}), 404
+    
+    if 'drive_folder_url' in data:
+        PROFILES[pid]['drive_folder_url'] = data['drive_folder_url'].strip()
+    if 'pdf_password' in data:
+        PROFILES[pid]['pdf_password'] = data['pdf_password'].strip()
+    
+    return jsonify({
+        "success": True, 
+        "profile": {
+            "id": pid,
+            "drive_folder_url": PROFILES[pid]['drive_folder_url'],
+            "pdf_password": PROFILES[pid]['pdf_password']
+        }
+    })
+
+
 @app.route('/api/analyze-drive', methods=['POST'])
 def analyze_drive():
+    global ACTIVE_PROFILE_ID
     data = request.get_json() or {}
     url = data.get('url', '').strip()
-    password = data.get('password', '').strip() or None
+    target_pid = data.get('profile_id', ACTIVE_PROFILE_ID)
+    if target_pid in PROFILES:
+        ACTIVE_PROFILE_ID = target_pid
+    prof = get_active_profile()
+
+    password = data.get('password', '').strip() or prof.get('pdf_password') or None
     if not url:
         return jsonify({"success": False, "error": "Google Drive URL is required."}), 400
+
+    prof["drive_folder_url"] = url
+    if password:
+        prof["pdf_password"] = password
 
     try:
         report, txs, md_text, err = pipeline.process_google_drive(url, password=password)
@@ -269,15 +527,25 @@ def analyze_drive():
                 "restricted": "permission" in err.lower() or "restricted" in err.lower()
             }), 200
 
-        LATEST_REPORT["report"] = report
-        LATEST_REPORT["transactions"] = txs
-        LATEST_REPORT["markdown"] = md_text
+        prof["report"] = report
+        prof["transactions"] = txs
+        prof["markdown"] = md_text
+        prof["subtitle"] = f"Google Drive ({len(txs)} Statements)"
 
         rep_dict = report.to_dict()
-        budget_data = generate_budget(rep_dict, USER_SETTINGS, txs)
+        budget_data = generate_budget(rep_dict, prof["user_settings"], txs)
 
         return jsonify({
             "success": True,
+            "active_profile_id": target_pid,
+            "profile": {
+                "id": prof["id"],
+                "name": prof["name"],
+                "relation": prof["relation"],
+                "avatar": prof["avatar"],
+                "subtitle": prof["subtitle"],
+                "currency_symbol": prof.get("currency_symbol", "₹")
+            },
             "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
             "markdown": md_text,
@@ -291,10 +559,16 @@ def analyze_drive():
 
 @app.route('/api/analyze-files', methods=['POST'])
 def analyze_files():
+    global ACTIVE_PROFILE_ID
     if 'files' not in request.files:
         return jsonify({"success": False, "error": "No statement files uploaded."}), 400
 
-    password = request.form.get('password', '').strip() or None
+    target_pid = request.form.get('profile_id', ACTIVE_PROFILE_ID)
+    if target_pid in PROFILES:
+        ACTIVE_PROFILE_ID = target_pid
+    prof = get_active_profile()
+
+    password = request.form.get('password', '').strip() or prof.get('pdf_password') or None
     uploaded_files = request.files.getlist('files')
     saved_paths = []
 
@@ -310,15 +584,25 @@ def analyze_files():
 
     try:
         report, txs, md_text = pipeline.process_files(saved_paths, password=password)
-        LATEST_REPORT["report"] = report
-        LATEST_REPORT["transactions"] = txs
-        LATEST_REPORT["markdown"] = md_text
+        prof["report"] = report
+        prof["transactions"] = txs
+        prof["markdown"] = md_text
+        prof["subtitle"] = f"{len(saved_paths)} Uploaded Statement(s)"
 
         rep_dict = report.to_dict()
-        budget_data = generate_budget(rep_dict, USER_SETTINGS, txs)
+        budget_data = generate_budget(rep_dict, prof["user_settings"], txs)
 
         return jsonify({
             "success": True,
+            "active_profile_id": target_pid,
+            "profile": {
+                "id": prof["id"],
+                "name": prof["name"],
+                "relation": prof["relation"],
+                "avatar": prof["avatar"],
+                "subtitle": prof["subtitle"],
+                "currency_symbol": prof.get("currency_symbol", "₹")
+            },
             "report": rep_dict,
             "transactions": [t.to_dict() for t in txs],
             "markdown": md_text,
@@ -332,46 +616,64 @@ def analyze_files():
 
 @app.route('/api/analyze-downloaded', methods=['POST'])
 def analyze_downloaded():
-    """Analyze the already downloaded SBI statements from Google Drive folder directly."""
+    """Analyze the statements for the active (or requested) profile."""
+    global ACTIVE_PROFILE_ID
     data = request.get_json() or {}
-    password = data.get('password', '').strip() or None
+    target_pid = data.get('profile_id', ACTIVE_PROFILE_ID)
+    if target_pid in PROFILES:
+        ACTIVE_PROFILE_ID = target_pid
+    prof = get_active_profile()
+    password = data.get('password', '').strip() or prof.get('pdf_password') or None
 
-    drive_dir = os.path.join(os.path.dirname(__file__), "downloads", "drive_folder_1RncmKINKSQozomIa_yy6jl4anWqMccVP")
-    if not os.path.exists(drive_dir):
-        downloads_base = os.path.join(os.path.dirname(__file__), "downloads")
-        subdirs = [os.path.join(downloads_base, d) for d in os.listdir(downloads_base) if os.path.isdir(os.path.join(downloads_base, d))]
-        if subdirs:
-            drive_dir = subdirs[0]
-        else:
-            return jsonify({"success": False, "error": "No downloaded statements found locally. Please analyze via Google Drive URL."}), 404
+    if target_pid == 'mom':
+        drive_dir = os.path.join(os.path.dirname(__file__), "downloads", "drive_folder_1RncmKINKSQozomIa_yy6jl4anWqMccVP")
+        if not os.path.exists(drive_dir):
+            downloads_base = os.path.join(os.path.dirname(__file__), "downloads")
+            if os.path.exists(downloads_base):
+                subdirs = [os.path.join(downloads_base, d) for d in os.listdir(downloads_base) if os.path.isdir(os.path.join(downloads_base, d))]
+                if subdirs:
+                    drive_dir = subdirs[0]
+                else:
+                    return jsonify({"success": False, "error": "No downloaded statements found locally. Please analyze via Google Drive URL."}), 404
 
-    files = [
-        os.path.join(drive_dir, f) for f in os.listdir(drive_dir)
-        if f.lower().endswith(('.pdf', '.csv', '.xlsx', '.xls'))
-    ]
-    if not files:
-        return jsonify({"success": False, "error": "No statement files found in local download directory."}), 404
+        files = [
+            os.path.join(drive_dir, f) for f in os.listdir(drive_dir)
+            if f.lower().endswith(('.pdf', '.csv', '.xlsx', '.xls'))
+        ]
+        if not files:
+            return jsonify({"success": False, "error": "No statement files found in local download directory."}), 404
 
-    try:
-        report, txs, md_text = pipeline.process_files(files, password=password)
-        LATEST_REPORT["report"] = report
-        LATEST_REPORT["transactions"] = txs
-        LATEST_REPORT["markdown"] = md_text
+        try:
+            report, txs, md_text = pipeline.process_files(files, password=password)
+            prof["report"] = report
+            prof["transactions"] = txs
+            prof["markdown"] = md_text
+        except Exception as e:
+            return jsonify({"success": False, "error": str(e)}), 500
+    else:
+        ensure_profile_loaded(target_pid)
 
-        rep_dict = report.to_dict()
-        budget_data = generate_budget(rep_dict, USER_SETTINGS, txs)
+    rep = prof.get("report")
+    txs = prof.get("transactions", [])
+    rep_dict = rep.to_dict() if rep else {}
+    budget_data = generate_budget(rep_dict, prof["user_settings"], txs)
 
-        return jsonify({
-            "success": True,
-            "report": rep_dict,
-            "transactions": [t.to_dict() for t in txs],
-            "markdown": md_text,
-            "budget": budget_data
-        })
-    except Exception as e:
-        err_msg = str(e)
-        is_enc = any(k in err_msg.lower() for k in ["password", "encrypted", "decrypt"])
-        return jsonify({"success": False, "error": err_msg, "is_encrypted": is_enc}), 200 if is_enc else 500
+    return jsonify({
+        "success": True,
+        "active_profile_id": target_pid,
+        "profile": {
+            "id": prof["id"],
+            "name": prof["name"],
+            "relation": prof["relation"],
+            "avatar": prof["avatar"],
+            "subtitle": prof["subtitle"],
+            "currency_symbol": prof.get("currency_symbol", "₹")
+        },
+        "report": rep_dict,
+        "transactions": [t.to_dict() for t in txs],
+        "markdown": prof.get("markdown", ""),
+        "budget": budget_data
+    })
 
 
 @app.route('/api/sample-demo', methods=['GET', 'POST'])

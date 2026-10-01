@@ -81,6 +81,125 @@
       margin: 0 auto;
     }
 
+    /* FAMILY PORTFOLIO SWITCHER BAR */
+    .family-bar {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 10px 16px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .family-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .family-bar-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .family-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .family-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: var(--font-sans);
+      text-align: left;
+    }
+
+    .family-pill:hover {
+      background: #EEF2FF;
+      border-color: var(--primary-border);
+      transform: translateY(-1px);
+    }
+
+    .family-pill.active {
+      background: #0F172A;
+      color: #fff;
+      border-color: #0F172A;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+    }
+
+    .family-pill.active .family-name {
+      color: #fff;
+    }
+
+    .family-pill.active .family-sub {
+      color: #94A3B8;
+    }
+
+    .family-avatar {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .family-pill-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .family-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .family-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.2;
+    }
+
+    .family-review-chip {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      background: var(--bg-subtle-2);
+      color: var(--text-body);
+    }
+
+    .family-review-chip.amber {
+      background: var(--amber-light);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+
+    .family-pill.active .family-review-chip.amber {
+      background: #FDE68A;
+      color: #78350F;
+      border-color: #FCD34D;
+    }
+
     /* Top Decision Bar */
     .top-bar {
       background: var(--bg-white);
@@ -1257,12 +1376,56 @@
 </head>
 <body>
   <div class="container">
+    <!-- FAMILY PORTFOLIO SWITCHER BAR -->
+    <div class="family-bar">
+      <div class="family-bar-left">
+        <div class="family-bar-label">
+          <span style="font-size: 15px;">👨‍👩‍👧</span>
+          <span>Family Portfolios:</span>
+        </div>
+        <div class="family-pills" id="familyTabsContainer">
+          <button class="family-pill active" id="familyPill_mom" onclick="switchProfile('mom')">
+            <span class="family-avatar">👩</span>
+            <div class="family-pill-text">
+              <span class="family-name">Mom (India)</span>
+              <span class="family-sub">SBI Statements</span>
+            </div>
+            <span class="family-review-chip amber" id="familyBadge_mom">51 to review</span>
+          </button>
+
+          <button class="family-pill" id="familyPill_dad" onclick="switchProfile('dad')">
+            <span class="family-avatar">👨</span>
+            <div class="family-pill-text">
+              <span class="family-name">Dad (India)</span>
+              <span class="family-sub">HDFC & Pension</span>
+            </div>
+            <span class="family-review-chip" id="familyBadge_dad">6 to review</span>
+          </button>
+
+          <button class="family-pill" id="familyPill_wife" onclick="switchProfile('wife')">
+            <span class="family-avatar">👩‍💼</span>
+            <div class="family-pill-text">
+              <span class="family-name">Wife (India)</span>
+              <span class="family-sub">ICICI Salary</span>
+            </div>
+            <span class="family-review-chip" id="familyBadge_wife">8 to review</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="family-bar-right">
+        <button class="btn btn-secondary btn-sm" onclick="openImportModal()">
+          + Add Statements for <span id="activeProfileBtnName">Mom</span>
+        </button>
+      </div>
+    </div>
+
     <!-- TOP DECISION BAR -->
     <header class="top-bar">
       <div class="brand-wrap">
-        <div class="brand-logo-icon">📊</div>
+        <div class="brand-logo-icon" id="pageLogoIcon">👩</div>
         <div>
-          <div class="brand-title">Financial Decision Dashboard</div>
+          <div class="brand-title" id="pageMainTitle">Mom's Financial Decision Dashboard</div>
           <div style="font-size: 11.5px; color: var(--text-muted);" id="headerAccountsSubtitle">
             State Bank of India (12 Statements) • Dec 2022 – Jan 2024
           </div>
@@ -1647,7 +1810,23 @@
       </div>
 
       <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
-        Supports encrypted State Bank of India (SBI) PDFs, Chase, Amex, CSV, and Excel statements.
+        Supports encrypted State Bank of India (SBI) PDFs, ICICI, HDFC, Chase, Amex, CSV, and Excel statements.
+      </div>
+
+      <!-- Select Family Target -->
+      <div style="background: var(--bg-subtle); padding: 8px 12px; border-radius: var(--radius-sm); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;">
+        <span class="period-lbl" style="margin: 0;">Portfolio Target:</span>
+        <div style="display: flex; gap: 12px;">
+          <label style="font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+            <input type="radio" name="modalTargetRadio" value="mom" checked onchange="onModalTargetChanged('mom')"> 👩 Mom
+          </label>
+          <label style="font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+            <input type="radio" name="modalTargetRadio" value="dad" onchange="onModalTargetChanged('dad')"> 👨 Dad
+          </label>
+          <label style="font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+            <input type="radio" name="modalTargetRadio" value="wife" onchange="onModalTargetChanged('wife')"> 👩‍💼 Wife
+          </label>
+        </div>
       </div>
 
       <label class="period-lbl" for="modalDriveUrl">Google Drive Shared Folder</label>
@@ -1698,12 +1877,112 @@
 
   <script>
     // State
+    // Family Profile State
+    let activeProfileId = 'mom';
+    let familyProfilesList = [];
+    let modalTargetProfile = 'mom';
+
     let currentCurrencySymbol = '₹';
     let currentReport = null;
     let currentBudget = null;
     let allTransactions = [];
     let activeFilterOnlyReview = true;
     let activePeriod = 'ALL';
+
+    async function initFamilyProfiles() {
+      try {
+        const resp = await fetch('/api/profiles');
+        const res = await resp.json();
+        if (res.success && res.profiles) {
+          familyProfilesList = res.profiles;
+          activeProfileId = res.active_profile_id;
+          updateFamilyBarUI();
+        }
+      } catch (err) {
+        console.error('Failed to init family profiles', err);
+      }
+    }
+
+    function updateFamilyBarUI() {
+      familyProfilesList.forEach(p => {
+        const badge = document.getElementById(`familyBadge_${p.id}`);
+        if (badge) {
+          if (p.needs_review_count > 0) {
+            badge.className = 'family-review-chip amber';
+            badge.innerText = `${p.needs_review_count} to review`;
+          } else {
+            badge.className = 'family-review-chip';
+            badge.innerText = `✓ Audited`;
+          }
+        }
+      });
+
+      // Highlight active pill
+      ['mom', 'dad', 'wife'].forEach(pid => {
+        const pill = document.getElementById(`familyPill_${pid}`);
+        if (pill) {
+          if (pid === activeProfileId) {
+            pill.classList.add('active');
+          } else {
+            pill.classList.remove('active');
+          }
+        }
+      });
+
+      const btnName = document.getElementById('activeProfileBtnName');
+      if (btnName) {
+        const p = familyProfilesList.find(x => x.id === activeProfileId);
+        btnName.innerText = p ? p.name : 'Active Profile';
+      }
+    }
+
+    async function switchProfile(targetPid) {
+      if (targetPid === activeProfileId && currentReport) return;
+      hideAlert();
+      showFeedbackToast(`⏳ Loading ${targetPid.charAt(0).toUpperCase() + targetPid.slice(1)}'s portfolio...`);
+
+      try {
+        const resp = await fetch('/api/profile/switch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ profile_id: targetPid })
+        });
+        const res = await resp.json();
+        if (res.success) {
+          activeProfileId = res.active_profile_id;
+          const p = res.profile;
+
+          const logoEl = document.getElementById('pageLogoIcon');
+          if (logoEl) logoEl.innerText = p.avatar;
+          document.getElementById('pageMainTitle').innerText = `${p.name}'s Financial Decision Dashboard`;
+          document.getElementById('headerAccountsSubtitle').innerText = `${p.subtitle}`;
+          modalTargetProfile = targetPid;
+
+          // Sync radio in modal
+          const radios = document.getElementsByName('modalTargetRadio');
+          radios.forEach(r => { r.checked = (r.value === targetPid); });
+
+          handleDataLoaded(res);
+          initFamilyProfiles();
+          showFeedbackToast(`✓ Switched to ${p.name}'s Financial Dashboard.`);
+        } else {
+          showAlert(res.error || 'Failed to switch profile.');
+        }
+      } catch (err) {
+        showAlert('Error switching profile: ' + err.message);
+      }
+    }
+
+    function onModalTargetChanged(pid) {
+      modalTargetProfile = pid;
+      const p = familyProfilesList.find(x => x.id === pid);
+      const urlInput = document.getElementById('modalDriveUrl');
+      const pwdInput = document.getElementById('modalPdfPassword');
+      if (p) {
+        if (urlInput) urlInput.value = p.drive_folder_url || '';
+        if (pwdInput) pwdInput.value = p.pdf_password || '';
+      }
+    }
 
     const EXPENSE_CATEGORIES = [
       "Housing & Utilities",
@@ -1757,6 +2036,11 @@
 
     // Modal controls
     function openImportModal() {
+      // Sync modal radio with activeProfileId
+      modalTargetProfile = activeProfileId;
+      const radios = document.getElementsByName('modalTargetRadio');
+      radios.forEach(r => { r.checked = (r.value === activeProfileId); });
+      onModalTargetChanged(activeProfileId);
       document.getElementById('importModal').style.display = 'flex';
     }
 
@@ -1793,12 +2077,13 @@
         const resp = await fetch('/api/analyze-downloaded', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ password: pwd })
+          body: JSON.stringify({ password: pwd, profile_id: activeProfileId })
         });
         const res = await resp.json();
         if (res.success) {
           handleDataLoaded(res);
-          showAlert(`✓ Successfully refreshed analysis of ${res.transactions.length} transactions!`, 'success');
+          initFamilyProfiles();
+          showAlert(`✓ Successfully refreshed analysis of ${res.transactions.length} transactions for ${res.profile ? res.profile.name : 'portfolio'}!`, 'success');
         } else {
           showAlert(res.error || 'Failed to refresh statements.', 'error');
         }
@@ -1819,13 +2104,15 @@
         const resp = await fetch('/api/analyze-drive', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url, password })
+          body: JSON.stringify({ url, password, profile_id: modalTargetProfile })
         });
         const res = await resp.json();
         if (res.success) {
           closeImportModal();
+          activeProfileId = res.active_profile_id;
           handleDataLoaded(res);
-          showAlert(`✓ Google Drive statements successfully analyzed!`, 'success');
+          initFamilyProfiles();
+          showAlert(`✓ Google Drive statements successfully analyzed for ${res.profile ? res.profile.name : 'portfolio'}!`, 'success');
         } else {
           showAlert(res.error || 'Failed to analyze Google Drive link.', 'error');
         }
@@ -1872,6 +2159,7 @@
       const formData = new FormData();
       const password = document.getElementById('modalPdfPassword').value.trim();
       if (password) formData.append('password', password);
+      formData.append('profile_id', modalTargetProfile);
       for (let i = 0; i < files.length; i++) formData.append('files', files[i]);
 
       modalDropZone.innerHTML = '<span class="spinner" style="border-color: #94a3b8; border-top-color: #4f46e5;"></span> Parsing files...';
@@ -1884,8 +2172,10 @@
         const res = await resp.json();
         if (res.success) {
           closeImportModal();
+          activeProfileId = res.active_profile_id;
           handleDataLoaded(res);
-          showAlert(`✓ Uploaded statement files analyzed successfully!`, 'success');
+          initFamilyProfiles();
+          showAlert(`✓ Uploaded statement files analyzed successfully for ${res.profile ? res.profile.name : 'portfolio'}!`, 'success');
         } else {
           showAlert(res.error || 'Failed to upload files.', 'error');
         }
@@ -1895,7 +2185,7 @@
         modalDropZone.innerHTML = `
           <div style="font-size: 24px; margin-bottom: 4px;">📄</div>
           <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Drop statement files here</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Supports SBI PDF, Chase, Amex, CSV, XLSX</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Supports SBI PDF, ICICI, HDFC, Chase, Amex, CSV, XLSX</div>
         `;
       }
     }
@@ -1905,6 +2195,17 @@
       currentReport = res.report;
       currentBudget = res.budget;
       allTransactions = res.transactions || [];
+
+      if (res.profile) {
+        const logoEl = document.getElementById('pageLogoIcon');
+        if (logoEl) logoEl.innerText = res.profile.avatar;
+        const titleEl = document.getElementById('pageMainTitle');
+        if (titleEl) titleEl.innerText = `${res.profile.name}'s Financial Decision Dashboard`;
+        const subEl = document.getElementById('headerAccountsSubtitle');
+        if (subEl) subEl.innerText = res.profile.subtitle;
+        const btnName = document.getElementById('activeProfileBtnName');
+        if (btnName) btnName.innerText = res.profile.name;
+      }
 
       currentCurrencySymbol = currentReport.currency_symbol || (currentReport.currency === 'INR' ? '₹' : '$');
 
@@ -2774,6 +3075,7 @@
       // Ensure pageSize matches select element
       const pSelect = document.getElementById('pageSizeSelect');
       if (pSelect) pSelect.value = String(pageSize);
+      initFamilyProfiles();
       reAnalyzeStatements();
     });
   </script>

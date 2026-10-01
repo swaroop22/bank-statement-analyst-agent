@@ -64,6 +64,21 @@ class CsvExcelParser(BaseStatementParser):
         if "sbi" in filename or "state bank" in filename or filename.startswith("721371"):
             bank_name = "State Bank of India"
             account_type = AccountType.SAVINGS
+        elif "icici" in filename:
+            bank_name = "ICICI Bank"
+            account_type = AccountType.CHECKING
+        elif "hdfc" in filename:
+            bank_name = "HDFC Bank"
+            account_type = AccountType.CHECKING
+        elif "axis" in filename:
+            bank_name = "Axis Bank"
+            account_type = AccountType.CHECKING
+        elif "kotak" in filename:
+            bank_name = "Kotak Mahindra Bank"
+            account_type = AccountType.CHECKING
+        elif "pnb" in filename:
+            bank_name = "Punjab National Bank"
+            account_type = AccountType.CHECKING
         elif "chase" in filename:
             bank_name = "Chase"
         elif "amex" in filename or "american express" in filename:
@@ -235,7 +250,8 @@ class CsvExcelParser(BaseStatementParser):
         period_start = min(valid_dates) if valid_dates else None
         period_end = max(valid_dates) if valid_dates else None
 
-        currency = "INR" if bank_name == "State Bank of India" else "USD"
+        is_indian_bank = any(b in bank_name for b in ["State Bank of India", "ICICI Bank", "HDFC Bank", "Axis Bank", "Kotak", "Punjab National Bank"]) or "inr" in os.path.basename(file_path).lower()
+        currency = "INR" if is_indian_bank else "USD"
         currency_symbol = "₹" if currency == "INR" else "$"
 
         metadata = StatementMetadata(
