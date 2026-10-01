@@ -226,8 +226,12 @@ class StatementAnalyst:
             if tx.amount >= threshold and tx.amount > avg_amount:
                 multiple = tx.amount / avg_amount if avg_amount > 0 else 0
                 rule_desc = f"Amount is {multiple:.1f}× average transaction size ({sym}{avg_amount:,.2f})"
+                is_potential_xfer = any(w in (tx.clean_payee + " " + tx.raw_description).lower() for w in [
+                    'transfer', 'chq', 'cheque', 'cash withdrawal', 'atm', 'loan', 'sbila'
+                ]) or tx.category in ["Miscellaneous / Other", "Uncategorized / Needs Review"]
+                tag = "[Possible Internal Transfer]" if is_potential_xfer else "[Major Outflow Spike]"
                 anomalies.append(
-                    f"{sym}{tx.amount:,.2f} • {tx.clean_payee} on {tx.date} ({tx.category}) — "
+                    f"{sym}{tx.amount:,.2f} • {tx.clean_payee} on {tx.date} ({tx.category}) {tag} — "
                     f"Triggered Rule: {rule_desc}."
                 )
             if len(anomalies) >= 5:

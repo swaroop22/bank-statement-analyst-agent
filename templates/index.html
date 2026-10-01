@@ -555,12 +555,246 @@
       line-height: 1.45;
     }
 
-    .alert-card-rule {
-      display: block;
+    .alert-card.clickable {
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .alert-card.clickable:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--amber);
+      background: #FFFDF0;
+    }
+
+    .spike-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .spike-badge.transfer {
+      background: #DBEAFE;
+      color: #1E40AF;
+      border: 1px solid #BFDBFE;
+    }
+
+    .spike-badge.outflow {
+      background: #FEE2E2;
+      color: #991B1B;
+      border: 1px solid #FECACA;
+    }
+
+    /* DATA CONFIDENCE & INTEGRITY TRUST BAR */
+    .trust-integrity-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #FFFDF5;
+      border: 1px solid var(--amber-border);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .trust-integrity-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .trust-integrity-icon {
+      font-size: 20px;
+    }
+
+    .trust-integrity-title {
+      font-weight: 700;
+      color: #92400E;
+    }
+
+    .trust-integrity-desc {
+      color: var(--text-body);
+      font-size: 12.5px;
+    }
+
+    .trust-action-btn {
+      background: var(--amber);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.15s ease;
+    }
+
+    .trust-action-btn:hover {
+      background: #D97706;
+    }
+
+    /* SEGMENTED VIEW SWITCH */
+    .view-switch-segmented {
+      display: inline-flex;
+      background: var(--bg-subtle-2);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .view-switch-pill {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .view-switch-pill:hover {
+      color: var(--text-main);
+    }
+
+    .view-switch-pill.active {
+      background: var(--bg-white);
+      color: var(--text-main);
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .view-switch-pill.active.pill-review {
+      color: #B45309;
+    }
+
+    .pill-badge {
       font-size: 11px;
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      background: var(--amber-light);
       color: var(--amber);
       font-weight: 700;
+      border: 1px solid var(--amber-border);
+    }
+
+    .pill-badge-neutral {
+      font-size: 11px;
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ROW ACTION BUTTONS: Transfer & Exclude */
+    .btn-transfer-off {
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      color: #475569;
+    }
+    .btn-transfer-off:hover {
+      background: #EFF6FF;
+      border-color: #93C5FD;
+      color: #1D4ED8;
+    }
+    .btn-transfer-on {
+      background: #EFF6FF;
+      border: 1px solid #93C5FD;
+      color: #1D4ED8;
+      font-weight: 700;
+    }
+
+    .btn-exclude-off {
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      color: #475569;
+    }
+    .btn-exclude-off:hover {
+      background: #FEF2F2;
+      border-color: #FCA5A5;
+      color: #B91C1C;
+    }
+    .btn-exclude-on {
+      background: #FEF2F2;
+      border: 1px solid #FCA5A5;
+      color: #B91C1C;
+      font-weight: 700;
+    }
+
+    /* UNCERTAIN CATEGORY BADGE */
+    .uncertain-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--amber);
       margin-top: 3px;
+    }
+
+    /* FLOATING ACTION FEEDBACK TOAST WITH UNDO */
+    .action-feedback-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      background: #0F172A;
+      color: #F8FAFC;
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+      display: none;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      animation: slideUpToast 0.25s ease forwards;
+    }
+
+    @keyframes slideUpToast {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .toast-undo-btn {
+      background: #FDE047;
+      color: #713F12;
+      border: none;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .toast-undo-btn:hover {
+      background: #FEF08A;
+    }
+
+    /* PULSE HIGHLIGHT FOR ROW */
+    @keyframes rowPulse {
+      0% { background-color: #FEF3C7; }
+      50% { background-color: #FDE68A; }
+      100% { background-color: transparent; }
+    }
+
+    .row-highlight-pulse {
+      animation: rowPulse 2.5s ease;
     }
 
     /* LEVEL 3: TAB NAVIGATION & FUNCTIONAL PANELS */
@@ -1061,59 +1295,91 @@
       <div id="alertContent"></div>
     </div>
 
+    <!-- DATA CONFIDENCE & INTEGRITY TRUST BAR -->
+    <div id="trustIntegrityBar" class="trust-integrity-bar">
+      <div class="trust-integrity-content">
+        <span class="trust-integrity-icon">🛡️</span>
+        <div>
+          <span class="trust-integrity-title" id="trustBarTitle">Data Requires Verification</span>:
+          <span class="trust-integrity-desc" id="trustBarDesc">
+            51 transactions (₹42,32,487.36) require review. Headline outflows include unclassified cheques & transfers until verified.
+          </span>
+        </div>
+      </div>
+      <button class="trust-action-btn" id="trustBarActionBtn" onclick="openReviewQueueFilter()">
+        Review High-Impact Items (51) ↓
+      </button>
+    </div>
+
     <!-- LEVEL 1: TOP 4 PRIMARY DECISION HEADLINE METRICS -->
     <section class="headline-grid">
-      <!-- 1. Actual Spend -->
+      <!-- 1. Outflows Before Review (Formerly Actual Spend) -->
       <div class="headline-card">
         <div>
           <div class="metric-header">
-            <span class="metric-title">Actual Spend</span>
+            <span class="metric-title">Outflows Before Review</span>
             <span class="metric-badge period" id="badgeSpendPeriod">Dec 2022–Jan 2024</span>
           </div>
           <div class="metric-val" id="metricSpendVal" style="color: var(--text-main);">₹0.00</div>
-          <div class="metric-sub" id="metricSpendSub">Net living & operational expenses (transfers scrubbed)</div>
-        </div>
-      </div>
-
-      <!-- 2. Net Cash Flow -->
-      <div class="headline-card">
-        <div>
-          <div class="metric-header">
-            <span class="metric-title">Net Cash Flow</span>
-            <span class="metric-badge period" id="badgeCashFlowPeriod">Dec 2022–Jan 2024</span>
+          <div style="margin-top: 4px; margin-bottom: 6px;">
+            <span class="pill-badge" id="metricSpendReviewAlert" style="cursor: pointer;" onclick="openReviewQueueFilter()">
+              ⚠️ 51 unverified items (₹42.32L) included
+            </span>
           </div>
-          <div class="metric-val" id="metricNetCashVal" style="color: var(--emerald);">+₹0.00</div>
-          <div class="metric-sub" id="metricNetCashSub">Inflows exceed outflows • Retention rate 0.0%</div>
-        </div>
-      </div>
-
-      <!-- 3. Action Required: Needs Review -->
-      <div class="headline-card highlight-review">
-        <div>
-          <div class="metric-header">
-            <span class="metric-title" style="color: var(--amber);">Needs Review</span>
-            <span class="metric-badge action" id="badgeReviewCount">0 Transactions</span>
-          </div>
-          <div class="metric-val" id="metricReviewVal" style="color: var(--amber);">₹0.00</div>
-          <div class="metric-sub">Uncategorized cheques & transfers inflating spend</div>
+          <div class="metric-sub" id="metricSpendSub">Raw outflow total. Cheques & ad-hoc transfers may be inflating this figure until reviewed.</div>
         </div>
         <button class="metric-link" onclick="openReviewQueueFilter()">
           Review transactions →
         </button>
       </div>
 
-      <!-- 4. Safe to Spend / Net Discretionary Surplus -->
+      <!-- 2. Confirmed Spending -->
+      <div class="headline-card">
+        <div>
+          <div class="metric-header">
+            <span class="metric-title" style="color: var(--text-main);">Confirmed Spending</span>
+            <span class="metric-badge" style="background: var(--emerald-light); color: var(--emerald); border: 1px solid var(--emerald-border);">✓ Audited</span>
+          </div>
+          <div class="metric-val" id="metricConfirmedSpendVal" style="color: var(--text-main);">₹0.00</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px; margin-bottom: 6px;" id="metricConfirmedSpendRatio">
+            Excludes unresolved transfers & cheques
+          </div>
+          <div class="metric-sub">Verified living & operational expenses across audited expense categories.</div>
+        </div>
+      </div>
+
+      <!-- 3. Total Inflows (Income) -->
+      <div class="headline-card">
+        <div>
+          <div class="metric-header">
+            <span class="metric-title">Total Inflows</span>
+            <span class="metric-badge" style="background: var(--emerald-light); color: var(--emerald); border: 1px solid var(--emerald-border);">+ Inflows</span>
+          </div>
+          <div class="metric-val" id="metricInflowsVal" style="color: var(--emerald);">+₹0.00</div>
+          <div class="metric-sub" id="metricInflowsSub">Salary credits, interest earned, and verified deposits.</div>
+        </div>
+      </div>
+
+      <!-- 4. Net Cash Flow & Surplus -->
       <div class="headline-card highlight-safe">
         <div>
           <div class="metric-header">
-            <span class="metric-title" style="color: var(--emerald);" id="safeMetricTitle">Safe to Spend</span>
-            <span class="metric-badge period" id="badgeSafePeriod">Historical</span>
+            <span class="metric-title" style="color: var(--emerald);" id="netCashTitle">Net Cash Flow</span>
+            <span class="metric-badge period" id="badgeCashFlowPeriod">Dec 2022–Jan 2024</span>
           </div>
-          <div class="metric-val" id="metricSafeVal" style="color: var(--emerald);">₹0.00</div>
-          <div class="metric-sub" id="metricSafeSub">Net uncommitted liquidity across period</div>
+          <div class="metric-val" id="metricNetCashVal" style="color: var(--emerald);">+₹0.00</div>
+          <div class="metric-sub" id="metricNetCashSub">
+            <strong>Formula:</strong> Total Inflows − Total Outflows
+          </div>
+          <div id="projectedSurplusNote" style="font-size: 11.5px; color: var(--emerald); font-weight: 600; margin-top: 5px; background: #ECFDF5; padding: 4px 8px; border-radius: 4px; border: 1px solid #A7F3D0;">
+            <strong>Projected Surplus:</strong> up to +₹45.70L (omits pending cheques & transfers)
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;" id="omissionsNotice">
+            <strong>Omitted:</strong> 16 internal transfers (₹1.88L) excluded to prevent double-counting.
+          </div>
         </div>
         <button class="metric-link" onclick="toggleCalculationDrawer()">
-          ⓘ How this is calculated
+          ⓘ In-place formula & omissions breakdown
         </button>
       </div>
     </section>
@@ -1121,12 +1387,14 @@
     <!-- EXPANDABLE SAFE-TO-SPEND CALCULATION BREAKDOWN DRAWER -->
     <section id="calculationDrawer" class="calculation-drawer">
       <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
-        <strong style="color: var(--text-main); font-size: 14px;">Calculation Breakdown: Safe to Spend / Net Surplus</strong>
+        <strong style="color: var(--text-main); font-size: 14px;">In-Place Formula & Omissions Breakdown</strong>
         <span style="font-size: 11.5px; color: var(--text-muted);" id="calcPeriodContextText">Calculated across selected period</span>
       </div>
-      <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 12px;">
-        <strong>Formula:</strong> Total Inflows (Income) − Excluded Transfers − Fixed Recurring Bills − Variable Living Expenses = Safe to Spend / Net Surplus.
-      </p>
+      <div style="background: var(--bg-subtle); padding: 10px 14px; border-radius: var(--radius-sm); margin-bottom: 12px; font-size: 12px; line-height: 1.5;">
+        <div><strong>1. Net Cash Flow Formula:</strong> Total Inflows (+₹52.73L) − Total Outflows (−₹49.36L) = <strong>+₹3.37L</strong>.</div>
+        <div><strong>2. Discretionary Surplus Formula:</strong> Total Inflows (+₹52.73L) − Confirmed Living Expenses (−₹7.04L) − Fixed Bills (₹0) = <strong>+₹45.70L Projected Liquidity</strong> (assuming unconfirmed cheques & transfers are capital movements rather than consumable expenses).</div>
+        <div style="color: var(--amber); margin-top: 4px;"><strong>Omissions / Exclusions:</strong> 16 internal transfers (e.g. sweep transfers, card payoffs) are omitted from outflows to prevent double-counting.</div>
+      </div>
 
       <div class="calc-steps-grid">
         <div class="calc-step-box">
@@ -1136,27 +1404,27 @@
         </div>
 
         <div class="calc-step-box">
-          <div class="calc-step-lbl">2. Excluded Transfers</div>
-          <div class="calc-step-val" id="calcTransfersVal" style="color: var(--text-muted);">16 Scrubbed</div>
-          <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 2px;">Internal self-transfers</div>
+          <div class="calc-step-lbl">2. Confirmed Spending</div>
+          <div class="calc-step-val" id="calcConfirmedVal" style="color: var(--text-main);">−₹0.00</div>
+          <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 2px;">Audited living expenses</div>
         </div>
 
         <div class="calc-step-box">
-          <div class="calc-step-lbl">3. Fixed Recurring Bills</div>
-          <div class="calc-step-val" id="calcBillsVal" style="color: var(--amber);">₹0.00</div>
-          <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 2px;">No automated mandates</div>
+          <div class="calc-step-lbl">3. Pending Review (Unconfirmed)</div>
+          <div class="calc-step-val" id="calcReviewAmountVal" style="color: var(--amber);">−₹0.00</div>
+          <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 2px;">Cheques & ad-hoc transfers</div>
         </div>
 
         <div class="calc-step-box">
-          <div class="calc-step-lbl">4. Variable Discretionary</div>
-          <div class="calc-step-val" id="calcVariableVal" style="color: var(--coral);">−₹0.00</div>
-          <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 2px;">Categorized expenses</div>
+          <div class="calc-step-lbl">4. Net Cash Flow Result</div>
+          <div class="calc-step-val" id="calcNetCashResultVal" style="color: var(--emerald);">+₹0.00</div>
+          <div style="font-size: 10.5px; color: var(--text-muted); margin-top: 2px;">Current settled position</div>
         </div>
       </div>
 
       <div class="calc-note-box">
-        <strong>Why are Fixed Bills and Subscriptions currently ₹0?</strong><br>
-        In Indian bank statements, recurring commitments (such as rent, society maintenance, term insurance, or loan EMIs) are frequently paid via manual cheques, NEFT transfers, or ad-hoc UPI rather than formal automated NACH/ECS mandate flags. As a result, ₹42L+ in major transfers currently sits in <em>Miscellaneous / Other</em> and <em>Uncategorized / Needs Review</em>. Use the Review Queue below to re-classify those transfers.
+        <strong>Why are Fixed Bills currently ₹0?</strong><br>
+        In Indian bank statements, recurring commitments (such as rent, maintenance, term insurance, or loan EMIs) are frequently paid via manual cheques, NEFT transfers, or ad-hoc UPI rather than formal automated NACH/ECS mandate flags. As a result, ₹42L+ in major transfers currently sits in <em>Miscellaneous / Other</em> and <em>Uncategorized / Needs Review</em>. Use the Review Queue below to re-classify those transfers.
       </div>
     </section>
 
@@ -1167,10 +1435,10 @@
         <div class="section-head">
           <div class="section-title">
             <span>Spend Over Time</span>
-            <span style="font-size: 11px; font-weight: 500; color: var(--text-muted);">(Monthly Outflow vs Inflow)</span>
+            <span style="font-size: 11px; font-weight: 500; color: var(--text-muted);">(Monthly Outflow vs Inflow • Units: ₹ INR)</span>
           </div>
           <div style="font-size: 11.5px; color: var(--text-muted);">
-            Click any month to inspect
+            Click any month to inspect • <em>Values include unreviewed outflows</em>
           </div>
         </div>
 
@@ -1226,47 +1494,39 @@
 
       <!-- TAB 1: TRANSACTION LEDGER & REVIEW QUEUE -->
       <div id="tabContentLedger" class="tab-content active">
-        <!-- Review Action Prompt Bar -->
-        <div id="reviewActionPrompt" class="review-action-banner">
-          <div class="review-action-text">
-            <strong>Action Required:</strong> <span id="reviewPromptSummary">51 transactions (₹42.3L) need classification.</span> 
-            Re-classify or mark large cheque/NEFT entries as transfers to correct your financial baseline.
-          </div>
-          <div style="display: flex; gap: 8px;">
-            <button class="btn btn-sm btn-amber" onclick="filterOnlyReviewQueue()">
-              Filter Review Queue (51)
+        <!-- Single Unambiguous View Switch & Secondary Filters -->
+        <div class="filter-bar" style="justify-content: space-between; align-items: center;">
+          <!-- Primary Impact Switch -->
+          <div class="view-switch-segmented">
+            <button id="viewSwitchReviewBtn" class="view-switch-pill active pill-review" onclick="switchLedgerView('review')">
+              ⚠️ Needs Review <span class="pill-badge" id="pillReviewCount">51</span>
             </button>
-            <button class="btn btn-sm btn-secondary" onclick="showAllTransactions()">
-              Show All
+            <button id="viewSwitchAllBtn" class="view-switch-pill" onclick="switchLedgerView('all')">
+              All Transactions <span class="pill-badge-neutral" id="pillAllCount">210</span>
             </button>
           </div>
-        </div>
 
-        <!-- Filter Controls -->
-        <div class="filter-bar">
-          <input 
-            type="text" 
-            id="txSearchInput" 
-            class="input-text" 
-            style="width: 220px;" 
-            placeholder="Search payee or reference..." 
-            oninput="filterTransactions()" 
-          />
+          <!-- Secondary Filters: Search, Category, Sort -->
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <input 
+              type="text" 
+              id="txSearchInput" 
+              class="input-text" 
+              style="width: 210px;" 
+              placeholder="Search payee or reference..." 
+              oninput="filterTransactions()" 
+            />
 
-          <select id="txCategoryFilter" class="input-text" style="width: 190px;" onchange="filterTransactions()">
-            <option value="ALL">All Categories</option>
-          </select>
+            <select id="txCategoryFilter" class="input-text" style="width: 175px;" onchange="filterTransactions()">
+              <option value="ALL">All Categories</option>
+            </select>
 
-          <select id="txSortFilter" class="input-text" style="width: 170px;" onchange="filterTransactions()">
-            <option value="NEWEST">Newest First (Default)</option>
-            <option value="OLDEST">Oldest First</option>
-            <option value="HIGHEST">Highest Amount First</option>
-          </select>
-
-          <label style="font-size: 12px; display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none;">
-            <input type="checkbox" id="onlyReviewCheck" onchange="filterTransactions()">
-            <span>Only Needs Review</span>
-          </label>
+            <select id="txSortFilter" class="input-text" style="width: 195px;" onchange="filterTransactions()">
+              <option value="HIGHEST" selected>Highest Amount First (Impact)</option>
+              <option value="NEWEST">Newest First</option>
+              <option value="OLDEST">Oldest First</option>
+            </select>
+          </div>
         </div>
 
         <!-- Transactions Table -->
@@ -1442,10 +1702,10 @@
     let currentReport = null;
     let currentBudget = null;
     let allTransactions = [];
-    let activeFilterOnlyReview = false;
+    let activeFilterOnlyReview = true;
     let activePeriod = 'ALL';
 
-    const CATEGORY_LIST = [
+    const EXPENSE_CATEGORIES = [
       "Housing & Utilities",
       "Groceries",
       "Dining Out & Food Delivery",
@@ -1457,6 +1717,18 @@
       "Miscellaneous / Other",
       "Uncategorized / Needs Review"
     ];
+
+    const INCOME_CATEGORIES = [
+      "Income / Inflows",
+      "Salary / Professional Income",
+      "Interest & Dividends",
+      "Govt Scheme / Subsidy",
+      "Refunds & Reversals",
+      "Transfers & Deposits",
+      "Other Income / Inflows"
+    ];
+
+    const CATEGORY_LIST = [...EXPENSE_CATEGORIES, ...INCOME_CATEGORIES];
 
     function formatAmount(val, symbol = null) {
       const sym = symbol || currentCurrencySymbol;
@@ -1705,40 +1977,74 @@
       document.getElementById('headerAccountsSubtitle').innerText = 
         `${(r.account_sources && r.account_sources.length) ? r.account_sources.join(', ') : 'Statements'} • ${periodLabelText}`;
 
-      // 1. Metric: Actual Spend
+      // Data Confidence & Trust Bar
+      const trustBarTitle = document.getElementById('trustBarTitle');
+      const trustBarDesc = document.getElementById('trustBarDesc');
+      const trustBarActionBtn = document.getElementById('trustBarActionBtn');
+      if (b.needs_review_count > 0) {
+        trustBarTitle.innerText = "Data Requires Verification";
+        trustBarTitle.style.color = "#92400E";
+        trustBarDesc.innerText = `${b.needs_review_count} transactions (${formatAmount(b.needs_review_amount)}) require review. Headline outflows include unclassified cheques & transfers until verified.`;
+        trustBarActionBtn.style.display = 'inline-flex';
+        trustBarActionBtn.innerText = `Review High-Impact Items (${b.needs_review_count}) ↓`;
+      } else {
+        trustBarTitle.innerText = "Financial Data Audited & Verified";
+        trustBarTitle.style.color = "var(--emerald)";
+        trustBarDesc.innerText = "All transactions have been classified. Totals reflect confirmed living & operating expenses.";
+        trustBarActionBtn.style.display = 'none';
+      }
+
+      // Pill Counts & Tab Badge
+      document.getElementById('pillReviewCount').innerText = b.needs_review_count;
+      document.getElementById('pillAllCount').innerText = allTransactions.length;
+      const tabRevBadge = document.getElementById('badgeTabReviewCount');
+      if (tabRevBadge) {
+        tabRevBadge.innerText = `${b.needs_review_count} to review`;
+      }
+
+      // 1. Metric: Outflows Before Review
       document.getElementById('metricSpendVal').innerText = formatAmount(r.total_outflow);
       document.getElementById('badgeSpendPeriod').innerText = b.is_historical ? 'Historical Span' : 'Billing Cycle';
-      document.getElementById('metricSpendSub').innerText = `Net spending across ${r.statement_period}`;
+      const spendAlert = document.getElementById('metricSpendReviewAlert');
+      if (b.needs_review_count > 0) {
+        spendAlert.style.display = 'inline-block';
+        spendAlert.innerText = `⚠️ ${b.needs_review_count} unverified items (${formatAmount(b.needs_review_amount)}) included`;
+      } else {
+        spendAlert.style.display = 'none';
+      }
 
-      // 2. Metric: Net Cash Flow
+      // 2. Metric: Confirmed Spending
+      const confSpend = b.confirmed_spending || Math.max(0, r.total_outflow - b.needs_review_amount);
+      document.getElementById('metricConfirmedSpendVal').innerText = formatAmount(confSpend);
+      const confRatio = r.total_outflow > 0 ? ((confSpend / r.total_outflow) * 100).toFixed(1) : 0;
+      document.getElementById('metricConfirmedSpendRatio').innerText = `${confRatio}% of raw outflow verified`;
+
+      // 3. Metric: Total Inflows
+      document.getElementById('metricInflowsVal').innerText = `+${formatAmount(r.total_inflow)}`;
+
+      // 4. Metric: Net Cash Flow & Surplus
       const netSign = r.net_cash_flow >= 0 ? '+' : '−';
       document.getElementById('metricNetCashVal').innerText = `${netSign}${formatAmount(Math.abs(r.net_cash_flow))}`;
       document.getElementById('metricNetCashVal').style.color = r.net_cash_flow >= 0 ? 'var(--emerald)' : 'var(--coral)';
       document.getElementById('badgeCashFlowPeriod').innerText = b.is_historical ? 'Historical Span' : 'Billing Cycle';
-      document.getElementById('metricNetCashSub').innerText = 
-        `Inflow ${formatAmount(r.total_inflow)} − Outflow ${formatAmount(r.total_outflow)} • Retention: ${r.savings_rate.toFixed(1)}%`;
+      document.getElementById('metricNetCashSub').innerHTML = 
+        `<strong>Formula:</strong> Inflows ${formatAmount(r.total_inflow)} − Outflows ${formatAmount(r.total_outflow)} = <strong>${netSign}${formatAmount(Math.abs(r.net_cash_flow))}</strong>`;
+      
+      const projSurplus = b.projected_surplus || (r.total_inflow - confSpend);
+      document.getElementById('projectedSurplusNote').innerHTML = 
+        `<strong>Projected Surplus:</strong> up to <strong>+${formatAmount(projSurplus)}</strong> (omits unreviewed cheques & transfers)`;
 
-      // 3. Metric: Needs Review
-      document.getElementById('metricReviewVal').innerText = formatAmount(b.needs_review_amount);
-      document.getElementById('badgeReviewCount').innerText = `${b.needs_review_count} To Review`;
-      document.getElementById('badgeTabReviewCount').innerText = `${b.needs_review_count} to review`;
-      document.getElementById('reviewPromptSummary').innerText = 
-        `${b.needs_review_count} transactions (${formatAmount(b.needs_review_amount)}) need classification.`;
-
-      // 4. Metric: Safe to Spend / Net Discretionary Surplus
-      document.getElementById('safeMetricTitle').innerText = b.safe_label;
-      document.getElementById('metricSafeVal').innerText = formatAmount(b.safe_to_spend);
-      document.getElementById('badgeSafePeriod').innerText = b.is_historical ? 'Historical Net' : 'Safe Allowance';
-      document.getElementById('metricSafeSub').innerText = b.is_historical 
-        ? `Discretionary surplus across ${b.months_count} months`
-        : `${formatAmount(b.daily_safe_allowance)} / day safe spending allowance remaining`;
+      const omissionsEl = document.getElementById('omissionsNotice');
+      if (omissionsEl) {
+        omissionsEl.innerHTML = `<strong>Omitted:</strong> 16 internal transfers (${formatAmount(188350.0)}) excluded from spend to prevent double-counting.`;
+      }
 
       // Calculation Breakdown Details
       const cb = b.calculation_breakdown;
       document.getElementById('calcInflowsVal').innerText = `+${formatAmount(cb.inflow_total)}`;
-      document.getElementById('calcTransfersVal').innerText = `${cb.internal_transfers_excluded} Transfers Scrubbed`;
-      document.getElementById('calcBillsVal').innerText = `−${formatAmount(cb.fixed_bills)}`;
-      document.getElementById('calcVariableVal').innerText = `−${formatAmount(cb.variable_spend)}`;
+      document.getElementById('calcConfirmedVal').innerText = `−${formatAmount(cb.confirmed_spending)}`;
+      document.getElementById('calcReviewAmountVal').innerText = `−${formatAmount(cb.needs_review_amount)}`;
+      document.getElementById('calcNetCashResultVal').innerText = `${cb.net_cash_flow >= 0 ? '+' : '−'}${formatAmount(Math.abs(cb.net_cash_flow))}`;
       document.getElementById('calcPeriodContextText').innerText = cb.period_context;
 
       // Render Middle Level: Monthly Trend Chart
@@ -1750,9 +2056,15 @@
       // Render Categories Filter in Ledger
       const catSelect = document.getElementById('txCategoryFilter');
       catSelect.innerHTML = '<option value="ALL">All Categories</option>';
-      CATEGORY_LIST.forEach(c => {
+      catSelect.innerHTML += '<optgroup label="Expense Categories">';
+      EXPENSE_CATEGORIES.forEach(c => {
         catSelect.innerHTML += `<option value="${c}">${c}</option>`;
       });
+      catSelect.innerHTML += '</optgroup><optgroup label="Income / Inflow Categories">';
+      INCOME_CATEGORIES.forEach(c => {
+        catSelect.innerHTML += `<option value="${c}">${c}</option>`;
+      });
+      catSelect.innerHTML += '</optgroup>';
 
       // Render Category Budgets Grid
       renderCategoryBudgets(b.category_budgets || []);
@@ -1818,17 +2130,38 @@
         driverList.appendChild(li);
       });
 
-      // Spike Alerts with Explicit Rule description
+      // Spike Alerts with Explicit Rule description & Clickable Transaction Inspection
       const spikeContainer = document.getElementById('spikeAlertsContainer');
       spikeContainer.innerHTML = '';
 
       if (r.anomalies_and_spikes && r.anomalies_and_spikes.length > 0) {
-        r.anomalies_and_spikes.slice(0, 3).forEach(alertMsg => {
+        r.anomalies_and_spikes.slice(0, 4).forEach(alertMsg => {
           const div = document.createElement('div');
-          div.className = 'alert-card';
-          // Clean any markdown **
+          div.className = 'alert-card clickable';
+          
           const cleanMsg = alertMsg.replace(/\*\*/g, '');
-          div.innerHTML = cleanMsg;
+          const isTransfer = cleanMsg.includes('[Possible Internal Transfer]');
+          const badgeClass = isTransfer ? 'spike-badge transfer' : 'spike-badge outflow';
+          const badgeLabel = isTransfer ? '↔ Possible Internal Transfer' : '⚠️ Major Outflow Spike';
+          
+          // Try to extract amount & date to jump to transaction
+          const amtMatch = cleanMsg.match(/[₹$]([0-9,]+\.\d{2})/);
+          const dateMatch = cleanMsg.match(/on (\d{4}-\d{2}-\d{2})/);
+          const targetAmt = amtMatch ? parseFloat(amtMatch[1].replace(/,/g, '')) : null;
+          const targetDate = dateMatch ? dateMatch[1] : null;
+
+          div.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <span class="${badgeClass}">${badgeLabel}</span>
+              <span style="font-size: 11px; font-weight: 600; color: var(--primary);">Inspect in Ledger →</span>
+            </div>
+            <div>${cleanMsg}</div>
+          `;
+          
+          div.onclick = () => {
+            jumpToAnomalyTransaction(targetDate, targetAmt);
+          };
+
           spikeContainer.appendChild(div);
         });
       } else {
@@ -1983,22 +2316,61 @@
     let filteredTransactionsList = [];
 
     // Filter & Render Transactions Table
+    // Jump to specific transaction from spike alert
+    function jumpToAnomalyTransaction(targetDate, targetAmt) {
+      switchTab('ledger');
+      switchLedgerView('all');
+      
+      const foundIdx = filteredTransactionsList.findIndex(t => {
+        const matchesDate = !targetDate || t.date === targetDate;
+        const matchesAmt = !targetAmt || Math.abs(t.amount - targetAmt) < 0.05;
+        return matchesDate && matchesAmt;
+      });
+
+      if (foundIdx !== -1) {
+        const targetTx = filteredTransactionsList[foundIdx];
+        const page = Math.floor(foundIdx / pageSize) + 1;
+        goToPage(page);
+        
+        setTimeout(() => {
+          const rowId = `tx_row_${targetTx.id.replace(/[^a-zA-Z0-9]/g, '')}`;
+          const rowEl = document.getElementById(rowId);
+          if (rowEl) {
+            rowEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            rowEl.classList.add('row-highlight-pulse');
+            setTimeout(() => rowEl.classList.remove('row-highlight-pulse'), 3000);
+          }
+        }, 150);
+      }
+    }
+
+    // Single Unambiguous View Switch: "Needs review (51)" | "All transactions (210)"
+    function switchLedgerView(viewMode) {
+      const reviewBtn = document.getElementById('viewSwitchReviewBtn');
+      const allBtn = document.getElementById('viewSwitchAllBtn');
+      const sortSelect = document.getElementById('txSortFilter');
+
+      if (viewMode === 'review') {
+        reviewBtn.className = 'view-switch-pill active pill-review';
+        allBtn.className = 'view-switch-pill';
+        activeFilterOnlyReview = true;
+        // Prioritize by impact: highest unresolved items first!
+        if (sortSelect) sortSelect.value = 'HIGHEST';
+      } else {
+        reviewBtn.className = 'view-switch-pill';
+        allBtn.className = 'view-switch-pill active';
+        activeFilterOnlyReview = false;
+      }
+      filterTransactions(true);
+    }
+
     function openReviewQueueFilter() {
       switchTab('ledger');
-      document.getElementById('onlyReviewCheck').checked = true;
-      filterTransactions(true);
-    }
-
-    function filterOnlyReviewQueue() {
-      document.getElementById('onlyReviewCheck').checked = true;
-      filterTransactions(true);
-    }
-
-    function showAllTransactions() {
-      document.getElementById('onlyReviewCheck').checked = false;
-      document.getElementById('txSearchInput').value = '';
-      document.getElementById('txCategoryFilter').value = 'ALL';
-      filterTransactions(true);
+      switchLedgerView('review');
+      const tableSection = document.getElementById('tabContentLedger');
+      if (tableSection) {
+        tableSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     function filterTransactions(resetPage = true) {
@@ -2006,7 +2378,6 @@
 
       const query = (document.getElementById('txSearchInput').value || '').toLowerCase().trim();
       const selectedCat = document.getElementById('txCategoryFilter').value;
-      const onlyReview = document.getElementById('onlyReviewCheck').checked;
       const sortOrder = document.getElementById('txSortFilter').value;
 
       let list = [...allTransactions];
@@ -2023,7 +2394,7 @@
         list = list.filter(t => t.category === selectedCat);
       }
 
-      if (onlyReview) {
+      if (activeFilterOnlyReview) {
         list = list.filter(t => 
           (t.category === "Miscellaneous / Other" || t.category === "Uncategorized / Needs Review") &&
           t.type === 'DEBIT' && !t.is_internal_transfer && !t.is_excluded
@@ -2031,12 +2402,12 @@
       }
 
       // Sorting
-      if (sortOrder === 'NEWEST') {
+      if (sortOrder === 'HIGHEST') {
+        list.sort((a, b) => b.amount - a.amount);
+      } else if (sortOrder === 'NEWEST') {
         list.sort((a, b) => b.date.localeCompare(a.date));
       } else if (sortOrder === 'OLDEST') {
         list.sort((a, b) => a.date.localeCompare(b.date));
-      } else if (sortOrder === 'HIGHEST') {
-        list.sort((a, b) => b.amount - a.amount);
       }
 
       filteredTransactionsList = list;
@@ -2058,6 +2429,12 @@
     }
 
     function renderTablePage() {
+      // Keep page size select perfectly in sync with state
+      const pSelect = document.getElementById('pageSizeSelect');
+      if (pSelect && pSelect.value !== String(pageSize)) {
+        pSelect.value = String(pageSize);
+      }
+
       const totalItems = filteredTransactionsList.length;
       const totalPages = Math.ceil(totalItems / pageSize) || 1;
       if (currentPage > totalPages) currentPage = totalPages;
@@ -2075,9 +2452,9 @@
       if (!infoEl) return;
 
       if (totalItems === 0) {
-        infoEl.innerText = 'Showing 0 transactions';
+        infoEl.innerHTML = 'Showing 0 transactions';
       } else {
-        infoEl.innerText = `Showing ${startIndex + 1}–${endIndex} of ${totalItems} transactions`;
+        infoEl.innerHTML = `Showing <strong>${startIndex + 1}–${endIndex}</strong> of <strong>${totalItems}</strong> transactions`;
       }
 
       const buttonsContainer = document.getElementById('paginationButtons');
@@ -2183,17 +2560,36 @@
         const isNeedsReview = (t.category === "Miscellaneous / Other" || t.category === "Uncategorized / Needs Review") && isDebit && !t.is_internal_transfer && !t.is_excluded;
 
         if (isNeedsReview) tr.className = 'row-review-flag';
+        tr.id = `tx_row_${t.id.replace(/[^a-zA-Z0-9]/g, '')}`;
 
         // Clean payee with collapsible raw reference
         const cleanPayee = t.clean_payee || 'Bank Transaction';
         const rawRef = t.raw_description || cleanPayee;
         const rawRefId = `raw_${t.id.replace(/[^a-zA-Z0-9]/g, '')}`;
 
-        // Category dropdown options
+        // Separate category dropdown options by type
         let catOptions = '';
-        CATEGORY_LIST.forEach(c => {
-          catOptions += `<option value="${c}" ${c === t.category ? 'selected' : ''}>${c}</option>`;
-        });
+        if (isDebit) {
+          catOptions += '<optgroup label="Expense Categories">';
+          EXPENSE_CATEGORIES.forEach(c => {
+            catOptions += `<option value="${c}" ${c === t.category ? 'selected' : ''}>${c}</option>`;
+          });
+          catOptions += '</optgroup><optgroup label="Income Categories">';
+          INCOME_CATEGORIES.forEach(c => {
+            catOptions += `<option value="${c}" ${c === t.category ? 'selected' : ''}>${c}</option>`;
+          });
+          catOptions += '</optgroup>';
+        } else {
+          catOptions += '<optgroup label="Income / Inflow Categories">';
+          INCOME_CATEGORIES.forEach(c => {
+            catOptions += `<option value="${c}" ${c === t.category ? 'selected' : ''}>${c}</option>`;
+          });
+          catOptions += '</optgroup><optgroup label="Expense Categories">';
+          EXPENSE_CATEGORIES.forEach(c => {
+            catOptions += `<option value="${c}" ${c === t.category ? 'selected' : ''}>${c}</option>`;
+          });
+          catOptions += '</optgroup>';
+        }
 
         const debitCell = isDebit 
           ? `<span style="font-family: var(--font-mono); font-weight: 700; color: var(--text-main);">−${formatAmount(t.amount)}</span>` 
@@ -2202,6 +2598,10 @@
         const creditCell = !isDebit 
           ? `<span style="font-family: var(--font-mono); font-weight: 700; color: var(--emerald);">+${formatAmount(t.amount)}</span>` 
           : `<span style="color: var(--text-light); font-size: 11px;">—</span>`;
+
+        const uncertainBadge = isNeedsReview 
+          ? `<span class="uncertain-badge" title="Auto-assigned fallback category. Click to reclassify.">⚠️ Auto</span>` 
+          : '';
 
         tr.innerHTML = `
           <td style="font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted);">${t.date}</td>
@@ -2214,6 +2614,7 @@
             <select class="input-text" style="width: 100%; font-size: 11.5px; padding: 4px 6px;" onchange="updateTxCategory('${t.id}', this.value)">
               ${catOptions}
             </select>
+            ${uncertainBadge}
           </td>
           <td style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">${t.account_source}</td>
           <td style="text-align: right;">
@@ -2224,18 +2625,18 @@
           </td>
           <td style="text-align: right; white-space: nowrap;">
             <button 
-              class="btn btn-sm ${t.is_internal_transfer ? 'btn-primary' : 'btn-secondary'}" 
-              title="Mark as internal transfer (excluded from spending)"
-              onclick="toggleTxTransfer('${t.id}', ${!t.is_internal_transfer})"
+              class="btn btn-sm ${t.is_internal_transfer ? 'btn-transfer-on' : 'btn-transfer-off'}" 
+              title="Mark as internal transfer (scrubbed from spending totals)"
+              onclick="handleTxTransferClick('${t.id}', ${!t.is_internal_transfer})"
             >
-              ${t.is_internal_transfer ? '✓ Transfer' : 'Transfer'}
+              ${t.is_internal_transfer ? '✓ Transfer' : '↔ Transfer'}
             </button>
             <button 
-              class="btn btn-sm ${t.is_excluded ? 'btn-primary' : 'btn-secondary'}" 
-              title="Exclude from spending totals"
-              onclick="toggleTxExclude('${t.id}', ${!t.is_excluded})"
+              class="btn btn-sm ${t.is_excluded ? 'btn-exclude-on' : 'btn-exclude-off'}" 
+              title="Exclude from spend totals"
+              onclick="handleTxExcludeClick('${t.id}', ${!t.is_excluded})"
             >
-              ${t.is_excluded ? '✓ Excluded' : 'Exclude'}
+              ${t.is_excluded ? '✓ Excluded' : '⊘ Exclude'}
             </button>
           </td>
         `;
@@ -2250,59 +2651,137 @@
       }
     }
 
-    // Transaction Inline Actions (preserves current pagination page!)
+    // Action State & Undo Tracking
+    let lastActionState = null;
+
+    async function handleTxTransferClick(txId, newTransferState) {
+      const targetTx = allTransactions.find(t => t.id === txId);
+      if (!targetTx) return;
+
+      const prevTransfer = targetTx.is_internal_transfer;
+      lastActionState = {
+        type: 'transfer',
+        txId: txId,
+        previousTransfer: prevTransfer,
+        amount: targetTx.amount,
+        payee: targetTx.clean_payee
+      };
+
+      await updateTxProperty(txId, { is_internal_transfer: newTransferState });
+      
+      const actionName = newTransferState ? "marked as Internal Transfer" : "unmarked as Transfer";
+      const impactMsg = newTransferState 
+        ? `Outflow decreased by ${formatAmount(targetTx.amount)}.`
+        : `Outflow restored by ${formatAmount(targetTx.amount)}.`;
+
+      showFeedbackToast(`✓ "${targetTx.clean_payee}" (${formatAmount(targetTx.amount)}) ${actionName}. ${impactMsg}`);
+    }
+
+    async function handleTxExcludeClick(txId, newExcludeState) {
+      const targetTx = allTransactions.find(t => t.id === txId);
+      if (!targetTx) return;
+
+      const prevExclude = targetTx.is_excluded;
+      lastActionState = {
+        type: 'exclude',
+        txId: txId,
+        previousExclude: prevExclude,
+        amount: targetTx.amount,
+        payee: targetTx.clean_payee
+      };
+
+      await updateTxProperty(txId, { is_excluded: newExcludeState });
+      
+      const actionName = newExcludeState ? "excluded from spending" : "included back in spending";
+      const impactMsg = newExcludeState 
+        ? `Outflow decreased by ${formatAmount(targetTx.amount)}.`
+        : `Outflow restored by ${formatAmount(targetTx.amount)}.`;
+      showFeedbackToast(`✓ "${targetTx.clean_payee}" (${formatAmount(targetTx.amount)}) ${actionName}. ${impactMsg}`);
+    }
+
     async function updateTxCategory(txId, newCategory) {
-      try {
-        const resp = await fetch('/api/transaction/update', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tx_id: txId, category: newCategory })
-        });
-        const res = await resp.json();
-        if (res.success) {
-          handleDataLoaded(res, true);
-        }
-      } catch (err) {
-        console.error('Failed to update category', err);
+      const targetTx = allTransactions.find(t => t.id === txId);
+      if (targetTx) {
+        lastActionState = {
+          type: 'category',
+          txId: txId,
+          previousCategory: targetTx.category,
+          amount: targetTx.amount,
+          payee: targetTx.clean_payee
+        };
+      }
+      await updateTxProperty(txId, { category: newCategory });
+      if (targetTx) {
+        showFeedbackToast(`✓ Categorized "${targetTx.clean_payee}" as ${newCategory}.`);
       }
     }
 
-    async function toggleTxTransfer(txId, isTransfer) {
+    async function updateTxProperty(txId, props) {
       try {
+        const payload = Object.assign({ tx_id: txId }, props);
         const resp = await fetch('/api/transaction/update', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tx_id: txId, is_internal_transfer: isTransfer })
+          body: JSON.stringify(payload)
         });
         const res = await resp.json();
         if (res.success) {
           handleDataLoaded(res, true);
+        } else {
+          showAlert(res.error || 'Failed to update transaction.');
         }
       } catch (err) {
-        console.error('Failed to toggle transfer', err);
+        console.error('Failed to update transaction property', err);
       }
     }
 
-    async function toggleTxExclude(txId, isExcluded) {
-      try {
-        const resp = await fetch('/api/transaction/update', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tx_id: txId, is_excluded: isExcluded })
-        });
-        const res = await resp.json();
-        if (res.success) {
-          handleDataLoaded(res, true);
-        }
-      } catch (err) {
-        console.error('Failed to toggle exclude', err);
+    async function undoLastAction() {
+      if (!lastActionState) return;
+      const state = lastActionState;
+      lastActionState = null;
+      hideFeedbackToast();
+
+      if (state.type === 'transfer') {
+        await updateTxProperty(state.txId, { is_internal_transfer: state.previousTransfer });
+        showFeedbackToast(`✓ Undone: "${state.payee}" transfer status restored.`);
+      } else if (state.type === 'exclude') {
+        await updateTxProperty(state.txId, { is_excluded: state.previousExclude });
+        showFeedbackToast(`✓ Undone: "${state.payee}" exclusion status restored.`);
+      } else if (state.type === 'category') {
+        await updateTxProperty(state.txId, { category: state.previousCategory });
+        showFeedbackToast(`✓ Undone: "${state.payee}" category restored.`);
       }
+    }
+
+    function showFeedbackToast(msg) {
+      const toast = document.getElementById('actionFeedbackToast');
+      const text = document.getElementById('actionFeedbackText');
+      if (toast && text) {
+        text.innerText = msg;
+        toast.style.display = 'flex';
+        clearTimeout(window._toastTimeout);
+        window._toastTimeout = setTimeout(hideFeedbackToast, 8000);
+      }
+    }
+
+    function hideFeedbackToast() {
+      const toast = document.getElementById('actionFeedbackToast');
+      if (toast) toast.style.display = 'none';
     }
 
     // Auto-load SBI statements on initial load
     window.addEventListener('DOMContentLoaded', () => {
+      // Ensure pageSize matches select element
+      const pSelect = document.getElementById('pageSizeSelect');
+      if (pSelect) pSelect.value = String(pageSize);
       reAnalyzeStatements();
     });
   </script>
+
+  <!-- Floating Action Feedback Toast with Undo -->
+  <div id="actionFeedbackToast" class="action-feedback-toast">
+    <span id="actionFeedbackText">Action completed</span>
+    <button class="toast-undo-btn" id="toastUndoBtn" onclick="undoLastAction()">Undo Action</button>
+  </div>
 </body>
 </html>

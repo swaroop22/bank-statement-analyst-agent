@@ -185,14 +185,26 @@ def generate_budget(report_dict, user_settings=None, transactions=None):
                 "net": round(in_val - out_val, 2)
             })
 
+    confirmed_spending = max(0.0, round(total_outflow - needs_review_amount, 2))
+    projected_surplus = max(0.0, round(income - confirmed_spending - recurring_monthly, 2))
+    net_cash_flow_val = float(report_dict.get("net_cash_flow", income - total_outflow))
+
     # Transparent calculation breakdown for users
     calculation_breakdown = {
-        "formula": "Safe to Spend = Total Inflows (Income) − Fixed Recurring Bills − Variable Living Expenses",
+        "formula": "Net Cash Flow = Total Inflows − Total Outflows (including unreviewed items)",
+        "surplus_formula": "Discretionary Surplus = Total Inflows − Fixed Bills − Confirmed Living Expenses",
         "inflow_total": round(income, 2),
+        "total_outflow": round(total_outflow, 2),
+        "confirmed_spending": round(confirmed_spending, 2),
+        "needs_review_amount": round(needs_review_amount, 2),
+        "needs_review_count": needs_review_count,
         "fixed_bills": round(recurring_monthly, 2),
         "variable_spend": round(total_variable_spent, 2),
         "safe_to_spend": round(safe_to_spend, 2),
+        "net_cash_flow": round(net_cash_flow_val, 2),
+        "projected_surplus": round(projected_surplus, 2),
         "internal_transfers_excluded": report_dict.get("internal_transfers_excluded", 0),
+        "omitted_categories": ["Internal Transfers (Scrubbed)", "Excluded Transactions"],
         "bills_zero_explanation": (
             "₹0 Fixed Bills / Subscriptions Detected: In Indian bank statements, recurring debits (like rent, utilities, insurance, "
             "or investments) are frequently transferred manually via NEFT, Cheque, or ad-hoc UPI rather than auto-debit mandates (NACH/ECS). "
@@ -207,6 +219,9 @@ def generate_budget(report_dict, user_settings=None, transactions=None):
         "fixed_bills_monthly": round(recurring_monthly, 2),
         "variable_spent": round(total_variable_spent, 2),
         "total_spent": round(total_outflow, 2),
+        "confirmed_spending": round(confirmed_spending, 2),
+        "projected_surplus": round(projected_surplus, 2),
+        "net_cash_flow": round(net_cash_flow_val, 2),
         "total_budgeted": round(total_budgeted, 2),
         "safe_to_spend": round(safe_to_spend, 2),
         "allowance_total": round(allowance_total, 2),

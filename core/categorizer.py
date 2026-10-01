@@ -158,12 +158,18 @@ class ExpenseCategorizer:
 
         # Handle genuine Inflows / Income
         if tx.type == TransactionType.CREDIT and not tx.is_refund:
+            if re.search(r'\b(interest|dividend)\b', desc, re.I):
+                return SpendingCategory.INCOME_INTEREST.value
+            if re.search(r'\b(nestor technolog)\b', desc, re.I):
+                return SpendingCategory.INCOME_SALARY.value
+            if re.search(r'\b(apscsc|subsidy|pm kisan|dbt)\b', desc, re.I):
+                return SpendingCategory.INCOME_GOVT_SCHEME.value
             return SpendingCategory.INCOME_INFLOWS.value
 
         # For refunds, match the merchant to its expense category
         # Evaluate rules in priority order
         for category, regex in self.CATEGORY_RULES:
-            if category == SpendingCategory.INCOME_INFLOWS.value and tx.type == TransactionType.DEBIT:
+            if category in [SpendingCategory.INCOME_INFLOWS.value, SpendingCategory.INCOME_SALARY.value, SpendingCategory.INCOME_INTEREST.value] and tx.type == TransactionType.DEBIT:
                 continue
             if regex.search(desc):
                 return category

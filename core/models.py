@@ -22,6 +22,7 @@ class TransactionType(str, Enum):
 
 
 class SpendingCategory(str, Enum):
+    # Expense Categories
     HOUSING_UTILITIES = "Housing & Utilities"
     GROCERIES = "Groceries"
     DINING_DELIVERY = "Dining Out & Food Delivery"
@@ -31,8 +32,16 @@ class SpendingCategory(str, Enum):
     ENTERTAINMENT_SUBSCRIPTIONS = "Entertainment & Subscriptions"
     DEBT_SERVICE = "Debt Service"
     MISCELLANEOUS_OTHER = "Miscellaneous / Other"
-    INCOME_INFLOWS = "Income / Inflows"
     UNCATEGORIZED = "Uncategorized / Needs Review"
+
+    # Income / Inflow Categories
+    INCOME_INFLOWS = "Income / Inflows"
+    INCOME_SALARY = "Salary / Professional Income"
+    INCOME_INTEREST = "Interest & Dividends"
+    INCOME_GOVT_SCHEME = "Govt Scheme / Subsidy"
+    INCOME_REFUND = "Refunds & Reversals"
+    INCOME_TRANSFER = "Transfers & Deposits"
+    INCOME_OTHER = "Other Income / Inflows"
 
 
 # Primary spending categories expected in breakdown table (excluding Income)
@@ -47,6 +56,16 @@ PRIMARY_EXPENSE_CATEGORIES = [
     SpendingCategory.DEBT_SERVICE.value,
     SpendingCategory.MISCELLANEOUS_OTHER.value,
     SpendingCategory.UNCATEGORIZED.value,
+]
+
+INCOME_CATEGORIES = [
+    SpendingCategory.INCOME_SALARY.value,
+    SpendingCategory.INCOME_INTEREST.value,
+    SpendingCategory.INCOME_GOVT_SCHEME.value,
+    SpendingCategory.INCOME_REFUND.value,
+    SpendingCategory.INCOME_TRANSFER.value,
+    SpendingCategory.INCOME_OTHER.value,
+    SpendingCategory.INCOME_INFLOWS.value,
 ]
 
 

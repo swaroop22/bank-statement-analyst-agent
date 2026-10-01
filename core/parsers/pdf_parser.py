@@ -464,8 +464,21 @@ class PdfStatementParser(BaseStatementParser):
         if re.search(r'IMPS.*HDFC', text, re.I):
             return "HDFC Bank Transfer (IMPS)"
 
+        # Clean NEFT / RTGS with asterisks: NEFT*IFSC*UTR*NAME
+        neft_star = re.match(r'^(?:NEFT|RTGS|IMPS)[*:\-\s]+[A-Z0-9]+[*:\-\s]+[A-Z0-9]+[*:\-\s]+(.+)$', text, re.I)
+        if neft_star:
+            cleaned = neft_star.group(1).strip()
+            # Clean trailing account digits if any
+            cleaned = re.sub(r'[*:\-\s]+[0-9]+$', '', cleaned)
+            return cleaned.title()
+
+        # Clean PFN / UBN / GLT reference numbers before agency name
+        agency_match = re.match(r'^(?:PFN\s+)?(?:UBN|GLT|SBIN|HDFC|ICIC)\d+\s+(APSCSC.*)$', text, re.I)
+        if agency_match:
+            return "APSCSC (Civil Supplies)"
+
         # Clean NEFT, IMPS, RTGS, Transfer-INB
-        text = re.sub(r'^(?:NEFT|IMPS|RTGS)[-\s:]*(?:[A-Z0-9]+)?\s*', '', text, flags=re.I)
+        text = re.sub(r'^(?:NEFT|IMPS|RTGS)[-\s:*]*(?:[A-Z0-9]+)?\s*', '', text, flags=re.I)
         text = re.sub(r'^(?:TO|BY)\s+TRANSFER-(?:INB|UPI|NEFT|RTGS)\s*', '', text, flags=re.I)
         text = re.sub(r'^(?:TO|BY)\s+TRANSFER\s+', '', text, flags=re.I)
         text = re.sub(r'^TRANSFER\s+FROM\s+', '', text, flags=re.I)
